@@ -3,11 +3,8 @@ package com.webdev.realstate.properties.property.domain;
 import com.webdev.realstate.properties.property.domain.entities.PropertyAddress;
 import com.webdev.realstate.properties.property.domain.valueobjects.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Property {
 	PropertyId propertyId;
@@ -51,7 +48,7 @@ public class Property {
 		}};
 		return data;
 	}
-	
+
 	private HashMap<String, Object> createAddress() {
 		HashMap<String, Object> map = new HashMap<>();
 		if (!propertyAddress.isEmpty()) {
