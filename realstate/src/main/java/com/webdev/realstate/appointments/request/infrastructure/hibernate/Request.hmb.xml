@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.webdev.realstate.appointments.request.domain.Request" table="request">
+
+		<composite-id name="requestId" class="com.webdev.realstate.appointments.request.domain.valueobjects.RequestId"
+		              access="field">
+			<key-property name="value" column="appointmentId" access="field" length="36"/>
+		</composite-id>
+
+		<component name="requestDate" class="com.webdev.realstate.appointments.request.domain.valueobjects.RequestDate"
+		           access="field">
+			<property name="value" column="appointmentDate" access="field" type="date"/>
+		</component>
+
+		<component name="requestState"
+		           class="com.webdev.realstate.appointments.request.domain.valueobjects.RequestState" access="field">
+			<property name="value" column="appointmentState" access="field" type="string"/>
+		</component>
+
+		<component name="userId" class="com.webdev.realstate.users.user.domain.valueobjects.UserId" access="field">
+			<property name="value" column="userId" access="field" length="36"/>
+		</component>
+
+		<component name="agentId" class="com.webdev.realstate.users.user.domain.valueobjects.UserId" access="field">
+			<property name="value" column="agentId" access="field" length="36"/>
+		</component>
+	</class>
+</hibernate-mapping>

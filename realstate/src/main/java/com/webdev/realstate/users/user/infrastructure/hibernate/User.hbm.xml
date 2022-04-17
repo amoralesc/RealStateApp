@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.webdev.realstate.users.user.domain.User" table="user">
+
+		<composite-id name="userId" class="com.webdev.realstate.users.user.domain.valueobjects.UserId" access="field">
+			<key-property name="value" column="userId" access="field" length="36"/>
+		</composite-id>
+
+		<component name="userName" class="com.webdev.realstate.users.user.domain.valueobjects.UserName" access="field">
+			<property name="value" column="name" access="field" type="string"/>
+		</component>
+
+		<component name="userEmail" class="com.webdev.realstate.users.user.domain.valueobjects.UserEmail"
+		           access="field">
+			<property name="value" column="email" access="field" type="string"/>
+		</component>
+
+		<component name="isAgent" class="com.webdev.realstate.users.user.domain.valueobjects.UserIsAgent"
+		           access="field">
+			<property name="value" column="isAgent" access="field" type="boolean"/>
+		</component>
+
+		<component name="password" class="com.webdev.realstate.users.user.domain.valueobjects.UserPassword"
+		           access="field">
+			<property name="value" column="password" access="field" type="string"/>
+		</component>
+
+		<property name="phoneList" column="phone" access="field">
+			<type name="com.webdev.realstate.users.user.infrastructure.hibernate.UserPhoneCustomType" />
+		</property>
+
+	</class>
+</hibernate-mapping>

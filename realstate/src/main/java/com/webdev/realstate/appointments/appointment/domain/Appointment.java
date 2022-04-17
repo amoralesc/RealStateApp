@@ -1,6 +1,7 @@
 package com.webdev.realstate.appointments.appointment.domain;
 
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.*;
+import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 
 import java.util.HashMap;
 
@@ -8,27 +9,39 @@ public class Appointment {
 	AppointmentId appointmentId;
 	AppointmentDate appointmentDate;
 	AppointmentState appointmentState;
-	AppointmentIsRequest appointmentIsRequest;
+	UserId userId;
+	UserId agentId;
 
-	public Appointment(AppointmentId appointmentId, AppointmentDate appointmentDate, AppointmentState appointmentState, AppointmentIsRequest appointmentIsRequest) {
+	public Appointment(
+			AppointmentId appointmentId, AppointmentDate appointmentDate, AppointmentState appointmentState,
+			UserId userId, UserId agentId
+	) {
 		this.appointmentId = appointmentId;
 		this.appointmentDate = appointmentDate;
 		this.appointmentState = appointmentState;
-		this.appointmentIsRequest = appointmentIsRequest;
+		this.userId = userId;
+		this.agentId = agentId;
 	}
 
-	public static Appointment create(AppointmentId appointmentId, AppointmentDate appointmentDate) {
-		Appointment appointment = new Appointment(appointmentId, appointmentDate, new AppointmentState(true), new AppointmentIsRequest(true));
-		return appointment;
+	public static Appointment create(
+			AppointmentId appointmentId, AppointmentDate appointmentDate, UserId userId, UserId agentId
+	) {
+		return new Appointment(
+				appointmentId,
+				appointmentDate,
+				new AppointmentState("PENDING"),
+				userId,
+				agentId
+		);
 	}
 
 	public HashMap<String, Object> data() {
-		HashMap<String, Object> data = new HashMap<>() {{
+		return new HashMap<>() {{
 			put("id", appointmentId.value());
 			put("date", appointmentDate.value());
 			put("state", appointmentState.value());
-			put("isRequest", appointmentIsRequest.value());
+			put("userId", userId.value());
+			put("agentId", agentId.value());
 		}};
-		return data;
 	}
 }

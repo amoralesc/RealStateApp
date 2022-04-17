@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.webdev.realstate.properties.property.domain.Property" table="property">
+
+		<composite-id name="propertyId" class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyId"
+		              access="field">
+			<key-property name="value" column="propertyId" access="field" length="36"/>
+		</composite-id>
+
+		<component name="propertyDescription"
+		           class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyDescription"
+		           access="field">
+			<property name="value" column="propertyDescription" access="field" type="string"/>
+		</component>
+
+		<component name="propertyType" class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyType"
+		           access="field">
+			<property name="value" column="propertyType" access="field" type="string"/>
+		</component>
+
+		<component name="propertyOfferType"
+		           class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyOfferType"
+		           access="field">
+			<property name="value" column="propertyOfferType" access="field" type="boolean"/>
+		</component>
+
+		<component name="propertyQuantityRooms"
+		           class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyQuantityRooms"
+		           access="field">
+			<property name="value" column="propertyQuantityRooms" access="field" type="integer"/>
+		</component>
+
+		<component name="propertyQuantityBathrooms"
+		           class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyQuantityBathrooms"
+		           access="field">
+			<property name="value" column="propertyQuantityBathrooms" access="field" type="integer"/>
+		</component>
+
+		<component name="propertyArea" class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyArea"
+		           access="field">
+			<property name="value" column="propertyArea" access="field" type="double"/>
+		</component>
+
+		<component name="propertyPrice"
+		           class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyPrice" access="field">
+			<property name="value" column="propertyPrice" access="field" type="double"/>
+		</component>
+
+	</class>
+</hibernate-mapping>
