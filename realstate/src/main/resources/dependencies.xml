@@ -3,4 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="DomainEventInformation" class="com.webdev.realstate.shared.infrastructure.rabbitMQ.DomainEventsInformation" />
+
+    <bean id="DomainEventJsonDeserializer" class="com.webdev.realstate.shared.infrastructure.rabbitMQ.serializable.DomainEventJsonDeserializer" >
+        <constructor-arg ref="DomainEventInformation"/>
+    </bean>
 </beans>
