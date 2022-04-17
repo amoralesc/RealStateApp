@@ -9,14 +9,22 @@ public class Request {
 	RequestDate requestDate;
 	RequestState requestState;
 
-	public Request(RequestId requestId, RequestDate requestDate, RequestState requestState) {
+	public Request(
+			RequestId requestId, RequestDate requestDate, RequestState requestState
+	) {
 		this.requestId = requestId;
 		this.requestDate = requestDate;
 		this.requestState = requestState;
 	}
 
-	public static Request create(RequestId requestId, RequestDate requestDate) {
-		Request request = new Request(requestId, requestDate, new RequestState(true));
+	public static Request create(
+			RequestId requestId, RequestDate requestDate
+	) {
+		Request request = new Request(
+				requestId,
+				requestDate,
+				new RequestState("PENDING")
+		);
 		return request;
 	}
 

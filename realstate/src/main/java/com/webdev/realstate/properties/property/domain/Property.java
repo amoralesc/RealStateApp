@@ -17,7 +17,12 @@ public class Property {
 	PropertyPrice propertyPrice;
 	Optional<PropertyAddress> propertyAddress;
 
-	public Property(PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType, PropertyOfferType propertyOfferType, PropertyQuantityRooms propertyQuantityRooms, PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea, PropertyPrice propertyPrice, Optional<PropertyAddress> propertyAddress) {
+	public Property(
+			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType,
+			PropertyOfferType propertyOfferType, PropertyQuantityRooms propertyQuantityRooms,
+			PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea,
+			PropertyPrice propertyPrice, Optional<PropertyAddress> propertyAddress
+	) {
 		this.propertyId = propertyId;
 		this.propertyDescription = propertyDescription;
 		this.propertyType = propertyType;
@@ -29,8 +34,22 @@ public class Property {
 		this.propertyAddress = propertyAddress;
 	}
 
-	public static Property create(PropertyId propertyId, PropertyDescription propertyDescription, PropertyQuantityRooms propertyQuantityRooms, PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea, PropertyPrice propertyPrice) {
-		Property property = new Property(propertyId, propertyDescription, new PropertyType(false), new PropertyOfferType(false), propertyQuantityRooms, propertyQuantityBathrooms, propertyArea, propertyPrice, Optional.empty());
+	public static Property create(
+			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType,
+			PropertyQuantityRooms propertyQuantityRooms, PropertyQuantityBathrooms propertyQuantityBathrooms,
+			PropertyArea propertyArea, PropertyPrice propertyPrice
+	) {
+		Property property = new Property(
+				propertyId,
+				propertyDescription,
+				propertyType,
+				new PropertyOfferType(false),
+				propertyQuantityRooms,
+				propertyQuantityBathrooms,
+				propertyArea,
+				propertyPrice,
+				Optional.empty()
+		);
 		return property;
 	}
 
