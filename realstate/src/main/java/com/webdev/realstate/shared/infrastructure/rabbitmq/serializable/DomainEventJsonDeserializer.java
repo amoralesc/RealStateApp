@@ -1,8 +1,8 @@
-package com.webdev.realstate.shared.infrastructure.rabbitMQ.serializable;
+package com.webdev.realstate.shared.infrastructure.rabbitmq.serializable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webdev.realstate.shared.domain.bus.event.DomainEvent;
-import com.webdev.realstate.shared.infrastructure.rabbitMQ.DomainEventsInformation;
+import com.webdev.realstate.shared.infrastructure.rabbitmq.DomainEventsInformation;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;

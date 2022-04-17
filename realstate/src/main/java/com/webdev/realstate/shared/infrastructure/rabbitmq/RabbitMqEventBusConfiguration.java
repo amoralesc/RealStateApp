@@ -1,4 +1,4 @@
-package com.webdev.realstate.shared.infrastructure.rabbitMQ;
+package com.webdev.realstate.shared.infrastructure.rabbitmq;
 
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

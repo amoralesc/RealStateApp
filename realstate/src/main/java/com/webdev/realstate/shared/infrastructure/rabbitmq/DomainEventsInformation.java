@@ -1,4 +1,4 @@
-package com.webdev.realstate.shared.infrastructure.rabbitMQ;
+package com.webdev.realstate.shared.infrastructure.rabbitmq;
 
 import com.webdev.realstate.shared.domain.bus.event.DomainEvent;
 
