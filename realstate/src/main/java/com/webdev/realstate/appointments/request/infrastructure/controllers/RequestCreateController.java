@@ -1,7 +1,10 @@
 package com.webdev.realstate.appointments.request.infrastructure.controllers;
 
+import com.webdev.realstate.appointments.appointment.domain.exceptions.AppointmentAlreadyExist;
 import com.webdev.realstate.appointments.request.application.create.RequestCreator;
 import com.webdev.realstate.appointments.request.domain.exceptions.InvalidDate;
+import com.webdev.realstate.appointments.request.domain.exceptions.RequestAlreadyExist;
+import com.webdev.realstate.shared.domain.exceptions.InvalidCustomUUID;
 import com.webdev.realstate.shared.infrastructure.schema.ErrorSchema;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -31,18 +34,26 @@ public class RequestCreateController {
     })
     @PostMapping(value = "/create")
     public ResponseEntity execute(@RequestBody RequestCreatorRequest request) {
-        /*creator.execute(request.getId(), request.getDate(), request.isState(), request.getAgentId(), request.getClientId(), request.getPropertyId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);*/
-        return null;
+        creator.execute(request.getId(), request.getDate(), request.getClientId(), request.getAgentId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
-    @ExceptionHandler(value = {InvalidDate.class})
+    @ExceptionHandler(value = {InvalidCustomUUID.class, InvalidDate.class})
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<HashMap> handleBadRequest(RuntimeException exception) {
         HashMap<String, String> response = new HashMap<>() {{
             put("error", exception.getMessage());
         }};
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(RequestAlreadyExist.class)
+    @ResponseStatus(code = HttpStatus.CONFLICT)
+    public ResponseEntity<HashMap> handleDuplicatedAppointment(RuntimeException exception) {
+        HashMap<String, String> response = new HashMap<>() {{
+            put("error", exception.getMessage());
+        }};
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 
     static class RequestCreatorRequest {
@@ -55,9 +66,6 @@ public class RequestCreateController {
 
         @Schema(description = "Request state", example = "1")
         private boolean state;
-
-        @Schema(description = "Request property id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
-        private String propertyId;
 
         @Schema(description = "Request agent id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
         private String agentId;
@@ -87,14 +95,6 @@ public class RequestCreateController {
 
         public void setState(boolean state) {
             this.state = state;
-        }
-
-        public String getPropertyId() {
-            return propertyId;
-        }
-
-        public void setPropertyId(String propertyId) {
-            this.propertyId = propertyId;
         }
 
         public String getAgentId() {

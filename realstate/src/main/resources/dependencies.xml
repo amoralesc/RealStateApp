@@ -9,6 +9,8 @@
         <constructor-arg ref="DomainEventInformation"/>
     </bean>
 
+    <!--- Appointments -->
+
     <bean id="AppointmentRepository" class="com.webdev.realstate.appointments.appointment.infrastructure.adapters.HibernateAppointmentRepository" />
 
     <bean id="AppointmentCreator" class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
@@ -26,4 +28,25 @@
     <bean id="AppointmentFindByUserId" class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUserId">
         <constructor-arg ref="AppointmentRepository" />
     </bean>
+
+    <!--- Requests -->
+
+    <bean id="RequestRepository" class="com.webdev.realstate.appointments.request.infrastructure.adapters.HibernateRequestRepository" />
+
+    <bean id="RequestCreator" class="com.webdev.realstate.appointments.request.application.create.RequestCreator">
+        <constructor-arg ref="RequestRepository" />
+    </bean>
+
+    <bean id="RequestFindByDate" class="com.webdev.realstate.appointments.request.application.find.RequestFindByDate">
+        <constructor-arg ref="RequestRepository" />
+    </bean>
+
+    <bean id="RequestFindByState" class="com.webdev.realstate.appointments.request.application.find.RequestFindByState">
+        <constructor-arg ref="RequestRepository" />
+    </bean>
+
+    <bean id="RequestFindByUserId" class="com.webdev.realstate.appointments.request.application.find.RequestFindByUserId">
+        <constructor-arg ref="RequestRepository" />
+    </bean>
+
 </beans>

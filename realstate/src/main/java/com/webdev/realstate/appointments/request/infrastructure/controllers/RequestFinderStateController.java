@@ -1,7 +1,8 @@
 package com.webdev.realstate.appointments.request.infrastructure.controllers;
 
-import com.webdev.realstate.appointments.request.application.find.RequestFindByUserId;
-import com.webdev.realstate.appointments.request.application.find.RequestFindByUserIdResponse;
+import com.webdev.realstate.appointments.request.application.find.RequestFindByDateResponse;
+import com.webdev.realstate.appointments.request.application.find.RequestFindByState;
+import com.webdev.realstate.appointments.request.application.find.RequestFindByStateResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,14 @@ import java.util.List;
 @RestController
 @Tag(name = "Request", description = "Request REST API")
 @RequestMapping(value = "/request")
-public class RequestFinderUserIdController {
-
+public class RequestFinderStateController {
     @Autowired
-    private RequestFindByUserId findByUserId;
+    private RequestFindByState findByState;
 
-    @Operation(summary = "Find request by user id", description = "Find all request by the user id (564af8a6-a7ea-4733-acff-d2e5aada4e5e in the system", tags = {"Request", "UserId"})
-    @GetMapping(value = "/userid")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "userid") String userId, Boolean isAgent) {
-        RequestFindByUserIdResponse response = new RequestFindByUserIdResponse(findByUserId.execute(userId, isAgent));
+    @Operation(summary = "Find request by state", description = "Find all request by the state (PENDING in the system", tags = {"Request", "State"})
+    @GetMapping(value = "/state")
+    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "state") String requestState) {
+        RequestFindByStateResponse response = new RequestFindByStateResponse(findByState.execute(requestState));
         return ResponseEntity.status(HttpStatus.OK).body(response.response());
     }
-
 }
