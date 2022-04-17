@@ -1,7 +1,7 @@
-package com.webdev.realstate.shared.infrastructure.rabbitMQ;
+package com.webdev.realstate.shared.infrastructure.rabbitmq;
 
 import com.webdev.realstate.shared.domain.bus.event.DomainEvent;
-import com.webdev.realstate.shared.infrastructure.rabbitMQ.serializable.DomainEventJsonSerializable;
+import com.webdev.realstate.shared.infrastructure.rabbitmq.serializable.DomainEventJsonSerializable;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePropertiesBuilder;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
