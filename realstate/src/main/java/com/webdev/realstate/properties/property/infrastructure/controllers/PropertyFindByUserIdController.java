@@ -1,10 +1,8 @@
 package com.webdev.realstate.properties.property.infrastructure.controllers;
 
-import com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUserId;
 import com.webdev.realstate.properties.property.application.find.PropertyFinderByUserId;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
