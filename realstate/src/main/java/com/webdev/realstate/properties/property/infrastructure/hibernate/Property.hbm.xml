@@ -14,7 +14,7 @@
         </component>
 
         <component name="propertyType" class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyType" access="field">
-            <property name="value" column="propertyType" access="field" type="boolean"/>
+            <property name="value" column="propertyType" access="field" type="string"/>
         </component>
 
         <component name="propertyOfferType" class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyOfferType" access="field">
