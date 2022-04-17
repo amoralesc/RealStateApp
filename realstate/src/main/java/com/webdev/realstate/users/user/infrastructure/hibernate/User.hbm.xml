@@ -10,12 +10,12 @@
 		</composite-id>
 
 		<component name="userName" class="com.webdev.realstate.users.user.domain.valueobjects.UserName" access="field">
-			<property name="value" column="userName" access="field" type="string"/>
+			<property name="value" column="name" access="field" type="string"/>
 		</component>
 
 		<component name="userEmail" class="com.webdev.realstate.users.user.domain.valueobjects.UserEmail"
 		           access="field">
-			<property name="value" column="userEmail" access="field" type="string"/>
+			<property name="value" column="email" access="field" type="string"/>
 		</component>
 
 		<component name="isAgent" class="com.webdev.realstate.users.user.domain.valueobjects.UserIsAgent"
