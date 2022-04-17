@@ -8,4 +8,22 @@
     <bean id="DomainEventJsonDeserializer" class="com.webdev.realstate.shared.infrastructure.rabbitMQ.serializable.DomainEventJsonDeserializer" >
         <constructor-arg ref="DomainEventInformation"/>
     </bean>
+
+    <bean id="AppointmentRepository" class="com.webdev.realstate.appointments.appointment.infrastructure.adapters.HibernateAppointmentRepository" />
+
+    <bean id="AppointmentCreator" class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
+        <constructor-arg ref="AppointmentRepository" />
+    </bean>
+
+    <bean id="AppointmentFindByDate" class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByDate">
+        <constructor-arg ref="AppointmentRepository" />
+    </bean>
+
+    <bean id="AppointmentFindByState" class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByState">
+        <constructor-arg ref="AppointmentRepository" />
+    </bean>
+
+    <bean id="AppointmentFindByUserId" class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUserId">
+        <constructor-arg ref="AppointmentRepository" />
+    </bean>
 </beans>

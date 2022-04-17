@@ -12,6 +12,10 @@ public class AppointmentCreator {
 
     private AppointmentRepository repository;
 
+    public AppointmentCreator(AppointmentRepository repository) {
+        this.repository = repository;
+    }
+
     public void execute(String appointmentId, Date appointmentDate, String userId, String agentId) {
         Appointment appointment = Appointment.create(
                 new AppointmentId(appointmentId),

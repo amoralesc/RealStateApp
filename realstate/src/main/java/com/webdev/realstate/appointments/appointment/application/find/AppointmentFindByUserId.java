@@ -3,6 +3,7 @@ package com.webdev.realstate.appointments.appointment.application.find;
 import com.webdev.realstate.appointments.appointment.domain.Appointment;
 import com.webdev.realstate.appointments.appointment.domain.ports.AppointmentRepository;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
+import com.webdev.realstate.users.user.domain.valueobjects.UserIsAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,9 @@ public class AppointmentFindByUserId {
         this.repository = repository;
     }
 
-    public List<Appointment>  execute(String userId) {
+    public List<Appointment>  execute(String userId, Boolean isAgent) {
         List<Appointment> appointments = new ArrayList<>();
-        Optional<List<Appointment>> optionalAppointments = repository.findByUserId(new UserId(userId));
+        Optional<List<Appointment>> optionalAppointments = repository.findByUserId(new UserId(userId), new UserIsAgent(isAgent));
         if (optionalAppointments.isPresent()) {
             appointments = optionalAppointments.get();
         }
