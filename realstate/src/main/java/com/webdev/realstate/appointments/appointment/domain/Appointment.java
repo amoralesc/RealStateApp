@@ -9,14 +9,22 @@ public class Appointment {
 	AppointmentDate appointmentDate;
 	AppointmentState appointmentState;
 
-	public Appointment(AppointmentId appointmentId, AppointmentDate appointmentDate, AppointmentState appointmentState) {
+	public Appointment(
+			AppointmentId appointmentId, AppointmentDate appointmentDate, AppointmentState appointmentState
+	) {
 		this.appointmentId = appointmentId;
 		this.appointmentDate = appointmentDate;
 		this.appointmentState = appointmentState;
 	}
 
-	public static Appointment create(AppointmentId appointmentId, AppointmentDate appointmentDate) {
-		Appointment appointment = new Appointment(appointmentId, appointmentDate, new AppointmentState(true));
+	public static Appointment create(
+			AppointmentId appointmentId, AppointmentDate appointmentDate
+	) {
+		Appointment appointment = new Appointment(
+				appointmentId,
+				appointmentDate,
+				new AppointmentState("PENDING")
+		);
 		return appointment;
 	}
 
