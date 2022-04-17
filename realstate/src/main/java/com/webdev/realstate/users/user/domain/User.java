@@ -18,17 +18,17 @@ public class User {
 	private UserEmail userEmail;
 	private UserIsAgent isAgent;
 	private UserPassword password;
-	private Optional<List<UserPhone>> phonesList;
+	private Optional<List<UserPhone>> phoneList;
 	private Optional<List<UserRequest>> requestsList;
 	private Optional<List<UserAppointment>> appointmentsList;
 
-	public User(UserId userId, UserName userName, UserEmail userEmail, UserIsAgent isAgent, UserPassword password, Optional<List<UserPhone>> phonesList, Optional<List<UserRequest>> requestsList, Optional<List<UserAppointment>> appointmentsList) {
+	public User(UserId userId, UserName userName, UserEmail userEmail, UserIsAgent isAgent, UserPassword password, Optional<List<UserPhone>> phoneList, Optional<List<UserRequest>> requestsList, Optional<List<UserAppointment>> appointmentsList) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userEmail = userEmail;
 		this.isAgent = isAgent;
 		this.password = password;
-		this.phonesList = phonesList;
+		this.phoneList = phoneList;
 		this.requestsList = requestsList;
 		this.appointmentsList = appointmentsList;
 	}
@@ -68,8 +68,8 @@ public class User {
 
 	private List<HashMap<String, Object>> createPhones() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
-		if (!phonesList.isEmpty()) {
-			list = phonesList.get().stream().map(
+		if (!phoneList.isEmpty()) {
+			list = phoneList.get().stream().map(
 					phone -> phone.data()
 			).collect(Collectors.toList());
 		}

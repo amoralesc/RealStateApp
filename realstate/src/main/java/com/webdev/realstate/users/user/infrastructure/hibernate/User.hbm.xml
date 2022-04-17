@@ -28,5 +28,9 @@
 			<property name="value" column="password" access="field" type="string"/>
 		</component>
 
+		<property name="phoneList" column="phone" access="field">
+			<type name="com.webdev.realstate.users.user.infrastructure.hibernate.UserPhoneCustomType" />
+		</property>
+
 	</class>
 </hibernate-mapping>
