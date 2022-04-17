@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.webdev.realstate.appointments.appointment.domain.Appointment" table="appointment">
+
+        <composite-id name="appointmentId" class="com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentId" access="field">
+            <key-property name="value" column="appointmentId" access="field" length="36"/>
+        </composite-id>
+
+        <component name="appointmentDate" class="com.webdev.realstate.appointments.appointment.infrastructure.valueobjects.AppointmentDate" access="field">
+            <property name="value" column="appointmentDate" access="field" type="date"/>
+        </component>
+
+        <component name="appointmentState" class="com.webdev.realstate.appointments.appointment.infrastructure.valueobjects.AppointmentState" access="field">
+            <property name="value" column="appointmentState" access="field" type="boolean"/>
+        </component>
+
+    </class>
+</hibernate-mapping>
