@@ -7,17 +7,17 @@
 
 		<composite-id name="requestId" class="com.webdev.realstate.appointments.request.domain.valueobjects.RequestId"
 		              access="field">
-			<key-property name="value" column="appointmentId" access="field" length="36"/>
+			<key-property name="value" column="requestId" access="field" length="36"/>
 		</composite-id>
 
 		<component name="requestDate" class="com.webdev.realstate.appointments.request.domain.valueobjects.RequestDate"
 		           access="field">
-			<property name="value" column="appointmentDate" access="field" type="date"/>
+			<property name="value" column="requestDate" access="field" type="date"/>
 		</component>
 
 		<component name="requestState"
 		           class="com.webdev.realstate.appointments.request.domain.valueobjects.RequestState" access="field">
-			<property name="value" column="appointmentState" access="field" type="string"/>
+			<property name="value" column="requestState" access="field" type="string"/>
 		</component>
 
 		<component name="userId" class="com.webdev.realstate.users.user.domain.valueobjects.UserId" access="field">

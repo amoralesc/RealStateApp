@@ -1,6 +1,5 @@
 package com.webdev.realstate.appointments.request.infrastructure.adapters;
 
-import com.webdev.realstate.appointments.appointment.domain.Appointment;
 import com.webdev.realstate.appointments.request.domain.Request;
 import com.webdev.realstate.appointments.request.domain.ports.RequestRepository;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestDate;
@@ -56,7 +55,7 @@ public class HibernateRequestRepository extends HibernateRepository<Request> imp
         CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<Request> cq = cb.createQuery(Request.class);
         Root<Request> root = cq.from(Request.class);
-        cq.select(root).where(cb.equal(root.get("appointmentDate"), requestDate));
+        cq.select(root).where(cb.equal(root.get("requestDate"), requestDate));
 
         List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
         return Optional.ofNullable(requests);
@@ -67,7 +66,7 @@ public class HibernateRequestRepository extends HibernateRepository<Request> imp
         CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<Request> cq = cb.createQuery(Request.class);
         Root<Request> root = cq.from(Request.class);
-        cq.select(root).where(cb.equal(root.get("appointmentState"), requestState));
+        cq.select(root).where(cb.equal(root.get("requestState"), requestState));
 
         List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
         return Optional.ofNullable(requests);
