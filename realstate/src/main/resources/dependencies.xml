@@ -27,6 +27,11 @@
 		<constructor-arg ref="DomainEventJsonDeserializer"/>
 	</bean>
 
+	<!-- Users -->
+	<bean id="UserRepository"
+	      class="com.webdev.realstate.users.user.infrastructure.adapters.HibernateUserRepository"
+	      scope="singleton"/>
+
 	<!-- Appointments -->
 
 	<bean id="AppointmentRepository"

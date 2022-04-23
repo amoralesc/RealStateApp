@@ -14,22 +14,30 @@
 		</component>
 
 		<component name="userEmail" class="com.webdev.realstate.users.user.domain.valueobjects.UserEmail"
-		           access="field">
+				   access="field">
 			<property name="value" column="email" access="field" type="string"/>
 		</component>
 
 		<component name="isAgent" class="com.webdev.realstate.users.user.domain.valueobjects.UserIsAgent"
-		           access="field">
+				   access="field">
 			<property name="value" column="isAgent" access="field" type="boolean"/>
 		</component>
 
 		<component name="password" class="com.webdev.realstate.users.user.domain.valueobjects.UserPassword"
-		           access="field">
+				   access="field">
 			<property name="value" column="password" access="field" type="string"/>
 		</component>
 
 		<property name="phoneList" column="phone" access="field">
 			<type name="com.webdev.realstate.users.user.infrastructure.hibernate.UserPhoneCustomType"/>
+		</property>
+
+		<property name="appointmentsList" column="appointments" access="field">
+			<type name="com.webdev.realstate.users.user.infrastructure.hibernate.UserAppointmentCustomType"/>
+		</property>
+
+		<property name="requestsList" column="requests" access="field">
+			<type name="com.webdev.realstate.users.user.infrastructure.hibernate.UserRequestCustomType"/>
 		</property>
 
 	</class>

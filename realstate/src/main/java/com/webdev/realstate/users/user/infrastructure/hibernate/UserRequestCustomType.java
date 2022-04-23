@@ -1,7 +1,7 @@
 package com.webdev.realstate.users.user.infrastructure.hibernate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.webdev.realstate.users.user.domain.entities.UserPhone;
+import com.webdev.realstate.users.user.domain.entities.UserRequest;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
@@ -11,16 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class UserPhoneCustomType implements UserType {
+public class UserRequestCustomType implements UserType {
 	@Override
 	public int[] sqlTypes() {
-		return new int[]{Types.LONGNVARCHAR};
+		return new int[]{
+				Types.LONGNVARCHAR
+		};
 	}
 
 	@Override
@@ -40,29 +39,36 @@ public class UserPhoneCustomType implements UserType {
 
 	@Override
 	public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
-		List<UserPhone> result = null;
+		List<UserRequest> result = null;
+
 		try {
 			Optional<String> value = Optional.ofNullable(rs.getString(names[0]));
+
 			if (value.isPresent()) {
 				List<HashMap<String, Object>> objects = new ObjectMapper().readValue(
 						value.get(), List.class
 				);
 				result = objects.stream().map(
-						element -> new UserPhone(
-								(String) element.get("countryCode"),
-								(String) element.get("number")
+						element -> new UserRequest(
+								(String) element.get("id"),
+								(Date) element.get("date"),
+								(String) element.get("state"),
+								(String) element.get("propertyId"),
+								(String) element.get("agentId")
 						)
 				).collect(Collectors.toList());
 			}
 		} catch (Exception e) {
-			throw new HibernateException("Error deserializing value of UserPhone", e);
+			throw new HibernateException("Error deserializing value of UserRequest", e);
 		}
+
 		return Optional.ofNullable(result);
 	}
 
 	@Override
 	public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
-		Optional<List<UserPhone>> object = (value == null) ? Optional.empty() : (Optional<List<UserPhone>>) value;
+		Optional<List<UserRequest>> object =
+				(value == null) ? Optional.empty() : (Optional<List<UserRequest>>) value;
 
 		try {
 			if (object.isEmpty()) {
@@ -77,7 +83,7 @@ public class UserPhoneCustomType implements UserType {
 				st.setString(index, serializedObject);
 			}
 		} catch (Exception e) {
-			throw new HibernateException("Error serializing value of UserPhone", e);
+			throw new HibernateException("Error serializing value of UserRequest", e);
 		}
 	}
 
