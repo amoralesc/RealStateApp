@@ -1,5 +1,6 @@
 package com.webdev.realstate.shared.infrastructure.hibernate;
 
+import com.webdev.realstate.shared.domain.aggregate.CustomUUID;
 import org.hibernate.SessionFactory;
 
 import javax.persistence.criteria.CriteriaQuery;
@@ -22,12 +23,6 @@ public class HibernateRepository<T> {
 		sessionFactory.getCurrentSession().clear();
 	}
 
-	protected Optional<List<T>> getAll() {
-		CriteriaQuery<T> criteria = sessionFactory.getCriteriaBuilder().createQuery(aggregateClass);
-		criteria.from(aggregateClass);
-		return Optional.ofNullable(sessionFactory.getCurrentSession().createQuery(criteria).getResultList());
-	}
-
 	protected void updateEntity(T entity) {
 		sessionFactory.getCurrentSession().update(entity);
 		sessionFactory.getCurrentSession().flush();
@@ -38,5 +33,17 @@ public class HibernateRepository<T> {
 		sessionFactory.getCurrentSession().delete(entity);
 		sessionFactory.getCurrentSession().flush();
 		sessionFactory.getCurrentSession().clear();
+	}
+
+	protected Optional<T> getById(CustomUUID id) {
+		return Optional.ofNullable(
+				sessionFactory.getCurrentSession().byId(aggregateClass).load(id)
+		);
+	}
+
+	protected Optional<List<T>> getAll() {
+		CriteriaQuery<T> criteria = sessionFactory.getCriteriaBuilder().createQuery(aggregateClass);
+		criteria.from(aggregateClass);
+		return Optional.ofNullable(sessionFactory.getCurrentSession().createQuery(criteria).getResultList());
 	}
 }

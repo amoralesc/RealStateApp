@@ -3,50 +3,75 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="DomainEventInformation" class="com.webdev.realstate.shared.infrastructure.rabbitmq.DomainEventsInformation" />
+	<!-- RabbitMQ -->
 
-    <bean id="DomainEventJsonDeserializer" class="com.webdev.realstate.shared.infrastructure.rabbitmq.serializable.DomainEventJsonDeserializer" >
-        <constructor-arg ref="DomainEventInformation"/>
-    </bean>
+	<bean id="RabbitMqPublisher"
+	      class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqPublisher"/>
 
-    <!--- Appointments -->
+	<bean id="RabbitMqEventBus"
+	      class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqEventBus">
+		<constructor-arg ref="RabbitMqPublisher"/>
+	</bean>
 
-    <bean id="AppointmentRepository" class="com.webdev.realstate.appointments.appointment.infrastructure.adapters.HibernateAppointmentRepository" />
+	<bean id="DomainEventInformation"
+	      class="com.webdev.realstate.shared.infrastructure.rabbitmq.DomainEventsInformation"/>
 
-    <bean id="AppointmentCreator" class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
-        <constructor-arg ref="AppointmentRepository" />
-    </bean>
+	<bean id="DomainEventJsonDeserializer"
+	      class="com.webdev.realstate.shared.infrastructure.rabbitmq.serializable.DomainEventJsonDeserializer">
+		<constructor-arg ref="DomainEventInformation"/>
+	</bean>
 
-    <bean id="AppointmentFindByDate" class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByDate">
-        <constructor-arg ref="AppointmentRepository" />
-    </bean>
+	<bean id="RabbitMqDomainEventsConsumer"
+	      class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqDomainEventsConsumer">
+		<constructor-arg ref="RabbitMqEventBus"/>
+		<constructor-arg ref="DomainEventJsonDeserializer"/>
+	</bean>
 
-    <bean id="AppointmentFindByState" class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByState">
-        <constructor-arg ref="AppointmentRepository" />
-    </bean>
+	<!-- Appointments -->
 
-    <bean id="AppointmentFindByUserId" class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUserId">
-        <constructor-arg ref="AppointmentRepository" />
-    </bean>
+	<bean id="AppointmentRepository"
+	      class="com.webdev.realstate.appointments.appointment.infrastructure.adapters.HibernateAppointmentRepository"/>
 
-    <!--- Requests -->
+	<bean id="AppointmentCreator"
+	      class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
+		<constructor-arg ref="AppointmentRepository"/>
+	</bean>
 
-    <bean id="RequestRepository" class="com.webdev.realstate.appointments.request.infrastructure.adapters.HibernateRequestRepository" />
+	<bean id="AppointmentFindByDate"
+	      class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByDate">
+		<constructor-arg ref="AppointmentRepository"/>
+	</bean>
 
-    <bean id="RequestCreator" class="com.webdev.realstate.appointments.request.application.create.RequestCreator">
-        <constructor-arg ref="RequestRepository" />
-    </bean>
+	<bean id="AppointmentFindByState"
+	      class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByState">
+		<constructor-arg ref="AppointmentRepository"/>
+	</bean>
 
-    <bean id="RequestFindByDate" class="com.webdev.realstate.appointments.request.application.find.RequestFindByDate">
-        <constructor-arg ref="RequestRepository" />
-    </bean>
+	<bean id="AppointmentFindByUserId"
+	      class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUserId">
+		<constructor-arg ref="AppointmentRepository"/>
+	</bean>
 
-    <bean id="RequestFindByState" class="com.webdev.realstate.appointments.request.application.find.RequestFindByState">
-        <constructor-arg ref="RequestRepository" />
-    </bean>
+	<!-- Requests -->
 
-    <bean id="RequestFindByUserId" class="com.webdev.realstate.appointments.request.application.find.RequestFindByUserId">
-        <constructor-arg ref="RequestRepository" />
-    </bean>
+	<bean id="RequestRepository"
+	      class="com.webdev.realstate.appointments.request.infrastructure.adapters.HibernateRequestRepository"/>
+
+	<bean id="RequestCreator" class="com.webdev.realstate.appointments.request.application.create.RequestCreator">
+		<constructor-arg ref="RequestRepository"/>
+	</bean>
+
+	<bean id="RequestFindByDate" class="com.webdev.realstate.appointments.request.application.find.RequestFindByDate">
+		<constructor-arg ref="RequestRepository"/>
+	</bean>
+
+	<bean id="RequestFindByState" class="com.webdev.realstate.appointments.request.application.find.RequestFindByState">
+		<constructor-arg ref="RequestRepository"/>
+	</bean>
+
+	<bean id="RequestFindByUserId"
+	      class="com.webdev.realstate.appointments.request.application.find.RequestFindByUserId">
+		<constructor-arg ref="RequestRepository"/>
+	</bean>
 
 </beans>
