@@ -20,55 +20,55 @@ import java.util.Optional;
 @Transactional("transactional-manager")
 public class HibernateRequestRepository extends HibernateRepository<Request> implements RequestRepository {
 
-    public HibernateRequestRepository(@Qualifier("session-factory") SessionFactory sessionFactory) {
-        super(sessionFactory, Request.class);
-    }
+	public HibernateRequestRepository(@Qualifier("session-factory") SessionFactory sessionFactory) {
+		super(sessionFactory, Request.class);
+	}
 
-    @Override
-    public void save(Request request) {
-        persist(request);
-    }
+	@Override
+	public void save(Request request) {
+		persist(request);
+	}
 
-    @Override
-    public void update(Request request) {
-        updateEntity(request);
-    }
+	@Override
+	public void update(Request request) {
+		updateEntity(request);
+	}
 
-    @Override
-    public Optional<List<Request>> findByUserId(UserId userId, UserIsAgent isAgent) {
-        CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
-        CriteriaQuery<Request> cq = cb.createQuery(Request.class);
-        Root<Request> root = cq.from(Request.class);
+	@Override
+	public Optional<List<Request>> findByUserId(UserId userId, UserIsAgent isAgent) {
+		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
+		CriteriaQuery<Request> cq = cb.createQuery(Request.class);
+		Root<Request> root = cq.from(Request.class);
 
-        if(isAgent.value()){
-            cq.select(root).where(cb.equal(root.get("agentId"), userId));
-        } else {
-            cq.select(root).where(cb.equal(root.get("userId"), userId));
-        }
+		if (isAgent.value()) {
+			cq.select(root).where(cb.equal(root.get("agentId"), userId));
+		} else {
+			cq.select(root).where(cb.equal(root.get("userId"), userId));
+		}
 
-        List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
-        return Optional.ofNullable(requests);
-    }
+		List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
+		return Optional.ofNullable(requests);
+	}
 
-    @Override
-    public Optional<List<Request>> findByDate(RequestDate requestDate) {
-        CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
-        CriteriaQuery<Request> cq = cb.createQuery(Request.class);
-        Root<Request> root = cq.from(Request.class);
-        cq.select(root).where(cb.equal(root.get("requestDate"), requestDate));
+	@Override
+	public Optional<List<Request>> findByDate(RequestDate requestDate) {
+		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
+		CriteriaQuery<Request> cq = cb.createQuery(Request.class);
+		Root<Request> root = cq.from(Request.class);
+		cq.select(root).where(cb.equal(root.get("requestDate"), requestDate));
 
-        List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
-        return Optional.ofNullable(requests);
-    }
+		List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
+		return Optional.ofNullable(requests);
+	}
 
-    @Override
-    public Optional<List<Request>> findByState(RequestState requestState) {
-        CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
-        CriteriaQuery<Request> cq = cb.createQuery(Request.class);
-        Root<Request> root = cq.from(Request.class);
-        cq.select(root).where(cb.equal(root.get("requestState"), requestState));
+	@Override
+	public Optional<List<Request>> findByState(RequestState requestState) {
+		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
+		CriteriaQuery<Request> cq = cb.createQuery(Request.class);
+		Root<Request> root = cq.from(Request.class);
+		cq.select(root).where(cb.equal(root.get("requestState"), requestState));
 
-        List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
-        return Optional.ofNullable(requests);
-    }
+		List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
+		return Optional.ofNullable(requests);
+	}
 }

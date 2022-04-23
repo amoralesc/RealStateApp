@@ -10,18 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 public class RequestFindByDate {
-    private RequestRepository repository;
+	private RequestRepository repository;
 
-    public RequestFindByDate(RequestRepository repository) {
-        this.repository = repository;
-    }
+	public RequestFindByDate(RequestRepository repository) {
+		this.repository = repository;
+	}
 
-    public List<Request> execute(Date requestDate) {
-        List<Request> requests = new ArrayList<>();
-        Optional<List<Request>> optionalRequests = repository.findByDate(new RequestDate(requestDate));
-        if (optionalRequests.isPresent()) {
-            requests = optionalRequests.get();
-        }
-        return requests;
-    }
+	public List<Request> execute(Date requestDate) {
+		List<Request> requests = new ArrayList<>();
+		Optional<List<Request>> optionalRequests = repository.findByDate(new RequestDate(requestDate));
+		if (optionalRequests.isPresent()) {
+			requests = optionalRequests.get();
+		}
+		return requests;
+	}
 }

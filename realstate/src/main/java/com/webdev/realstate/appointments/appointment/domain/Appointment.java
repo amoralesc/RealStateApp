@@ -1,6 +1,8 @@
 package com.webdev.realstate.appointments.appointment.domain;
 
-import com.webdev.realstate.appointments.appointment.domain.valueobjects.*;
+import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentDate;
+import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentId;
+import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentState;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 
 import java.util.HashMap;

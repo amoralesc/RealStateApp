@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Optional;
 
 public class RequestFindByState {
-    private RequestRepository repository;
+	private RequestRepository repository;
 
-    public RequestFindByState(RequestRepository repository) {
-        this.repository = repository;
-    }
+	public RequestFindByState(RequestRepository repository) {
+		this.repository = repository;
+	}
 
-    public List<Request> execute(String requestState) {
-        List<Request> requests = new ArrayList<>();
-        Optional<List<Request>> optionalRequests = repository.findByState(new RequestState(requestState));
-        if (optionalRequests.isPresent()) {
-            requests = optionalRequests.get();
-        }
-        return requests;
-    }
+	public List<Request> execute(String requestState) {
+		List<Request> requests = new ArrayList<>();
+		Optional<List<Request>> optionalRequests = repository.findByState(new RequestState(requestState));
+		if (optionalRequests.isPresent()) {
+			requests = optionalRequests.get();
+		}
+		return requests;
+	}
 }

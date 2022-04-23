@@ -9,19 +9,19 @@ import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 import java.util.Date;
 
 public class RequestCreator {
-    private RequestRepository repository;
+	private RequestRepository repository;
 
-    public RequestCreator(RequestRepository repository) {
-        this.repository = repository;
-    }
+	public RequestCreator(RequestRepository repository) {
+		this.repository = repository;
+	}
 
-    public void execute(String requestId, Date requestDate, String userId, String agentId) {
-        Request request = Request.create(
-                new RequestId(requestId),
-                new RequestDate(requestDate),
-                new UserId(userId),
-                new UserId(agentId)
-        );
-        repository.save(request);
-    }
+	public void execute(String requestId, Date requestDate, String userId, String agentId) {
+		Request request = Request.create(
+				new RequestId(requestId),
+				new RequestDate(requestDate),
+				new UserId(userId),
+				new UserId(agentId)
+		);
+		repository.save(request);
+	}
 }

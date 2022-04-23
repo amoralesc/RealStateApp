@@ -16,14 +16,14 @@ import java.util.List;
 @RequestMapping(value = "/property")
 public class PropertyFindByAreaController {
 
-    //@Autowired
-    private PropertyFindByAreaController findByArea;
+	//@Autowired
+	private PropertyFindByAreaController findByArea;
 
-    @Operation(summary = "Find properties by area", description = "Find all properties by the area(56 in the system", tags = {"Property", "Area"})
-    @GetMapping(value = "/area")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "area") String area) {
+	@Operation(summary = "Find properties by area", description = "Find all properties by the area(56 in the system", tags = {"Property", "Area"})
+	@GetMapping(value = "/area")
+	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "area") String area) {
         /*PropertyFindByAreaResponse response = new PropertyFindByAreaResponse(findByArea.execute(area));
         return ResponseEntity.status(HttpStatus.OK).body(response.response());*/
-        return null;
-    }
+		return null;
+	}
 }

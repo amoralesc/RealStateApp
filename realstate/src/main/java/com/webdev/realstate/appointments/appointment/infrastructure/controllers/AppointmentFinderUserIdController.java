@@ -1,6 +1,5 @@
 package com.webdev.realstate.appointments.appointment.infrastructure.controllers;
 
-import com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByDate;
 import com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUserId;
 import com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUserIdResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,14 +20,14 @@ import java.util.List;
 @RequestMapping(value = "/appointment")
 public class AppointmentFinderUserIdController {
 
-    @Autowired
-    private AppointmentFindByUserId findByUserId;
+	@Autowired
+	private AppointmentFindByUserId findByUserId;
 
-    @Operation(summary = "Find appointments by user id", description = "Find all appointments by the user id (564af8a6-a7ea-4733-acff-d2e5aada4e5a in the system", tags = {"Appointment", "UserId"})
-    @GetMapping(value = "/userid")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "userid") String userId, Boolean isAgent) {
-        AppointmentFindByUserIdResponse response = new AppointmentFindByUserIdResponse(findByUserId.execute(userId, isAgent));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());
-    }
+	@Operation(summary = "Find appointments by user id", description = "Find all appointments by the user id (564af8a6-a7ea-4733-acff-d2e5aada4e5a in the system", tags = {"Appointment", "UserId"})
+	@GetMapping(value = "/userid")
+	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "userid") String userId, Boolean isAgent) {
+		AppointmentFindByUserIdResponse response = new AppointmentFindByUserIdResponse(findByUserId.execute(userId, isAgent));
+		return ResponseEntity.status(HttpStatus.OK).body(response.response());
+	}
 
 }

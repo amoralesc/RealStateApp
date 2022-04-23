@@ -10,9 +10,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AppointmentRepository {
-    void save(Appointment appointment);
-    void update(Appointment appointment);
-    Optional<List<Appointment>> findByUserId(UserId userId, UserIsAgent isAgent);
-    Optional<List<Appointment>> findByDate(AppointmentDate appointmentDate);
-    Optional<List<Appointment>> findByState(AppointmentState appointmentState);
+	void save(Appointment appointment);
+
+	void update(Appointment appointment);
+
+	Optional<List<Appointment>> findByUserId(UserId userId, UserIsAgent isAgent);
+
+	Optional<List<Appointment>> findByDate(AppointmentDate appointmentDate);
+
+	Optional<List<Appointment>> findByState(AppointmentState appointmentState);
 }

@@ -20,14 +20,14 @@ import java.util.List;
 @RequestMapping(value = "/request")
 public class RequestFinderUserIdController {
 
-    @Autowired
-    private RequestFindByUserId findByUserId;
+	@Autowired
+	private RequestFindByUserId findByUserId;
 
-    @Operation(summary = "Find request by user id", description = "Find all request by the user id (564af8a6-a7ea-4733-acff-d2e5aada4e5e in the system", tags = {"Request", "UserId"})
-    @GetMapping(value = "/userid")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "userid") String userId, Boolean isAgent) {
-        RequestFindByUserIdResponse response = new RequestFindByUserIdResponse(findByUserId.execute(userId, isAgent));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());
-    }
+	@Operation(summary = "Find request by user id", description = "Find all request by the user id (564af8a6-a7ea-4733-acff-d2e5aada4e5e in the system", tags = {"Request", "UserId"})
+	@GetMapping(value = "/userid")
+	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "userid") String userId, Boolean isAgent) {
+		RequestFindByUserIdResponse response = new RequestFindByUserIdResponse(findByUserId.execute(userId, isAgent));
+		return ResponseEntity.status(HttpStatus.OK).body(response.response());
+	}
 
 }

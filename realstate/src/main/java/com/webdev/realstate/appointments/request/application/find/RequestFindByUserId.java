@@ -10,18 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 public class RequestFindByUserId {
-    private RequestRepository repository;
+	private RequestRepository repository;
 
-    public RequestFindByUserId(RequestRepository repository) {
-        this.repository = repository;
-    }
+	public RequestFindByUserId(RequestRepository repository) {
+		this.repository = repository;
+	}
 
-    public List<Request> execute(String userId, Boolean isAgent) {
-        List<Request> requests = new ArrayList<>();
-        Optional<List<Request>> optionalRequests = repository.findByUserId(new UserId(userId), new UserIsAgent(isAgent));
-        if (optionalRequests.isPresent()) {
-            requests = optionalRequests.get();
-        }
-        return requests;
-    }
+	public List<Request> execute(String userId, Boolean isAgent) {
+		List<Request> requests = new ArrayList<>();
+		Optional<List<Request>> optionalRequests = repository.findByUserId(new UserId(userId), new UserIsAgent(isAgent));
+		if (optionalRequests.isPresent()) {
+			requests = optionalRequests.get();
+		}
+		return requests;
+	}
 }

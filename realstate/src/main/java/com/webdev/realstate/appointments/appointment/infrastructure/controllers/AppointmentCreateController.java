@@ -14,9 +14,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -27,93 +24,93 @@ import java.util.HashMap;
 @RequestMapping(value = "/appointment")
 public class AppointmentCreateController {
 
-    @Autowired
-    private AppointmentCreator creator;
+	@Autowired
+	private AppointmentCreator creator;
 
-    @Operation(summary = "Create a new Appointment", description = "Create a new Appointment in the system", tags = {"Appointment"})
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Appointment created"),
-            @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ErrorSchema.class)))
-    })
-    @PostMapping(value = "/create")
-    public ResponseEntity execute(@RequestBody AppointmentCreatorRequest request) {
-        creator.execute(request.getId(), request.getDate(), request.getClientId(), request.getAgentId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
-    }
+	@Operation(summary = "Create a new Appointment", description = "Create a new Appointment in the system", tags = {"Appointment"})
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Appointment created"),
+			@ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ErrorSchema.class)))
+	})
+	@PostMapping(value = "/create")
+	public ResponseEntity execute(@RequestBody AppointmentCreatorRequest request) {
+		creator.execute(request.getId(), request.getDate(), request.getClientId(), request.getAgentId());
+		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+	}
 
-    @ExceptionHandler(value = {InvalidCustomUUID.class, InvalidDate.class})
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public ResponseEntity<HashMap> handleBadRequest(RuntimeException exception) {
-        HashMap<String, String> response = new HashMap<>() {{
-            put("error", exception.getMessage());
-        }};
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-    }
+	@ExceptionHandler(value = {InvalidCustomUUID.class, InvalidDate.class})
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ResponseEntity<HashMap> handleBadRequest(RuntimeException exception) {
+		HashMap<String, String> response = new HashMap<>() {{
+			put("error", exception.getMessage());
+		}};
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+	}
 
-    @ExceptionHandler(AppointmentAlreadyExist.class)
-    @ResponseStatus(code = HttpStatus.CONFLICT)
-    public ResponseEntity<HashMap> handleDuplicatedAppointment(RuntimeException exception) {
-        HashMap<String, String> response = new HashMap<>() {{
-            put("error", exception.getMessage());
-        }};
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
-    }
+	@ExceptionHandler(AppointmentAlreadyExist.class)
+	@ResponseStatus(code = HttpStatus.CONFLICT)
+	public ResponseEntity<HashMap> handleDuplicatedAppointment(RuntimeException exception) {
+		HashMap<String, String> response = new HashMap<>() {{
+			put("error", exception.getMessage());
+		}};
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+	}
 
-    static class AppointmentCreatorRequest {
+	static class AppointmentCreatorRequest {
 
-        @Schema(description = "Appointment id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
-        private String id;
+		@Schema(description = "Appointment id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
+		private String id;
 
-        @Schema(description = "Appointment date", example = "2022-04-15")
-        private Date date;
+		@Schema(description = "Appointment date", example = "2022-04-15")
+		private Date date;
 
-        @Schema(description = "Appointment state", example = "DONE")
-        private String state;
+		@Schema(description = "Appointment state", example = "DONE")
+		private String state;
 
-        @Schema(description = "Appointment agent id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
-        private String agentId;
+		@Schema(description = "Appointment agent id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
+		private String agentId;
 
-        @Schema(description = "Appointment client id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
-        private String clientId;
+		@Schema(description = "Appointment client id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
+		private String clientId;
 
-        public String getId() {
-            return id;
-        }
+		public String getId() {
+			return id;
+		}
 
-        public void setId(String id) {
-            this.id = id;
-        }
+		public void setId(String id) {
+			this.id = id;
+		}
 
-        public Date getDate() {
-            return date;
-        }
+		public Date getDate() {
+			return date;
+		}
 
-        public void setDate(Date date) {
-            this.date = date;
-        }
+		public void setDate(Date date) {
+			this.date = date;
+		}
 
-        public String getState() {
-            return state;
-        }
+		public String getState() {
+			return state;
+		}
 
-        public void setState(String state) {
-            this.state = state;
-        }
+		public void setState(String state) {
+			this.state = state;
+		}
 
-        public String getAgentId() {
-            return agentId;
-        }
+		public String getAgentId() {
+			return agentId;
+		}
 
-        public void setAgentId(String agentId) {
-            this.agentId = agentId;
-        }
+		public void setAgentId(String agentId) {
+			this.agentId = agentId;
+		}
 
-        public String getClientId() {
-            return clientId;
-        }
+		public String getClientId() {
+			return clientId;
+		}
 
-        public void setClientId(String clientId) {
-            this.clientId = clientId;
-        }
-    }
+		public void setClientId(String clientId) {
+			this.clientId = clientId;
+		}
+	}
 }

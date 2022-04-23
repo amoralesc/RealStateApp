@@ -17,15 +17,15 @@ import java.util.List;
 @RequestMapping(value = "/property")
 public class PropertyFindByUserIdController {
 
-    //@Autowired
-    private PropertyFinderByUserId findByUserId;
+	//@Autowired
+	private PropertyFinderByUserId findByUserId;
 
-    @Operation(summary = "Find properties by user id", description = "Find all properties by the user id (564af8a6-a7ea-4733-acff-d2e5aada4e5a in the system", tags = {"Property", "UserId"})
-    @GetMapping(value = "/userid")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "userid") String userId) {
+	@Operation(summary = "Find properties by user id", description = "Find all properties by the user id (564af8a6-a7ea-4733-acff-d2e5aada4e5a in the system", tags = {"Property", "UserId"})
+	@GetMapping(value = "/userid")
+	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "userid") String userId) {
         /*PropertyFindByUserIdResponse response = new PropertyFindByUserIdResponse(findByUserId.execute(userId));
         return ResponseEntity.status(HttpStatus.OK).body(response.response());*/
-        return null;
-    }
+		return null;
+	}
 }
 

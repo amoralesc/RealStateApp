@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:dependencies.xml")
 public class RealstateApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(RealstateApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(RealstateApplication.class, args);
+	}
 
 }

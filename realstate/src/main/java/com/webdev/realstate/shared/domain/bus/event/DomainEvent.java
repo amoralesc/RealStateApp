@@ -24,7 +24,8 @@ public abstract class DomainEvent {
 		this.occurredOn = occurredOn;
 	}
 
-	protected DomainEvent() {}
+	protected DomainEvent() {
+	}
 
 	protected String dateToString(LocalDateTime dateTime) {
 		return dateTime.format(DateTimeFormatter.ISO_DATE_TIME);

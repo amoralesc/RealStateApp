@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RequestFindByUserIdResponse {
-    private List<Request> requests;
+	private List<Request> requests;
 
-    public RequestFindByUserIdResponse(List<Request> requests) {
-        this.requests = requests;
-    }
+	public RequestFindByUserIdResponse(List<Request> requests) {
+		this.requests = requests;
+	}
 
-    public List<HashMap<String, Object>> response() {
-        List<HashMap<String, Object>> response = requests.stream().map(request-> request.data()).collect(Collectors.toList());
-        return response;
-    }
+	public List<HashMap<String, Object>> response() {
+		List<HashMap<String, Object>> response = requests.stream().map(request -> request.data()).collect(Collectors.toList());
+		return response;
+	}
 }

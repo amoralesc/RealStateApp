@@ -10,18 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 public class AppointmentFindByUserId {
-    private AppointmentRepository repository;
+	private AppointmentRepository repository;
 
-    public AppointmentFindByUserId(AppointmentRepository repository) {
-        this.repository = repository;
-    }
+	public AppointmentFindByUserId(AppointmentRepository repository) {
+		this.repository = repository;
+	}
 
-    public List<Appointment>  execute(String userId, Boolean isAgent) {
-        List<Appointment> appointments = new ArrayList<>();
-        Optional<List<Appointment>> optionalAppointments = repository.findByUserId(new UserId(userId), new UserIsAgent(isAgent));
-        if (optionalAppointments.isPresent()) {
-            appointments = optionalAppointments.get();
-        }
-        return appointments;
-    }
+	public List<Appointment> execute(String userId, Boolean isAgent) {
+		List<Appointment> appointments = new ArrayList<>();
+		Optional<List<Appointment>> optionalAppointments = repository.findByUserId(new UserId(userId), new UserIsAgent(isAgent));
+		if (optionalAppointments.isPresent()) {
+			appointments = optionalAppointments.get();
+		}
+		return appointments;
+	}
 }

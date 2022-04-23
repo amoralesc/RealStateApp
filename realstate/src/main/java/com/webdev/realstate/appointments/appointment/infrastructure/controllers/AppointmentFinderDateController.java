@@ -21,14 +21,14 @@ import java.util.List;
 @RequestMapping(value = "/appointment")
 public class AppointmentFinderDateController {
 
-    @Autowired
-    private AppointmentFindByDate findByDate;
+	@Autowired
+	private AppointmentFindByDate findByDate;
 
-    @Operation(summary = "Find appointments by date", description = "Find all appointments by the date (2022-04-15 in the system", tags = {"Appointment", "Date"})
-    @GetMapping(value = "/date")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "date")Date appointmentDate) {
-        AppointmentFindByDateResponse response = new AppointmentFindByDateResponse(findByDate.execute(appointmentDate));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());
-    }
+	@Operation(summary = "Find appointments by date", description = "Find all appointments by the date (2022-04-15 in the system", tags = {"Appointment", "Date"})
+	@GetMapping(value = "/date")
+	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "date") Date appointmentDate) {
+		AppointmentFindByDateResponse response = new AppointmentFindByDateResponse(findByDate.execute(appointmentDate));
+		return ResponseEntity.status(HttpStatus.OK).body(response.response());
+	}
 
 }

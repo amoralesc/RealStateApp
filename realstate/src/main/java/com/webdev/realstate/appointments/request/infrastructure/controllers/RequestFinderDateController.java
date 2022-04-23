@@ -20,13 +20,13 @@ import java.util.List;
 @Tag(name = "Request", description = "Request REST API")
 @RequestMapping(value = "/request")
 public class RequestFinderDateController {
-    @Autowired
-    private RequestFindByDate findByDate;
+	@Autowired
+	private RequestFindByDate findByDate;
 
-    @Operation(summary = "Find request by date", description = "Find all request by the date (2022-04-15 in the system", tags = {"Request", "Date"})
-    @GetMapping(value = "/date")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "date")Date requestDate) {
-        RequestFindByDateResponse response = new RequestFindByDateResponse(findByDate.execute(requestDate));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());
-    }
+	@Operation(summary = "Find request by date", description = "Find all request by the date (2022-04-15 in the system", tags = {"Request", "Date"})
+	@GetMapping(value = "/date")
+	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "date") Date requestDate) {
+		RequestFindByDateResponse response = new RequestFindByDateResponse(findByDate.execute(requestDate));
+		return ResponseEntity.status(HttpStatus.OK).body(response.response());
+	}
 }
