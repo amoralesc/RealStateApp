@@ -3,15 +3,15 @@ package com.webdev.realstate.users.user.infrastructure.listeners;
 import com.webdev.realstate.appointments.request.domain.events.RequestCreatedDomainEvent;
 import com.webdev.realstate.users.user.application.add.UserAddRequest;
 
-public class AddRequestOnCreatedRequest {
+public class AddRequestOnRequestCreated {
 
 	private UserAddRequest adder;
 
-	public AddRequestOnCreatedRequest(UserAddRequest adder) {
+	public AddRequestOnRequestCreated(UserAddRequest adder) {
 		this.adder = adder;
 	}
 
-	public void onCreatedRequest(RequestCreatedDomainEvent event) {
+	public void on(RequestCreatedDomainEvent event) {
 		adder.execute(
 				event.aggregateId(),
 				event.getDate(),
