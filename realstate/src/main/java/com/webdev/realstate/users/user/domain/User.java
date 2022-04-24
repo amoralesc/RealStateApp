@@ -1,5 +1,6 @@
 package com.webdev.realstate.users.user.domain;
 
+import com.webdev.realstate.shared.domain.aggregate.AggregateRoot;
 import com.webdev.realstate.users.user.domain.entities.UserAppointment;
 import com.webdev.realstate.users.user.domain.entities.UserPhone;
 import com.webdev.realstate.users.user.domain.entities.UserRequest;
@@ -12,7 +13,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class User {
+public class User extends AggregateRoot {
+
 	private UserId userId;
 	private UserName userName;
 	private UserEmail userEmail;

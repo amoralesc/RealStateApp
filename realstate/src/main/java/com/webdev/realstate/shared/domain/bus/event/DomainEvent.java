@@ -47,6 +47,5 @@ public abstract class DomainEvent {
 
 	public abstract HashMap<String, Serializable> toPrimitive();
 
-	public abstract DomainEvent fromPrimitive(String aggregateId, HashMap<String, Serializable> body,
-											  String eventId, String occurredOn);
+	public abstract DomainEvent fromPrimitive(String aggregateId, HashMap<String, Serializable> body, String eventId, String occurredOn);
 }

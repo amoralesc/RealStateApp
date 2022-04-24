@@ -17,16 +17,17 @@ public class UserAddAppointment {
 		this.repository = repository;
 	}
 
-	public void execute(String userId, Date date, String state, String propertyId, String agentId) {
+	public void execute(String id, Date date, String state, String propertyId, String userId, String agentId) {
 		Optional<User> optionalUser = repository.findById(new UserId(userId));
 		if (optionalUser.isPresent()) {
 			User user = optionalUser.get();
 			user.addAppointment(
 					new UserAppointment(
-							userId,
+							id,
 							date,
 							state,
 							propertyId,
+							userId,
 							agentId
 					));
 			repository.update(user);

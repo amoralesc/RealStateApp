@@ -3,11 +3,12 @@ package com.webdev.realstate.appointments.appointment.domain;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentDate;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentId;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentState;
+import com.webdev.realstate.shared.domain.aggregate.AggregateRoot;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 
 import java.util.HashMap;
 
-public class Appointment {
+public class Appointment extends AggregateRoot {
 	AppointmentId appointmentId;
 	AppointmentDate appointmentDate;
 	AppointmentState appointmentState;
