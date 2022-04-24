@@ -53,6 +53,33 @@ public class User {
 		}
 	}
 
+	public void addPhone(UserPhone userPhone) {
+		List<UserPhone> phones = new ArrayList<>();
+		if (phoneList.isPresent()) {
+			phones = phoneList.get();
+		}
+		phones.add(userPhone);
+		phoneList = Optional.of(phones);
+	}
+
+	public void addRequest(UserRequest userRequest) {
+		List<UserRequest> requests = new ArrayList<>();
+		if (requestsList.isPresent()) {
+			requests = requestsList.get();
+		}
+		requests.add(userRequest);
+		requestsList = Optional.of(requests);
+	}
+
+	public void addAppointment(UserAppointment userAppointment) {
+		List<UserAppointment> appointments = new ArrayList<>();
+		if (appointmentsList.isPresent()) {
+			appointments = appointmentsList.get();
+		}
+		appointments.add(userAppointment);
+		appointmentsList = Optional.of(appointments);
+	}
+
 	public HashMap<String, Object> data() {
 		HashMap<String, Object> data = new HashMap<>() {{
 			put("id", userId.value());

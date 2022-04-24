@@ -11,7 +11,7 @@ public interface UserRepository {
 	void save(User user);
 	void update(User user);
 	void delete(User user);
-	Optional<User> find(UserId userId);
+	Optional<User> findById(UserId userId);
 	Optional<User> findByEmail(UserEmail email);
 	Optional<List<User>> findAll();
 }

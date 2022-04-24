@@ -38,7 +38,7 @@ public class HibernateUserRepository extends HibernateRepository<User> implement
 	}
 
 	@Override
-	public Optional<User> find(UserId userId) {
+	public Optional<User> findById(UserId userId) {
 		return getById(userId);
 	}
 
