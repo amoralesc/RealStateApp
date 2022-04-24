@@ -1,6 +1,5 @@
 package com.webdev.realstate.users.user.infrastructure.controllers;
 
-
 import com.webdev.realstate.shared.infrastructure.schema.ErrorSchema;
 import com.webdev.realstate.users.user.application.create.UserCreator;
 import com.webdev.realstate.users.user.domain.exceptions.InvalidLength;
@@ -13,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,22 +22,29 @@ import java.util.HashMap;
 @RestController
 @Tag(name = "User", description = "User REST API")
 @RequestMapping(value = "/user")
-public class UserCreateController {
+public class UserCreatorController {
 
-	// @Autowired
+	@Autowired
 	private UserCreator creator;
 
 	@Operation(summary = "Create a new User", description = "Create a new User in the system", tags = {"User"})
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "User created"),
 			@ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ErrorSchema.class))),
-			@ApiResponse(responseCode = "409", description = "User already exist", content = @Content(schema = @Schema(implementation = ErrorSchema.class)))
+			@ApiResponse(responseCode = "409", description = "User already exists", content = @Content(schema = @Schema(implementation = ErrorSchema.class)))
 	})
 	@PostMapping(value = "/create")
 	public ResponseEntity execute(@RequestBody UserCreatorRequest request) {
-        /*creator.execute(request.getId(), request.getName(), request.getEmail(), request.getPassword(), request.isAgent());
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);*/
-		return null;
+		creator.execute(
+				request.getId(),
+				request.getName(),
+				request.getEmail(),
+				request.getPassword(),
+				request.isAgent()
+		);
+		return ResponseEntity
+				.status(HttpStatus.CREATED)
+				.body(null);
 	}
 
 	@ExceptionHandler(value = {InvalidUserEmail.class, InvalidLength.class, InvalidPassword.class})
@@ -46,7 +53,9 @@ public class UserCreateController {
 		HashMap<String, String> response = new HashMap<>() {{
 			put("error", exception.getMessage());
 		}};
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		return ResponseEntity
+				.status(HttpStatus.BAD_REQUEST)
+				.body(response);
 	}
 
 	@ExceptionHandler(UserAlreadyExists.class)
@@ -55,20 +64,22 @@ public class UserCreateController {
 		HashMap<String, String> response = new HashMap<>() {{
 			put("error", exception.getMessage());
 		}};
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+		return ResponseEntity
+				.status(HttpStatus.CONFLICT)
+				.body(response);
 	}
 
 	static class UserCreatorRequest {
 		@Schema(description = "User id", example = "0f1c4b36-e610-4446-a3a3-a6083902b587")
 		private String id;
 
-		@Schema(description = "User name, between 5 and 30 characters", example = "Gustavo Salazar")
+		@Schema(description = "User name, between 5 and 30 characters", example = "John Doe")
 		private String name;
 
-		@Schema(description = "User email, contains @", example = "gustavo.salazar@gmail.com")
+		@Schema(description = "User email, contains @", example = "john.doe@gmail.com")
 		private String email;
 
-		@Schema(description = "User password, contains $ and/or *", example = "Password123$*")
+		@Schema(description = "User password, at least 8 characters", example = "Password123")
 		private String password;
 
 		@Schema(description = "User type, true if it's an agent, false if it's not", example = "1")
@@ -116,4 +127,3 @@ public class UserCreateController {
 	}
 
 }
-

@@ -1,4 +1,4 @@
-package com.webdev.realstate.users.user.application.find;
+package com.webdev.realstate.users.user.application.delete;
 
 import com.webdev.realstate.users.user.domain.User;
 import com.webdev.realstate.users.user.domain.ports.UserRepository;
@@ -6,20 +6,18 @@ import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 
 import java.util.Optional;
 
-public class UserFindById {
+public class UserDelete {
 
 	private UserRepository repository;
 
-	public UserFindById(UserRepository repository) {
+	public UserDelete(UserRepository repository) {
 		this.repository = repository;
 	}
 
-	public User execute(String id) {
-		User user = null;
+	public void execute(String id) {
 		Optional<User> optionalUser = repository.findById(new UserId(id));
-		if (optionalUser.isPresent()) {
-			user = optionalUser.get();
-		}
-		return user;
+		optionalUser.ifPresent(
+				user -> repository.delete(user)
+		);
 	}
 }

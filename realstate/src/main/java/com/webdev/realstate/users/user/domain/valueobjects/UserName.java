@@ -16,7 +16,7 @@ public class UserName extends StringValueObject {
 
 	private void lengthValue(String value) {
 		if (value.length() < 5 || value.length() > 30) {
-			throw new InvalidLength("Longitud inválida");
+			throw new InvalidLength("Name must be between 5 and 30 characters");
 		}
 	}
 }

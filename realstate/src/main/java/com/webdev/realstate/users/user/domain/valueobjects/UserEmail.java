@@ -15,7 +15,7 @@ public class UserEmail extends StringValueObject {
 
 	private void emailFormat(String value) {
 		if (!value.contains("@")) {
-			throw new InvalidUserEmail("Email sin @");
+			throw new InvalidUserEmail("Email must contain @");
 		}
 	}
 }

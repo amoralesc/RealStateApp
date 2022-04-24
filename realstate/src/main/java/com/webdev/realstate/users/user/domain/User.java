@@ -3,7 +3,7 @@ package com.webdev.realstate.users.user.domain;
 import com.webdev.realstate.users.user.domain.entities.UserAppointment;
 import com.webdev.realstate.users.user.domain.entities.UserPhone;
 import com.webdev.realstate.users.user.domain.entities.UserRequest;
-import com.webdev.realstate.users.user.domain.exceptions.AuthenticateFailed;
+import com.webdev.realstate.users.user.domain.exceptions.FailedAuthentication;
 import com.webdev.realstate.users.user.domain.valueobjects.*;
 
 import java.util.ArrayList;
@@ -16,13 +16,13 @@ public class User {
 	private UserId userId;
 	private UserName userName;
 	private UserEmail userEmail;
-	private UserIsAgent isAgent;
 	private UserPassword password;
+	private UserIsAgent isAgent;
 	private Optional<List<UserPhone>> phoneList;
 	private Optional<List<UserRequest>> requestsList;
 	private Optional<List<UserAppointment>> appointmentsList;
 
-	public User(UserId userId, UserName userName, UserEmail userEmail, UserIsAgent isAgent, UserPassword password, Optional<List<UserPhone>> phoneList, Optional<List<UserRequest>> requestsList, Optional<List<UserAppointment>> appointmentsList) {
+	public User(UserId userId, UserName userName, UserEmail userEmail, UserPassword password, UserIsAgent isAgent, Optional<List<UserPhone>> phoneList, Optional<List<UserRequest>> requestsList, Optional<List<UserAppointment>> appointmentsList) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userEmail = userEmail;
@@ -33,13 +33,13 @@ public class User {
 		this.appointmentsList = appointmentsList;
 	}
 
-	public static User create(UserId userId, UserName userName, UserEmail userEmail, UserPassword password) {
+	public static User create(UserId userId, UserName userName, UserEmail userEmail, UserPassword password, UserIsAgent isAgent) {
 		User user = new User(
 				userId,
 				userName,
 				userEmail,
-				new UserIsAgent(false),
 				password,
+				isAgent,
 				Optional.empty(),
 				Optional.empty(),
 				Optional.empty()
@@ -49,16 +49,20 @@ public class User {
 
 	public void authenticateUser(UserEmail userEmail, UserPassword password) {
 		if (!(this.password.equals(password) && this.userEmail.equals(userEmail))) {
-			throw new AuthenticateFailed("Credenciales inválidas");
+			throw new FailedAuthentication("Invalid email or password");
 		}
 	}
 
-	public void addPhone(UserPhone userPhone) {
+	public void updateName(UserName userName) {
+		this.userName = userName;
+	}
+
+	public void updatePhones(List<UserPhone> updatedPhones) {
 		List<UserPhone> phones = new ArrayList<>();
 		if (phoneList.isPresent()) {
 			phones = phoneList.get();
 		}
-		phones.add(userPhone);
+		phones.addAll(updatedPhones);
 		phoneList = Optional.of(phones);
 	}
 

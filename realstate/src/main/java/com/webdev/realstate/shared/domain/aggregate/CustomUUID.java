@@ -26,7 +26,7 @@ public class CustomUUID implements Serializable {
 		try {
 			UUID.fromString(value);
 		} catch (Exception ex) {
-			throw new InvalidCustomUUID("El UUID no tiene un formato valido");
+			throw new InvalidCustomUUID("The value is not a valid UUID");
 		}
 	}
 

@@ -5,36 +5,66 @@
 
 	<!-- RabbitMQ -->
 
-	<bean id="RabbitMqPublisher"
+	<bean id="rabbitMqPublisher"
 		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqPublisher"/>
 
-	<bean id="RabbitMqEventBus"
+	<bean id="rabbitMqEventBus"
 		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqEventBus">
-		<constructor-arg ref="RabbitMqPublisher"/>
+		<constructor-arg ref="rabbitMqPublisher"/>
 	</bean>
 
-	<bean id="DomainEventInformation"
+	<bean id="domainEventInformation"
 		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.DomainEventsInformation"/>
 
-	<bean id="DomainEventJsonDeserializer"
+	<bean id="domainEventJsonDeserializer"
 		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.serializable.DomainEventJsonDeserializer">
-		<constructor-arg ref="DomainEventInformation"/>
+		<constructor-arg ref="domainEventInformation"/>
 	</bean>
 
 	<bean id="RabbitMqDomainEventsConsumer"
 		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqDomainEventsConsumer">
-		<constructor-arg ref="RabbitMqEventBus"/>
-		<constructor-arg ref="DomainEventJsonDeserializer"/>
+		<constructor-arg ref="rabbitMqEventBus"/>
+		<constructor-arg ref="domainEventJsonDeserializer"/>
 	</bean>
 
 	<!-- JWT -->
-	<bean id="TokenGeneration"
+	<bean id="tokenGeneration"
 		  class="com.webdev.realstate.shared.application.TokenGeneration"/>
 
 	<!-- Users -->
-	<bean id="UserRepository"
-		  class="com.webdev.realstate.users.user.infrastructure.adapters.HibernateUserRepository"
-		  scope="singleton"/>
+
+	<bean id="userRepository"
+		  class="com.webdev.realstate.users.user.infrastructure.adapters.HibernateUserRepository"/>
+
+	<bean id="userCreator"
+		  class="com.webdev.realstate.users.user.application.create.UserCreator">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
+	<bean id="userLogin"
+		  class="com.webdev.realstate.users.user.application.login.UserLogin">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
+	<bean id="userFindAll"
+		  class="com.webdev.realstate.users.user.application.find_all.UserFindAll">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
+	<bean id="userFindById"
+		  class="com.webdev.realstate.users.user.application.find.UserFindById">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
+	<bean id="userDelete"
+		  class="com.webdev.realstate.users.user.application.delete.UserDelete">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
+	<bean id="userUpdate"
+		  class="com.webdev.realstate.users.user.application.update.UserUpdate">
+		<constructor-arg ref="userRepository"/>
+	</bean>
 
 	<!-- Appointments -->
 

@@ -3,7 +3,7 @@ package com.webdev.realstate.users.user.application.login;
 import com.webdev.realstate.shared.application.TokenGeneration;
 import com.webdev.realstate.shared.application.TokenGenerationResponse;
 import com.webdev.realstate.users.user.domain.User;
-import com.webdev.realstate.users.user.domain.exceptions.AuthenticateFailed;
+import com.webdev.realstate.users.user.domain.exceptions.FailedAuthentication;
 import com.webdev.realstate.users.user.domain.ports.UserRepository;
 import com.webdev.realstate.users.user.domain.valueobjects.UserEmail;
 import com.webdev.realstate.users.user.domain.valueobjects.UserPassword;
@@ -26,7 +26,7 @@ public class UserLogin {
 						new UserEmail(email)
 				);
 		if (optionalUser.isEmpty()) {
-			throw new AuthenticateFailed("Usuario no registrado");
+			throw new FailedAuthentication("User not registered");
 		}
 
 		User user = optionalUser.get();
