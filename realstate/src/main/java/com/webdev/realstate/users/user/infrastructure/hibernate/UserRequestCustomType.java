@@ -54,6 +54,7 @@ public class UserRequestCustomType implements UserType {
 								(Date) element.get("date"),
 								(String) element.get("state"),
 								(String) element.get("propertyId"),
+								(String) element.get("userId"),
 								(String) element.get("agentId")
 						)
 				).collect(Collectors.toList());

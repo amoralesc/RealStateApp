@@ -1,4 +1,4 @@
-package com.webdev.realstate.appointments.appointment.domain.domain_events;
+package com.webdev.realstate.appointments.request.domain.events;
 
 import com.webdev.realstate.shared.domain.bus.event.DomainEvent;
 
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class AppointmentCreatedDomainEvent extends DomainEvent {
+public class RequestCreatedDomainEvent extends DomainEvent {
 
 	private Date date;
 	private String state;
@@ -15,11 +15,11 @@ public class AppointmentCreatedDomainEvent extends DomainEvent {
 	private String userId;
 	private String agentId;
 
-	public AppointmentCreatedDomainEvent() {
+	public RequestCreatedDomainEvent() {
 		super(null);
 	}
 
-	public AppointmentCreatedDomainEvent(String aggregateId, Date date, String state, String propertyId, String userId, String agentId) {
+	public RequestCreatedDomainEvent(String aggregateId, Date date, String state, String propertyId, String userId, String agentId) {
 		super(aggregateId);
 		this.date = date;
 		this.state = state;
@@ -28,7 +28,7 @@ public class AppointmentCreatedDomainEvent extends DomainEvent {
 		this.agentId = agentId;
 	}
 
-	public AppointmentCreatedDomainEvent(String aggregateId, String eventId, String occurredOn, Date date, String state, String propertyId, String userId, String agentId) {
+	public RequestCreatedDomainEvent(String aggregateId, String eventId, String occurredOn, Date date, String state, String propertyId, String userId, String agentId) {
 		super(aggregateId, eventId, occurredOn);
 		this.date = date;
 		this.state = state;
@@ -59,7 +59,7 @@ public class AppointmentCreatedDomainEvent extends DomainEvent {
 
 	@Override
 	public String eventName() {
-		return "add.appointment";
+		return "add.request";
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class AppointmentCreatedDomainEvent extends DomainEvent {
 
 	@Override
 	public DomainEvent fromPrimitive(String aggregateId, HashMap<String, Serializable> body, String eventId, String occurredOn) {
-		return new AppointmentCreatedDomainEvent(
+		return new RequestCreatedDomainEvent(
 				aggregateId,
 				eventId,
 				occurredOn,
@@ -91,7 +91,7 @@ public class AppointmentCreatedDomainEvent extends DomainEvent {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		AppointmentCreatedDomainEvent other = (AppointmentCreatedDomainEvent) o;
+		RequestCreatedDomainEvent other = (RequestCreatedDomainEvent) o;
 
 		return date.equals(other.date) &&
 				state.equals(other.state) &&

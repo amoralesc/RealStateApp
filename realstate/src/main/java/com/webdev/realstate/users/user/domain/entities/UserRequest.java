@@ -8,13 +8,15 @@ public class UserRequest {
 	private Date date;
 	private String state;
 	private String propertyId;
+	private String userId;
 	private String agentId;
 
-	public UserRequest(String id, Date date, String state, String propertyId, String agentId) {
+	public UserRequest(String id, Date date, String state, String propertyId, String userId, String agentId) {
 		this.id = id;
 		this.date = date;
 		this.state = state;
 		this.propertyId = propertyId;
+		this.userId = userId;
 		this.agentId = agentId;
 	}
 
@@ -24,6 +26,7 @@ public class UserRequest {
 			put("date", date);
 			put("state", state);
 			put("propertyId", propertyId);
+			put("userId", userId);
 			put("agentId", agentId);
 		}};
 		return data;
