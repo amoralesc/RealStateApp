@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class AppointmentUpdate {
 
-	private AppointmentRepository repository;
+	private final AppointmentRepository repository;
 
 	public AppointmentUpdate(AppointmentRepository repository) {
 		this.repository = repository;

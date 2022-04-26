@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AppointmentFindAll {
 
-	private AppointmentRepository repository;
+	private final AppointmentRepository repository;
 
 	public AppointmentFindAll(AppointmentRepository repository) {
 		this.repository = repository;

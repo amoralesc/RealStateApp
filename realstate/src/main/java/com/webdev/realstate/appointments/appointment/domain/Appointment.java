@@ -42,6 +42,17 @@ public class Appointment extends AggregateRoot {
 				agentId
 		);
 
+		appointment.record(
+				new AppointmentCreatedDomainEvent(
+						appointmentId.value(),
+						appointmentDate.value(),
+						"PENDING",
+						propertyId.value(),
+						userId.value(),
+						agentId.value()
+				)
+		);
+
 		return appointment;
 	}
 

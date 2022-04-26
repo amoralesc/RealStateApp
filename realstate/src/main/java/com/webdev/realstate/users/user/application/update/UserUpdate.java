@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class UserUpdate {
 
-	private UserRepository repository;
+	private final UserRepository repository;
 
 	public UserUpdate(UserRepository repository) {
 		this.repository = repository;

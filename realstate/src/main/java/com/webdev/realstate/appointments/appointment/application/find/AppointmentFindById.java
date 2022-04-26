@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class AppointmentFindById {
 
-	private AppointmentRepository repository;
+	private final AppointmentRepository repository;
 
 	public AppointmentFindById(AppointmentRepository repository) {
 		this.repository = repository;

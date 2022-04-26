@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class UserLogin {
 
-	private UserRepository repository;
+	private final UserRepository repository;
 	private final TokenGeneration tokenGeneration;
 
 	public UserLogin(UserRepository repository, TokenGeneration tokenGeneration) {

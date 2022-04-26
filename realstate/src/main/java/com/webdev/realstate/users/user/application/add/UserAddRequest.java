@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class UserAddRequest {
 
-	private UserRepository repository;
+	private final UserRepository repository;
 
 	public UserAddRequest(UserRepository repository) {
 		this.repository = repository;

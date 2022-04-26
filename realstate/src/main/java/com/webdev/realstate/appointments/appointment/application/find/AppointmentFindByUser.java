@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AppointmentFindByUser {
-	private AppointmentRepository repository;
+	private final AppointmentRepository repository;
 
 	public AppointmentFindByUser(AppointmentRepository repository) {
 		this.repository = repository;

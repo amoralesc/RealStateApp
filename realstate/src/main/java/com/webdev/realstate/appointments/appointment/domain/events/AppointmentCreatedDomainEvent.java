@@ -59,7 +59,7 @@ public class AppointmentCreatedDomainEvent extends DomainEvent {
 
 	@Override
 	public String eventName() {
-		return "add.appointment";
+		return "create.appointment";
 	}
 
 	@Override

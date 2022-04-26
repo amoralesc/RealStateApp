@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class UserDelete {
 
-	private UserRepository repository;
+	private final UserRepository repository;
 
 	public UserDelete(UserRepository repository) {
 		this.repository = repository;

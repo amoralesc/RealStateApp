@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class AppointmentDelete {
 
-	private AppointmentRepository repository;
+	private final AppointmentRepository repository;
 
 	public AppointmentDelete(AppointmentRepository repository) {
 		this.repository = repository;
