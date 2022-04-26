@@ -38,7 +38,7 @@ public class Property {
 	}
 
 	public static Property create(
-			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType,
+			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType, PropertyOfferType propertyOfferType,
 			PropertyQuantityRooms propertyQuantityRooms, PropertyQuantityBathrooms propertyQuantityBathrooms,
 			PropertyArea propertyArea, PropertyPrice propertyPrice
 	) {
@@ -46,7 +46,7 @@ public class Property {
 				propertyId,
 				propertyDescription,
 				propertyType,
-				new PropertyOfferType(false),
+				propertyOfferType,
 				propertyQuantityRooms,
 				propertyQuantityBathrooms,
 				propertyArea,
@@ -73,7 +73,7 @@ public class Property {
 
 	private List<HashMap<String, Object>> createAddress() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
-		if (!propertyAddress.isEmpty()) {
+		if (propertyAddress.isPresent()) {
 			list = propertyAddress.get().stream().map(
 					address -> address.data()
 			).collect(Collectors.toList());

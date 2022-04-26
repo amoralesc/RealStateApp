@@ -3,19 +3,20 @@ package com.webdev.realstate.properties.property.application.find;
 import com.webdev.realstate.properties.property.domain.Property;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class PropertyFindByIdResponse {
 
-    private List<Property> properties;
+	private Property property;
 
-    public PropertyFindByIdResponse(List<Property> properties) {
-        this.properties = properties;
-    }
+	public PropertyFindByIdResponse(Property property) {
+		this.property = property;
+	}
 
-    public List<HashMap<String, Object>> response() {
-        List<HashMap<String, Object>> response = properties.stream().map(property-> property.data()).collect(Collectors.toList());
-        return response;
-    }
+	public HashMap<String, Object> response() {
+		if (property == null) {
+			return new HashMap<>();
+		}
+
+		return property.data();
+	}
 }

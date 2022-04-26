@@ -26,7 +26,7 @@ public class PropertyFindByAreaController {
 	@GetMapping(value = "/area")
 	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "area") String area) {
 		PropertyFindByAreaResponse response = new PropertyFindByAreaResponse((List<Property>) findByArea.execute(area));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());
+		return ResponseEntity.status(HttpStatus.OK).body(response.response());
 
 	}
 }

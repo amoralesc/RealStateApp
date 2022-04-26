@@ -18,18 +18,18 @@ import java.util.List;
 @RequestMapping(value = "/property")
 public class PropertyFindAllController {
 
-    private PropertyFindAll findAll;
+	private PropertyFindAll findAll;
 
-    @Operation(summary = "Find all properties", description = "Find all properties in the system", tags = {"Property"})
-    @GetMapping(value = "/all")
-    public ResponseEntity<List<HashMap<String, Object>>> execute() {
-        PropertyFindAllResponse response =
-                new PropertyFindAllResponse(
-                        findAll.execute()
-                );
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(response.response());
-    }
+	@Operation(summary = "Find all properties", description = "Find all properties in the system", tags = {"Property"})
+	@GetMapping(value = "/all")
+	public ResponseEntity<List<HashMap<String, Object>>> execute() {
+		PropertyFindAllResponse response =
+				new PropertyFindAllResponse(
+						findAll.execute()
+				);
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(response.response());
+	}
 
 }

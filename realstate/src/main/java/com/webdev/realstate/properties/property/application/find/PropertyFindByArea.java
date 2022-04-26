@@ -10,19 +10,19 @@ import java.util.Optional;
 
 public class PropertyFindByArea {
 
-    private PropertyRepository repository;
+	private PropertyRepository repository;
 
-    public PropertyFindByArea(PropertyRepository repository){
-        this.repository = repository;
-    }
+	public PropertyFindByArea(PropertyRepository repository) {
+		this.repository = repository;
+	}
 
-    public List<Property> execute(Double propertyArea){
-        List<Property> properties = new ArrayList<>();
-        Optional<List<Property>> optionalProperties = repository.findByArea(new PropertyArea(propertyArea));
-        if (optionalProperties.isPresent()){
-            properties = optionalProperties.get();
-        }
-        return properties;
-    }
+	public List<Property> execute(Double propertyArea) {
+		List<Property> properties = new ArrayList<>();
+		Optional<List<Property>> optionalProperties = repository.findByArea(new PropertyArea(propertyArea));
+		if (optionalProperties.isPresent()) {
+			properties = optionalProperties.get();
+		}
+		return properties;
+	}
 
 }

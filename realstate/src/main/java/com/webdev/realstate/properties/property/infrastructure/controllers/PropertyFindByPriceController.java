@@ -25,8 +25,8 @@ public class PropertyFindByPriceController {
 	@Operation(summary = "Find properties by price", description = "Find all properties by the price(1000000 in the system", tags = {"Property", "Price"})
 	@GetMapping(value = "/price")
 	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "price") String price) {
-        PropertyFindByPriceResponse response = new PropertyFindByPriceResponse((List<Property>) findByPrice.execute(price));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());
+		PropertyFindByPriceResponse response = new PropertyFindByPriceResponse((List<Property>) findByPrice.execute(price));
+		return ResponseEntity.status(HttpStatus.OK).body(response.response());
 
 	}
 

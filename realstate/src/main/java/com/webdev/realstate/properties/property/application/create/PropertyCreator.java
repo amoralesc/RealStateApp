@@ -6,26 +6,29 @@ import com.webdev.realstate.properties.property.domain.valueobjects.*;
 
 public class PropertyCreator {
 
-    private final PropertyRepository repository;
-    public PropertyCreator(PropertyRepository repository){
-        this.repository = repository;
-    }
+	private final PropertyRepository repository;
 
-    public void execute( String propertyId, String propertyDescription, String propertyType,
-                         Integer propertyQuantityRooms, Integer propertyQuantityBathrooms,
-                         Double propertyArea, Double propertyPrice){
+	public PropertyCreator(PropertyRepository repository) {
+		this.repository = repository;
+	}
 
-        Property property = Property.create(
-                new PropertyId(propertyId),
-                new PropertyDescription(propertyDescription),
-                new PropertyType(propertyType),
-                new PropertyQuantityRooms(propertyQuantityRooms),
-                new PropertyQuantityBathrooms(propertyQuantityBathrooms),
-                new PropertyArea(propertyArea),
-                new PropertyPrice(propertyPrice)
-        );
+	public void execute(
+			String propertyId, String propertyDescription, String propertyType,
+			Boolean propertyOfferType, Integer propertyQuantityRooms, Integer propertyQuantityBathrooms,
+			Double propertyArea, Double propertyPrice
+	) {
 
-        repository.save(property);
-    }
+		Property property = Property.create(
+				new PropertyId(propertyId),
+				new PropertyDescription(propertyDescription),
+				new PropertyType(propertyType),
+				new PropertyOfferType(propertyOfferType),
+				new PropertyQuantityRooms(propertyQuantityRooms),
+				new PropertyQuantityBathrooms(propertyQuantityBathrooms),
+				new PropertyArea(propertyArea),
+				new PropertyPrice(propertyPrice)
+		);
 
+		repository.save(property);
+	}
 }

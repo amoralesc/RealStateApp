@@ -32,10 +32,19 @@ public class PropertyCreateController {
 	})
 	@PostMapping(value = "/create")
 	public ResponseEntity execute(@RequestBody PropertyCreateController.PropertyCreatorRequest request) {
-        /*creator.execute(request.getId(), request.getAgentId(), request.getArea(), request.getDescription(), request.getPrice(),
-                request.getQuantityBathroom(), request.getQuantityRoom());
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);*/
-		return null;
+		creator.execute(
+				request.getId(),
+				request.getDescription(),
+				request.getPropertyType(),
+				request.getOfferType(),
+				request.getQuantityRooms(),
+				request.getQuantityBathrooms(),
+				request.getArea(),
+				request.getPrice()
+		);
+		return ResponseEntity
+				.status(HttpStatus.CREATED)
+				.body(null);
 	}
 
 	@ExceptionHandler(value = {InvalidArea.class, InvalidQuantity.class, InvalidPrice.class})
@@ -44,7 +53,9 @@ public class PropertyCreateController {
 		HashMap<String, String> response = new HashMap<>() {{
 			put("error", exception.getMessage());
 		}};
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		return ResponseEntity
+				.status(HttpStatus.BAD_REQUEST)
+				.body(response);
 	}
 
 	static class PropertyCreatorRequest {
@@ -54,26 +65,23 @@ public class PropertyCreateController {
 		@Schema(description = "Property description", example = "It's a property...")
 		private String description;
 
-		@Schema(description = "Property type", example = "1")
-		private boolean propertyType;
+		@Schema(description = "Property type", example = "Flat")
+		private String propertyType;
 
 		@Schema(description = "Property offer type", example = "1")
 		private boolean offerType;
 
-		@Schema(description = "Property quantity room", example = "2")
-		private int quantityRoom;
+		@Schema(description = "Quantity of rooms", example = "2")
+		private int quantityRooms;
 
-		@Schema(description = "Property quantity bathroom", example = "1")
-		private int quantityBathroom;
+		@Schema(description = "Quantity of bathrooms", example = "1")
+		private int quantityBathrooms;
 
 		@Schema(description = "Property area", example = "50")
 		private double area;
 
 		@Schema(description = "Property price", example = "1000000")
 		private double price;
-
-		@Schema(description = "Property agent id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
-		private String agentId;
 
 		public String getId() {
 			return id;
@@ -91,15 +99,15 @@ public class PropertyCreateController {
 			this.description = description;
 		}
 
-		public boolean isPropertyType() {
+		public String getPropertyType() {
 			return propertyType;
 		}
 
-		public void setPropertyType(boolean propertyType) {
+		public void setPropertyType(String propertyType) {
 			this.propertyType = propertyType;
 		}
 
-		public boolean isOfferType() {
+		public boolean getOfferType() {
 			return offerType;
 		}
 
@@ -107,20 +115,20 @@ public class PropertyCreateController {
 			this.offerType = offerType;
 		}
 
-		public int getQuantityRoom() {
-			return quantityRoom;
+		public int getQuantityRooms() {
+			return quantityRooms;
 		}
 
-		public void setQuantityRoom(int quantityRoom) {
-			this.quantityRoom = quantityRoom;
+		public void setQuantityRooms(int quantityRooms) {
+			this.quantityRooms = quantityRooms;
 		}
 
-		public int getQuantityBathroom() {
-			return quantityBathroom;
+		public int getQuantityBathrooms() {
+			return quantityBathrooms;
 		}
 
-		public void setQuantityBathroom(int quantityBathroom) {
-			this.quantityBathroom = quantityBathroom;
+		public void setQuantityBathrooms(int quantityBathrooms) {
+			this.quantityBathrooms = quantityBathrooms;
 		}
 
 		public double getArea() {
@@ -137,14 +145,6 @@ public class PropertyCreateController {
 
 		public void setPrice(double price) {
 			this.price = price;
-		}
-
-		public String getAgentId() {
-			return agentId;
-		}
-
-		public void setAgentId(String agentId) {
-			this.agentId = agentId;
 		}
 	}
 }

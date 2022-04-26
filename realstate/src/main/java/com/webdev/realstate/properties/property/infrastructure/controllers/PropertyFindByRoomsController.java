@@ -19,12 +19,13 @@ import java.util.List;
 @RequestMapping(value = "/property")
 public class PropertyFindByRoomsController {
 
-    private PropertyFindByRoomsController findByRooms;
-    @Operation(summary = "Find properties by quantity of bathrooms", description = "Find all properties by the quantity of rooms", tags = {"Property", "Quantity", "Rooms"})
-    @GetMapping(value = "/quantityRooms")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "quantityRooms") String quantityRooms) {
-        PropertyFindByBathsResponse response = new PropertyFindByBathsResponse((List<Property>) findByRooms.execute(quantityRooms));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());
+	private PropertyFindByRoomsController findByRooms;
 
-    }
+	@Operation(summary = "Find properties by quantity of bathrooms", description = "Find all properties by the quantity of rooms", tags = {"Property", "Quantity", "Rooms"})
+	@GetMapping(value = "/quantityRooms")
+	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "quantityRooms") String quantityRooms) {
+		PropertyFindByBathsResponse response = new PropertyFindByBathsResponse((List<Property>) findByRooms.execute(quantityRooms));
+		return ResponseEntity.status(HttpStatus.OK).body(response.response());
+
+	}
 }

@@ -8,15 +8,21 @@ import java.util.Optional;
 
 public interface PropertyRepository {
 
-    void save(Property property);
-    void update(Property property);
-    Optional<List<Property>> findByPropertyId(PropertyId PropertyId);
-    Optional<List<Property>> findByType(PropertyType propertyType);
-    Optional<List<Property>> findByRooms(PropertyQuantityRooms propertyQuantityRooms);
-    Optional<List<Property>> findByBaths(PropertyQuantityBathrooms propertyQuantityBathrooms);
-    Optional<List<Property>> findByArea(PropertyArea propertyArea);
-    Optional<List<Property>> findByPrice(PropertyPrice propertyPrice);
-    Optional<List<Property>> findAll();
-// TODO bsucar por direccion
-//Optional<List<Property>> findByCity();
+	void save(Property property);
+
+	void update(Property property);
+
+	Optional<Property> findById(PropertyId propertyId);
+
+	Optional<List<Property>> findByType(PropertyType propertyType);
+
+	Optional<List<Property>> findByRooms(PropertyQuantityRooms propertyQuantityRooms);
+
+	Optional<List<Property>> findByBaths(PropertyQuantityBathrooms propertyQuantityBathrooms);
+
+	Optional<List<Property>> findByArea(PropertyArea propertyArea);
+
+	Optional<List<Property>> findByPrice(PropertyPrice propertyPrice);
+
+	Optional<List<Property>> findAll();
 }

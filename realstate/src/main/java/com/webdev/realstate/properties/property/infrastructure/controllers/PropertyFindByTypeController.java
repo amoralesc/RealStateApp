@@ -1,7 +1,7 @@
 package com.webdev.realstate.properties.property.infrastructure.controllers;
 
-import com.webdev.realstate.properties.property.application.find.PropertyFindByIdResponse;
-import com.webdev.realstate.properties.property.domain.Property;
+import com.webdev.realstate.properties.property.application.find.PropertyFindByType;
+import com.webdev.realstate.properties.property.application.find.PropertyFindByTypeResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -18,15 +18,16 @@ import java.util.List;
 @Tag(name = "Property", description = "Property REST API")
 @RequestMapping(value = "/property")
 public class PropertyFindByTypeController {
-    //@Autowired
-    private PropertyFindByTypeController findByType;
+	//@Autowired
+	private PropertyFindByType findByType;
 
-    @Operation(summary = "Find properties by id", description = "Find all properties by Type (56 in the system", tags = {"Property", "id"})
-    @GetMapping(value = "/Type")
-    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "Type") String type) {
-        PropertyFindByIdResponse response = new PropertyFindByIdResponse((List<Property>) findByType.execute(type));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());
-
-    }
-
+	@Operation(summary = "Find properties by type", description = "Find all properties by type in the system", tags = {"Property"})
+	@GetMapping(value = "/find")
+	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "type") String type) {
+		PropertyFindByTypeResponse response
+				= new PropertyFindByTypeResponse(findByType.execute(type));
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(response.response());
+	}
 }

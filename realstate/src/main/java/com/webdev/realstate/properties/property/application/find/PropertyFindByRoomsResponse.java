@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 
 public class PropertyFindByRoomsResponse {
 
-    private List<Property> properties;
+	private List<Property> properties;
 
-    public PropertyFindByRoomsResponse(List<Property> properties) {
-        this.properties = properties;
-    }
+	public PropertyFindByRoomsResponse(List<Property> properties) {
+		this.properties = properties;
+	}
 
-    public List<HashMap<String, Object>> response() {
-        List<HashMap<String, Object>> response = properties.stream().map(property-> property.data()).collect(Collectors.toList());
-        return response;
-    }
+	public List<HashMap<String, Object>> response() {
+		List<HashMap<String, Object>> response = properties.stream().map(property -> property.data()).collect(Collectors.toList());
+		return response;
+	}
 }
