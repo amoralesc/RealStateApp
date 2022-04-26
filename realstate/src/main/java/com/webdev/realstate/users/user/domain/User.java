@@ -82,6 +82,21 @@ public class User extends AggregateRoot {
 		appointmentsList = Optional.of(appointments);
 	}
 
+	public void updateAppointment(UserAppointment appointment) {
+		List<UserAppointment> appointments = new ArrayList<>();
+		if (appointmentsList.isPresent()) {
+			appointments = appointmentsList.get();
+			for (int i = 0; i < appointments.size(); i++) {
+				if (((String) appointments.get(i).data().get("id"))
+						.equals(((String) appointment.data().get("id")))) {
+					appointments.set(i, appointment);
+					break;
+				}
+			}
+		}
+		appointmentsList = Optional.of(appointments);
+	}
+
 	public HashMap<String, Object> data() {
 		HashMap<String, Object> data = new HashMap<>() {{
 			put("id", userId.value());

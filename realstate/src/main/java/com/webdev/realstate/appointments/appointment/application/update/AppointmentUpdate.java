@@ -4,15 +4,18 @@ import com.webdev.realstate.appointments.appointment.domain.Appointment;
 import com.webdev.realstate.appointments.appointment.domain.ports.AppointmentRepository;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentId;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentState;
+import com.webdev.realstate.shared.domain.bus.event.EventBus;
 
 import java.util.Optional;
 
 public class AppointmentUpdate {
 
 	private final AppointmentRepository repository;
+	private final EventBus eventBus;
 
-	public AppointmentUpdate(AppointmentRepository repository) {
+	public AppointmentUpdate(AppointmentRepository repository, EventBus eventBus) {
 		this.repository = repository;
+		this.eventBus = eventBus;
 	}
 
 	public void execute(String appointmentId, String appointmentState) {
@@ -26,6 +29,7 @@ public class AppointmentUpdate {
 			);
 
 			repository.update(appointment);
+			eventBus.publish(appointment.pullDomainEvents());
 		}
 	}
 }
