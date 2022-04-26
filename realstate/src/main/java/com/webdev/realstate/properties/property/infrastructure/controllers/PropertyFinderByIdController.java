@@ -16,7 +16,7 @@ import java.util.HashMap;
 @RestController
 @Tag(name = "Property", description = "Property REST API")
 @RequestMapping(value = "/property")
-public class PropertyFindByIdController {
+public class PropertyFinderByIdController {
 
 	//@Autowired
 	private PropertyFindById findById;
