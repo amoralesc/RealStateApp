@@ -10,5 +10,5 @@ rabbit.host=[Server host]
 rabbit.port=[Server port]
 rabbit.user=[RabbitMQ username]
 rabbit.password=[RabbitMQ password]
-rabbit.exchange=[RabbitMQ exchange name]
-rabbit.queues=[RabbitMQ queue names]
+rabbit.exchange=realstate_domain_events
+rabbit.queues=realstate.appointments.appointment.create.appointment,realstate.appointments.request.create.request,realstate.appointments.appointment.update.appointment,realstate.appointments.request.update.request
