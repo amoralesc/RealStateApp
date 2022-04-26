@@ -5,7 +5,6 @@ import com.webdev.realstate.properties.property.domain.Property;
 import com.webdev.realstate.properties.property.domain.ports.PropertyRepository;
 import com.webdev.realstate.properties.property.domain.valueobjects.*;
 import com.webdev.realstate.shared.infrastructure.hibernate.HibernateRepository;
-import com.webdev.realstate.users.user.domain.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;

@@ -2,6 +2,7 @@ package com.webdev.realstate.properties.property.domain;
 
 import com.webdev.realstate.properties.property.domain.entities.PropertyAddress;
 import com.webdev.realstate.properties.property.domain.valueobjects.*;
+import com.webdev.realstate.users.user.domain.entities.UserPhone;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,5 +80,10 @@ public class Property {
 			).collect(Collectors.toList());
 		}
 		return list;
+	}
+
+	public void updateAddress(List<PropertyAddress> propertyAddresses) {
+		List<PropertyAddress> adresses = new ArrayList<>(propertyAddresses);
+		propertyAddress = Optional.of(adresses);
 	}
 }
