@@ -197,4 +197,9 @@
 		<constructor-arg ref="propertyRepository"/>
 	</bean>
 
+	<bean id="propertyFindByFilter"
+		  class="com.webdev.realstate.properties.property.application.find.PropertyFindByFilter">
+		<constructor-arg ref="propertyRepository"/>
+	</bean>
+
 </beans>

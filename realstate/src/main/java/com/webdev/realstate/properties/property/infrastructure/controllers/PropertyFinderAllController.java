@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @Tag(name = "User", description = "User REST API")
 @RequestMapping(value = "/property")
-public class PropertyFindAllController {
+public class PropertyFinderAllController {
 
 	@Autowired
 	private PropertyFindAll findAll;

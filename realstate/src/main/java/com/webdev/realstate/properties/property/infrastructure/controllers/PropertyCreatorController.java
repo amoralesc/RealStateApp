@@ -21,7 +21,7 @@ import java.util.HashMap;
 @RestController
 @Tag(name = "Property", description = "Property REST API")
 @RequestMapping(value = "/property")
-public class PropertyCreateController {
+public class PropertyCreatorController {
 
 	@Autowired
 	private PropertyCreator creator;
@@ -32,7 +32,7 @@ public class PropertyCreateController {
 			@ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ErrorSchema.class)))
 	})
 	@PostMapping(value = "/create")
-	public ResponseEntity execute(@RequestBody PropertyCreateController.PropertyCreatorRequest request) {
+	public ResponseEntity execute(@RequestBody PropertyCreatorController.PropertyCreatorRequest request) {
 		creator.execute(
 				request.getId(),
 				request.getDescription(),
