@@ -9,6 +9,7 @@ import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 import java.util.Date;
 
 public class RequestCreator {
+
 	private RequestRepository repository;
 
 	public RequestCreator(RequestRepository repository) {

@@ -103,24 +103,33 @@
 
 	<!-- Requests -->
 
-	<bean id="RequestRepository"
+	<bean id="requestRepository"
 		  class="com.webdev.realstate.appointments.request.infrastructure.adapters.HibernateRequestRepository"/>
 
-	<bean id="RequestCreator" class="com.webdev.realstate.appointments.request.application.create.RequestCreator">
-		<constructor-arg ref="RequestRepository"/>
+	<bean id="requestCreator" class="com.webdev.realstate.appointments.request.application.create.RequestCreator">
+		<constructor-arg ref="requestRepository"/>
 	</bean>
 
-	<bean id="RequestFindByDate" class="com.webdev.realstate.appointments.request.application.find.RequestFindByDate">
-		<constructor-arg ref="RequestRepository"/>
+	<bean id="requestUpdate" class="com.webdev.realstate.appointments.request.application.update.RequestUpdate">
+		<constructor-arg ref="requestRepository"/>
 	</bean>
 
-	<bean id="RequestFindByState" class="com.webdev.realstate.appointments.request.application.find.RequestFindByState">
-		<constructor-arg ref="RequestRepository"/>
+	<bean id="requestDelete" class="com.webdev.realstate.appointments.request.application.delete.RequestDelete">
+		<constructor-arg ref="requestRepository"/>
 	</bean>
 
-	<bean id="RequestFindByUserId"
-		  class="com.webdev.realstate.appointments.request.application.find.RequestFindByUserId">
-		<constructor-arg ref="RequestRepository"/>
+	<bean id="requestFindById" class="com.webdev.realstate.appointments.request.application.find.RequestFindById">
+		<constructor-arg ref="requestRepository"/>
 	</bean>
+
+	<bean id="requestFindByUser" class="com.webdev.realstate.appointments.request.application.find.RequestFindByUser">
+		<constructor-arg ref="requestRepository"/>
+	</bean>
+
+	<bean id="requestFindAll" class="com.webdev.realstate.appointments.request.application.find_all.RequestFindAll">
+		<constructor-arg ref="requestRepository"/>
+	</bean>
+
+	<!-- Properties -->
 
 </beans>

@@ -1,8 +1,7 @@
 package com.webdev.realstate.appointments.request.domain.ports;
 
 import com.webdev.realstate.appointments.request.domain.Request;
-import com.webdev.realstate.appointments.request.domain.valueobjects.RequestDate;
-import com.webdev.realstate.appointments.request.domain.valueobjects.RequestState;
+import com.webdev.realstate.appointments.request.domain.valueobjects.RequestId;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 import com.webdev.realstate.users.user.domain.valueobjects.UserIsAgent;
 
@@ -15,9 +14,11 @@ public interface RequestRepository {
 
 	void update(Request request);
 
-	Optional<List<Request>> findByUserId(UserId userId, UserIsAgent isAgent);
+	void delete(Request request);
 
-	Optional<List<Request>> findByDate(RequestDate requestDate);
+	Optional<Request> findById(RequestId requestId);
 
-	Optional<List<Request>> findByState(RequestState requestState);
+	Optional<List<Request>> findByUser(UserId userId, UserIsAgent isAgent);
+
+	Optional<List<Request>> findAll();
 }

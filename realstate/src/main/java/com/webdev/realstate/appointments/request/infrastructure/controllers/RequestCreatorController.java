@@ -22,7 +22,7 @@ import java.util.HashMap;
 @RestController
 @Tag(name = "Request", description = "Request REST API")
 @RequestMapping(value = "/request")
-public class RequestCreateController {
+public class RequestCreatorController {
 
 	@Autowired
 	private RequestCreator creator;
@@ -34,7 +34,12 @@ public class RequestCreateController {
 	})
 	@PostMapping(value = "/create")
 	public ResponseEntity execute(@RequestBody RequestCreatorRequest request) {
-		creator.execute(request.getId(), request.getDate(), request.getClientId(), request.getAgentId());
+		creator.execute(
+				request.getId(),
+				request.getDate(),
+				request.getUserId(),
+				request.getAgentId()
+		);
 		return ResponseEntity.status(HttpStatus.CREATED).body(null);
 	}
 
@@ -64,14 +69,11 @@ public class RequestCreateController {
 		@Schema(description = "Request date", example = "2022-04-15")
 		private Date date;
 
-		@Schema(description = "Request state", example = "1")
-		private boolean state;
+		@Schema(description = "Request user id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
+		private String userId;
 
 		@Schema(description = "Request agent id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
 		private String agentId;
-
-		@Schema(description = "Request client id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
-		private String clientId;
 
 		public String getId() {
 			return id;
@@ -89,12 +91,12 @@ public class RequestCreateController {
 			this.date = date;
 		}
 
-		public boolean isState() {
-			return state;
+		public String getUserId() {
+			return userId;
 		}
 
-		public void setState(boolean state) {
-			this.state = state;
+		public void setUserId(String userId) {
+			this.userId = userId;
 		}
 
 		public String getAgentId() {
@@ -103,14 +105,6 @@ public class RequestCreateController {
 
 		public void setAgentId(String agentId) {
 			this.agentId = agentId;
-		}
-
-		public String getClientId() {
-			return clientId;
-		}
-
-		public void setClientId(String clientId) {
-			this.clientId = clientId;
 		}
 	}
 }

@@ -3,6 +3,7 @@ package com.webdev.realstate.appointments.request.infrastructure.adapters;
 import com.webdev.realstate.appointments.request.domain.Request;
 import com.webdev.realstate.appointments.request.domain.ports.RequestRepository;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestDate;
+import com.webdev.realstate.appointments.request.domain.valueobjects.RequestId;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestState;
 import com.webdev.realstate.shared.infrastructure.hibernate.HibernateRepository;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
@@ -35,7 +36,17 @@ public class HibernateRequestRepository extends HibernateRepository<Request> imp
 	}
 
 	@Override
-	public Optional<List<Request>> findByUserId(UserId userId, UserIsAgent isAgent) {
+	public void delete(Request request) {
+		deleteEntity(request);
+	}
+
+	@Override
+	public Optional<Request> findById(RequestId requestId) {
+		return getById(requestId);
+	}
+
+	@Override
+	public Optional<List<Request>> findByUser(UserId userId, UserIsAgent isAgent) {
 		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
 		CriteriaQuery<Request> cq = cb.createQuery(Request.class);
 		Root<Request> root = cq.from(Request.class);
@@ -51,24 +62,7 @@ public class HibernateRequestRepository extends HibernateRepository<Request> imp
 	}
 
 	@Override
-	public Optional<List<Request>> findByDate(RequestDate requestDate) {
-		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
-		CriteriaQuery<Request> cq = cb.createQuery(Request.class);
-		Root<Request> root = cq.from(Request.class);
-		cq.select(root).where(cb.equal(root.get("requestDate"), requestDate));
-
-		List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
-		return Optional.ofNullable(requests);
-	}
-
-	@Override
-	public Optional<List<Request>> findByState(RequestState requestState) {
-		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
-		CriteriaQuery<Request> cq = cb.createQuery(Request.class);
-		Root<Request> root = cq.from(Request.class);
-		cq.select(root).where(cb.equal(root.get("requestState"), requestState));
-
-		List<Request> requests = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
-		return Optional.ofNullable(requests);
+	public Optional<List<Request>> findAll() {
+		return getAll();
 	}
 }

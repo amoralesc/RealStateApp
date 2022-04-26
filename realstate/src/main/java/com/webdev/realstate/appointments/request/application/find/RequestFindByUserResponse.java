@@ -6,16 +6,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RequestFindByStateResponse {
+public class RequestFindByUserResponse {
 
 	private List<Request> requests;
 
-	public RequestFindByStateResponse(List<Request> requests) {
+	public RequestFindByUserResponse(List<Request> requests) {
 		this.requests = requests;
 	}
 
 	public List<HashMap<String, Object>> response() {
-		List<HashMap<String, Object>> response = requests.stream().map(request -> request.data()).collect(Collectors.toList());
-		return response;
+		return requests.stream().map(
+				request -> request.data()
+		).collect(Collectors.toList());
 	}
 }

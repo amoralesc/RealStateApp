@@ -1,7 +1,7 @@
-package com.webdev.realstate.appointments.appointment.infrastructure.controllers;
+package com.webdev.realstate.appointments.request.infrastructure.controllers;
 
-import com.webdev.realstate.appointments.appointment.application.update.AppointmentUpdate;
-import com.webdev.realstate.appointments.appointment.domain.exceptions.InvalidAppointmentState;
+import com.webdev.realstate.appointments.request.application.update.RequestUpdate;
+import com.webdev.realstate.appointments.request.domain.exceptions.InvalidRequestState;
 import com.webdev.realstate.shared.infrastructure.schema.ErrorSchema;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,21 +17,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 
 @RestController
-@Tag(name = "Appointment", description = "Appointment REST API")
-@RequestMapping(value = "/appointment")
-public class AppointmentUpdateController {
+@Tag(name = "Request", description = "Request REST API")
+@RequestMapping(value = "/request")
+public class RequestUpdateController {
 
 	@Autowired
-	private AppointmentUpdate update;
+	private RequestUpdate update;
 
-	@Operation(summary = "Update appointment", description = "Update an appointment", tags = {"Appointment"})
+	@Operation(summary = "Update request", description = "Update a request", tags = {"Request"})
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Request updated"),
 			@ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ErrorSchema.class)))
 	})
 	@PostMapping(value = "/update")
 	public ResponseEntity execute(
-			@RequestBody AppointmentUpdateRequest request) {
+			@RequestBody RequestUpdateRequest request) {
 		update.execute(
 				request.getId(),
 				request.getState()
@@ -41,7 +41,7 @@ public class AppointmentUpdateController {
 				.body(null);
 	}
 
-	@ExceptionHandler(value = {InvalidAppointmentState.class})
+	@ExceptionHandler(value = {InvalidRequestState.class})
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ResponseEntity handleBadRequest(RuntimeException exception) {
 		HashMap<String, String> response = new HashMap<>() {{
@@ -52,11 +52,11 @@ public class AppointmentUpdateController {
 				.body(response);
 	}
 
-	static class AppointmentUpdateRequest {
-		@Schema(description = "Appointment id", example = "0f1c4b36-e610-4446-a3a3-a6083902b587")
+	static class RequestUpdateRequest {
+		@Schema(description = "Request id", example = "0f1c4b36-e610-4446-a3a3-a6083902b587")
 		private String id;
 
-		@Schema(description = "Appointment state, PENDING, DONE, CANCELLED", example = "DONE")
+		@Schema(description = "Request state, PENDING, ACCEPTED, REJECTED", example = "ACCEPTED")
 		private String state;
 
 		public String getId() {

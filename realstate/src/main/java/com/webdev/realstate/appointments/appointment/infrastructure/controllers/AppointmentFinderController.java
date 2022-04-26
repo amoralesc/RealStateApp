@@ -39,7 +39,7 @@ public class AppointmentFinderController {
 				.body(response.response());
 	}
 
-	@Operation(summary = "Find appointments by user", description = "Find an appointment given its user id and user type", tags = {"Appointment", "User"})
+	@Operation(summary = "Find appointments by user", description = "Find appointments given its user id and user type", tags = {"Appointment", "User"})
 	@GetMapping(value = "/find")
 	public ResponseEntity<List<HashMap<String, Object>>> execute(
 			@RequestParam(name = "userId") String userId,
