@@ -23,7 +23,6 @@ public class PropertyCreator {
                 new PropertyQuantityBathrooms(propertyQuantityBathrooms),
                 new PropertyArea(propertyArea),
                 new PropertyPrice(propertyPrice)
-                //TODO: Tomorrowland
         );
 
         repository.save(property);

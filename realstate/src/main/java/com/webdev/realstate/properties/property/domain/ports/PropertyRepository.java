@@ -16,6 +16,7 @@ public interface PropertyRepository {
     Optional<List<Property>> findByBaths(PropertyQuantityBathrooms propertyQuantityBathrooms);
     Optional<List<Property>> findByArea(PropertyArea propertyArea);
     Optional<List<Property>> findByPrice(PropertyPrice propertyPrice);
+    Optional<List<Property>> findAll();
 // TODO bsucar por direccion
 //Optional<List<Property>> findByCity();
 }
