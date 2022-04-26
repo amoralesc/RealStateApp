@@ -81,6 +81,11 @@
 		<constructor-arg ref="userRepository"/>
 	</bean>
 
+	<bean id="userUpdateRequest"
+		  class="com.webdev.realstate.users.user.application.update.UserUpdateRequest">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
 	<!-- User listeners -->
 
 	<bean id="addAppointmentOnAppointmentCreated"
@@ -96,6 +101,11 @@
 	<bean id="updateAppointmentOnAppointmentUpdated"
 		  class="com.webdev.realstate.users.user.infrastructure.listeners.UpdateAppointmentOnAppointmentUpdated">
 		<constructor-arg ref="userUpdateAppointment"/>
+	</bean>
+
+	<bean id="updateRequestOnRequestUpdated"
+		  class="com.webdev.realstate.users.user.infrastructure.listeners.UpdateRequestOnRequestUpdated">
+		<constructor-arg ref="userUpdateRequest"/>
 	</bean>
 
 	<!-- Appointments -->
@@ -147,6 +157,7 @@
 
 	<bean id="requestUpdate" class="com.webdev.realstate.appointments.request.application.update.RequestUpdate">
 		<constructor-arg ref="requestRepository"/>
+		<constructor-arg ref="rabbitMqEventBus"/>
 	</bean>
 
 	<bean id="requestDelete" class="com.webdev.realstate.appointments.request.application.delete.RequestDelete">

@@ -24,6 +24,10 @@ public class DomainEventsInformation {
 				"create.request",
 				AppointmentCreatedDomainEvent.class
 		);
+		indexedDomainEvent.put(
+				"update.request",
+				AppointmentUpdatedDomainEvent.class
+		);
 
 
 		domainEventSubscribers.put(
@@ -31,11 +35,16 @@ public class DomainEventsInformation {
 				"AddAppointmentOnAppointmentCreated"
 		);
 		domainEventSubscribers.put(
-				"realstate.appointments.appointment.update.appointment", "UpdateAppointmentOnAppointmentUpdated"
+				"realstate.appointments.appointment.update.appointment",
+				"UpdateAppointmentOnAppointmentUpdated"
 		);
 		domainEventSubscribers.put(
 				"realstate.appointments.request.create.request",
 				"AddRequestOnRequestCreated"
+		);
+		domainEventSubscribers.put(
+				"realstate.appointments.request.update.request",
+				"UpdateRequestOnRequestUpdated"
 		);
 
 	}

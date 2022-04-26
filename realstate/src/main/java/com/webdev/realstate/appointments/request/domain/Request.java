@@ -1,6 +1,7 @@
 package com.webdev.realstate.appointments.request.domain;
 
 import com.webdev.realstate.appointments.request.domain.events.RequestCreatedDomainEvent;
+import com.webdev.realstate.appointments.request.domain.events.RequestUpdatedDomainEvent;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestDate;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestId;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestState;
@@ -58,6 +59,17 @@ public class Request extends AggregateRoot {
 
 	public void updateState(RequestState requestState) {
 		this.requestState = requestState;
+
+		this.record(
+				new RequestUpdatedDomainEvent(
+						requestId.value(),
+						requestDate.value(),
+						requestState.value(),
+						propertyId.value(),
+						userId.value(),
+						agentId.value()
+				)
+		);
 	}
 
 	public HashMap<String, Object> data() {
