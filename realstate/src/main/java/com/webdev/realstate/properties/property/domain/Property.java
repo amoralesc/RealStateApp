@@ -2,13 +2,9 @@ package com.webdev.realstate.properties.property.domain;
 
 import com.webdev.realstate.properties.property.domain.entities.PropertyAddress;
 import com.webdev.realstate.properties.property.domain.valueobjects.*;
-import com.webdev.realstate.users.user.domain.entities.UserPhone;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Property {
 	PropertyId propertyId;
@@ -19,13 +15,14 @@ public class Property {
 	PropertyQuantityBathrooms propertyQuantityBathrooms;
 	PropertyArea propertyArea;
 	PropertyPrice propertyPrice;
-	Optional<List<PropertyAddress>> propertyAddress;
+	Optional<PropertyAddress> propertyAddress;
 
 	public Property(
-			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType,
-			PropertyOfferType propertyOfferType, PropertyQuantityRooms propertyQuantityRooms,
-			PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea,
-			PropertyPrice propertyPrice, Optional<List<PropertyAddress>> propertyAddress
+			PropertyId propertyId, PropertyDescription propertyDescription,
+			PropertyType propertyType, PropertyOfferType propertyOfferType,
+			PropertyQuantityRooms propertyQuantityRooms, PropertyQuantityBathrooms propertyQuantityBathrooms,
+			PropertyArea propertyArea, PropertyPrice propertyPrice,
+			Optional<PropertyAddress> propertyAddress
 	) {
 		this.propertyId = propertyId;
 		this.propertyDescription = propertyDescription;
@@ -39,9 +36,9 @@ public class Property {
 	}
 
 	public static Property create(
-			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType, PropertyOfferType propertyOfferType,
-			PropertyQuantityRooms propertyQuantityRooms, PropertyQuantityBathrooms propertyQuantityBathrooms,
-			PropertyArea propertyArea, PropertyPrice propertyPrice
+			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType,
+			PropertyOfferType propertyOfferType, PropertyQuantityRooms propertyQuantityRooms,
+			PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea, PropertyPrice propertyPrice
 	) {
 		Property property = new Property(
 				propertyId,
@@ -72,18 +69,15 @@ public class Property {
 		return data;
 	}
 
-	private List<HashMap<String, Object>> createAddress() {
-		List<HashMap<String, Object>> list = new ArrayList<>();
-		if (propertyAddress.isPresent()) {
-			list = propertyAddress.get().stream().map(
-					address -> address.data()
-			).collect(Collectors.toList());
-		}
-		return list;
+	private HashMap<String, Object> createAddress() {
+		HashMap<String, Object> data = new HashMap<>();
+		propertyAddress.ifPresent(address ->
+				data.putAll(address.data())
+		);
+		return data;
 	}
 
-	public void updateAddress(List<PropertyAddress> propertyAddresses) {
-		List<PropertyAddress> adresses = new ArrayList<>(propertyAddresses);
-		propertyAddress = Optional.of(adresses);
+	public void updateAddress(PropertyAddress propertyAddress) {
+		this.propertyAddress = Optional.of(propertyAddress);
 	}
 }

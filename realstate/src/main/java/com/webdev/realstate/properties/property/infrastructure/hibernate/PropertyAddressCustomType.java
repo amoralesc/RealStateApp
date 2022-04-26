@@ -12,12 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-public class PropertyAdressCustomType implements UserType {
+public class PropertyAddressCustomType implements UserType {
 
 	@Override
 	public int[] sqlTypes() {
@@ -41,41 +39,38 @@ public class PropertyAdressCustomType implements UserType {
 
 	@Override
 	public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
-		List<PropertyAddress> result = null;
+		PropertyAddress result = null;
 		try {
 			Optional<String> value = Optional.ofNullable(rs.getString(names[0]));
+
 			if (value.isPresent()) {
-				List<HashMap<String, Object>> objects = new ObjectMapper().readValue(
-						value.get(), List.class
+				HashMap<String, Object> objects =
+						new ObjectMapper().readValue(
+								value.get(), HashMap.class
+						);
+				result = new PropertyAddress(
+						(String) objects.get("city"),
+						(String) objects.get("detail"),
+						(String) objects.get("info"),
+						(String) objects.get("neighborhood")
 				);
-				result = objects.stream().map(
-						element -> new PropertyAddress(
-								(String) element.get("city"),
-								(String) element.get("detail"),
-								(String) element.get("info"),
-								(String) element.get("neighborhood")
-						)
-				).collect(Collectors.toList());
 			}
 		} catch (Exception e) {
-			throw new HibernateException("Error deserializing value of UserPhone", e);
+			throw new HibernateException("Error deserializing value of PropertyAddress", e);
 		}
 		return Optional.ofNullable(result);
-
 	}
 
 	@Override
 	public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
-		Optional<List<PropertyAddress>> object = (value == null) ? Optional.empty() : (Optional<List<PropertyAddress>>) value;
+		Optional<PropertyAddress> object = (value == null) ? Optional.empty() : (Optional<PropertyAddress>) value;
 
 		try {
 			if (object.isEmpty()) {
 				st.setNull(index, Types.LONGNVARCHAR);
 			} else {
 				ObjectMapper mapper = new ObjectMapper();
-				List<HashMap<String, Object>> objects = object.get().stream().map(
-						element -> element.data()
-				).collect(Collectors.toList());
+				HashMap<String, Object> objects = object.get().data();
 				String serializedObject = mapper.writeValueAsString(objects)
 						.replace("\\", "");
 				st.setString(index, serializedObject);

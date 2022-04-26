@@ -50,7 +50,7 @@
 		</component>
 
 		<property name="propertyAddress" column="propertyAddress" access="field">
-			<type name="com.webdev.realstate.properties.property.infrastructure.hibernate.PropertyAdressCustomType"/>
+			<type name="com.webdev.realstate.properties.property.infrastructure.hibernate.PropertyAddressCustomType"/>
 		</property>
 
 	</class>
