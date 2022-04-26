@@ -12,13 +12,13 @@
 		</composite-id>
 
 		<component name="appointmentDate"
-		           class="com.webdev.realstate.appointments.appointment.infrastructure.valueobjects.AppointmentDate"
+		           class="com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentDate"
 		           access="field">
 			<property name="value" column="appointmentDate" access="field" type="date"/>
 		</component>
 
 		<component name="appointmentState"
-		           class="com.webdev.realstate.appointments.appointment.infrastructure.valueobjects.AppointmentState"
+		           class="com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentState"
 		           access="field">
 			<property name="value" column="appointmentState" access="field" type="string"/>
 		</component>
