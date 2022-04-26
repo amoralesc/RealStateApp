@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class RequestUpdate {
 
-	private RequestRepository repository;
+	private final RequestRepository repository;
 
 	public RequestUpdate(RequestRepository repository) {
 		this.repository = repository;

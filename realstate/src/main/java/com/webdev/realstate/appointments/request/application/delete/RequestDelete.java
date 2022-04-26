@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class RequestDelete {
 
-	private RequestRepository repository;
+	private final RequestRepository repository;
 
 	public RequestDelete(RequestRepository repository) {
 		this.repository = repository;

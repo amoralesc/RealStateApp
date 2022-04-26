@@ -66,16 +66,26 @@
 		<constructor-arg ref="userRepository"/>
 	</bean>
 
-	<!-- User listeners -->
-
 	<bean id="userAddAppointment"
 		  class="com.webdev.realstate.users.user.application.add.UserAddAppointment">
 		<constructor-arg ref="userRepository"/>
 	</bean>
 
+	<bean id="userAddRequest"
+		  class="com.webdev.realstate.users.user.application.add.UserAddRequest">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
+	<!-- User listeners -->
+
 	<bean id="addAppointmentOnAppointmentCreated"
 		  class="com.webdev.realstate.users.user.infrastructure.listeners.AddAppointmentOnAppointmentCreated">
 		<constructor-arg ref="userAddAppointment"/>
+	</bean>
+
+	<bean id="addRequestOnRequestCreated"
+		  class="com.webdev.realstate.users.user.infrastructure.listeners.AddRequestOnRequestCreated">
+		<constructor-arg ref="userAddRequest"/>
 	</bean>
 
 	<!-- Appointments -->
@@ -86,7 +96,7 @@
 	<bean id="appointmentCreator"
 		  class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
 		<constructor-arg ref="appointmentRepository"/>
-		<constructor-arg ref="rabbitMqEventBus" />
+		<constructor-arg ref="rabbitMqEventBus"/>
 	</bean>
 
 	<bean id="appointmentUpdate"
@@ -121,6 +131,7 @@
 
 	<bean id="requestCreator" class="com.webdev.realstate.appointments.request.application.create.RequestCreator">
 		<constructor-arg ref="requestRepository"/>
+		<constructor-arg ref="rabbitMqEventBus"/>
 	</bean>
 
 	<bean id="requestUpdate" class="com.webdev.realstate.appointments.request.application.update.RequestUpdate">

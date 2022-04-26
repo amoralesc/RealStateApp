@@ -12,7 +12,9 @@ public class DomainEventsInformation {
 
 	public DomainEventsInformation() {
 		indexedDomainEvent.put("create.appointment", AppointmentCreatedDomainEvent.class);
-		domainEventSubscribers.put("realstate.appointments.appointment.create.appointment", "AddAppointmentOnCreatedAppointment");
+		indexedDomainEvent.put("create.request", AppointmentCreatedDomainEvent.class);
+		domainEventSubscribers.put("realstate.appointments.appointment.create.appointment", "AddAppointmentOnAppointmentCreated");
+		domainEventSubscribers.put("realstate.appointments.request.create.request", "AddRequestOnRequestCreated");
 	}
 
 	public Class<? extends DomainEvent> getDomainEvent(String name) {

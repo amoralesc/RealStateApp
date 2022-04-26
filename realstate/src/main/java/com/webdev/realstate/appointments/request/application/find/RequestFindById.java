@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class RequestFindById {
 
-	private RequestRepository repository;
+	private final RequestRepository repository;
 
 	public RequestFindById(RequestRepository repository) {
 		this.repository = repository;

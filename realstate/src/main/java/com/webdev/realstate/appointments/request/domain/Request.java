@@ -1,5 +1,6 @@
 package com.webdev.realstate.appointments.request.domain;
 
+import com.webdev.realstate.appointments.request.domain.events.RequestCreatedDomainEvent;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestDate;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestId;
 import com.webdev.realstate.appointments.request.domain.valueobjects.RequestState;
@@ -32,7 +33,7 @@ public class Request extends AggregateRoot {
 	public static Request create(
 			RequestId requestId, RequestDate requestDate, PropertyId propertyId, UserId userId, UserId agentId
 	) {
-		return new Request(
+		Request request = new Request(
 				requestId,
 				requestDate,
 				new RequestState("PENDING"),
@@ -40,6 +41,19 @@ public class Request extends AggregateRoot {
 				userId,
 				agentId
 		);
+
+		request.record(
+				new RequestCreatedDomainEvent(
+						requestId.value(),
+						requestDate.value(),
+						"PENDING",
+						propertyId.value(),
+						userId.value(),
+						agentId.value()
+				)
+		);
+
+		return request;
 	}
 
 	public void updateState(RequestState requestState) {

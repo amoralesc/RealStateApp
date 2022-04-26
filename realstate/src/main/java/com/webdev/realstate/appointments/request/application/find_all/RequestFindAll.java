@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RequestFindAll {
 
-	private RequestRepository repository;
+	private final RequestRepository repository;
 
 	public RequestFindAll(RequestRepository repository) {
 		this.repository = repository;

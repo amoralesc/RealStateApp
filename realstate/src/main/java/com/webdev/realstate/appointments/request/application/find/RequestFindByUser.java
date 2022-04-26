@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class RequestFindByUser {
 
-	private RequestRepository repository;
+	private final RequestRepository repository;
 
 	public RequestFindByUser(RequestRepository repository) {
 		this.repository = repository;
