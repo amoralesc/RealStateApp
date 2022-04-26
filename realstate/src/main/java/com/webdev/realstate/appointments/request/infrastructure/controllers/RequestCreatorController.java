@@ -37,6 +37,7 @@ public class RequestCreatorController {
 		creator.execute(
 				request.getId(),
 				request.getDate(),
+				request.getPropertyId(),
 				request.getUserId(),
 				request.getAgentId()
 		);
@@ -69,6 +70,9 @@ public class RequestCreatorController {
 		@Schema(description = "Request date", example = "2022-04-15")
 		private Date date;
 
+		@Schema(description = "Property id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5e")
+		private String propertyId;
+
 		@Schema(description = "Request user id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
 		private String userId;
 
@@ -89,6 +93,14 @@ public class RequestCreatorController {
 
 		public void setDate(Date date) {
 			this.date = date;
+		}
+
+		public String getPropertyId() {
+			return propertyId;
+		}
+
+		public void setPropertyId(String propertyId) {
+			this.propertyId = propertyId;
 		}
 
 		public String getUserId() {

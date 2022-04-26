@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
+import java.util.Objects;
+
 @Configuration
 public class RabbitMqEventBusConfiguration {
 
@@ -20,10 +22,10 @@ public class RabbitMqEventBusConfiguration {
 	public CachingConnectionFactory connection() {
 		CachingConnectionFactory factory = new CachingConnectionFactory();
 
-		factory.setHost(env.getProperty("rabbit.host"));
-		factory.setPort(Integer.parseInt(env.getProperty("rabbit.port")));
-		factory.setUsername(env.getProperty("rabbit.user"));
-		factory.setPassword(env.getProperty("rabbit.password"));
+		factory.setHost(Objects.requireNonNull(env.getProperty("rabbit.host")));
+		factory.setPort(Integer.parseInt(Objects.requireNonNull(env.getProperty("rabbit.port"))));
+		factory.setUsername(Objects.requireNonNull(env.getProperty("rabbit.user")));
+		factory.setPassword(Objects.requireNonNull(env.getProperty("rabbit.password")));
 
 		return factory;
 	}

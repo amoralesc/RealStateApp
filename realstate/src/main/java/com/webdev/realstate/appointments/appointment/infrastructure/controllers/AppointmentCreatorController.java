@@ -37,6 +37,7 @@ public class AppointmentCreatorController {
 		creator.execute(
 				request.getId(),
 				request.getDate(),
+				request.getPropertyId(),
 				request.getUserId(),
 				request.getAgentId()
 		);
@@ -69,11 +70,14 @@ public class AppointmentCreatorController {
 		@Schema(description = "Appointment date", example = "2022-04-15")
 		private Date date;
 
-		@Schema(description = "Appointment agent id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
-		private String agentId;
+		@Schema(description = "Property id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
+		private String propertyId;
 
 		@Schema(description = "Appointment user id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
 		private String userId;
+
+		@Schema(description = "Appointment agent id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
+		private String agentId;
 
 		public String getId() {
 			return id;
@@ -91,12 +95,12 @@ public class AppointmentCreatorController {
 			this.date = date;
 		}
 
-		public String getAgentId() {
-			return agentId;
+		public String getPropertyId() {
+			return propertyId;
 		}
 
-		public void setAgentId(String agentId) {
-			this.agentId = agentId;
+		public void setPropertyId(String propertyId) {
+			this.propertyId = propertyId;
 		}
 
 		public String getUserId() {
@@ -105,6 +109,14 @@ public class AppointmentCreatorController {
 
 		public void setUserId(String userId) {
 			this.userId = userId;
+		}
+
+		public String getAgentId() {
+			return agentId;
+		}
+
+		public void setAgentId(String agentId) {
+			this.agentId = agentId;
 		}
 	}
 }

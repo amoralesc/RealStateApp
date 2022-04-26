@@ -4,6 +4,7 @@ import com.webdev.realstate.appointments.appointment.domain.Appointment;
 import com.webdev.realstate.appointments.appointment.domain.ports.AppointmentRepository;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentDate;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentId;
+import com.webdev.realstate.properties.property.domain.valueobjects.PropertyId;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 
 import java.util.Date;
@@ -16,10 +17,11 @@ public class AppointmentCreator {
 		this.repository = repository;
 	}
 
-	public void execute(String appointmentId, Date appointmentDate, String userId, String agentId) {
+	public void execute(String appointmentId, Date appointmentDate, String propertyId, String userId, String agentId) {
 		Appointment appointment = Appointment.create(
 				new AppointmentId(appointmentId),
 				new AppointmentDate(appointmentDate),
+				new PropertyId(propertyId),
 				new UserId(userId),
 				new UserId(agentId)
 		);
