@@ -38,6 +38,10 @@ public class Request extends AggregateRoot {
 		);
 	}
 
+	public void updateState(RequestState requestState) {
+		this.requestState = requestState;
+	}
+
 	public HashMap<String, Object> data() {
 		return new HashMap<>() {{
 			put("id", requestId.value());

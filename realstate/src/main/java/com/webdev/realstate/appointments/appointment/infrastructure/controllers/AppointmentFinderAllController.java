@@ -1,7 +1,7 @@
-package com.webdev.realstate.users.user.infrastructure.controllers;
+package com.webdev.realstate.appointments.appointment.infrastructure.controllers;
 
-import com.webdev.realstate.users.user.application.find_all.UserFindAll;
-import com.webdev.realstate.users.user.application.find_all.UserFindAllResponse;
+import com.webdev.realstate.appointments.appointment.application.find_all.AppointmentFindAll;
+import com.webdev.realstate.appointments.appointment.application.find_all.AppointmentFindAllResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +15,18 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@Tag(name = "User", description = "User REST API")
-@RequestMapping(value = "/user")
-public class UserFinderAllController {
+@Tag(name = "Appointment", description = "Appointment REST API")
+@RequestMapping(value = "/appointment")
+public class AppointmentFinderAllController {
 
 	@Autowired
-	private UserFindAll findAll;
+	private AppointmentFindAll findAll;
 
-	@Operation(summary = "Find all users", description = "Find all users in the system", tags = {"User"})
+	@Operation(summary = "Find all appointments", description = "Find all appointments in the system", tags = {"Appointment"})
 	@GetMapping(value = "/all")
 	public ResponseEntity<List<HashMap<String, Object>>> execute() {
-		UserFindAllResponse response =
-				new UserFindAllResponse(
+		AppointmentFindAllResponse response =
+				new AppointmentFindAllResponse(
 						findAll.execute()
 				);
 		return ResponseEntity

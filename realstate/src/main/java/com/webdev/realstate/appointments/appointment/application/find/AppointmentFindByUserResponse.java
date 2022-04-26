@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AppointmentFindByUserIdResponse {
+public class AppointmentFindByUserResponse {
 
 	private List<Appointment> appointments;
 
-	public AppointmentFindByUserIdResponse(List<Appointment> appointments) {
+	public AppointmentFindByUserResponse(List<Appointment> appointments) {
 		this.appointments = appointments;
 	}
 

@@ -41,18 +41,8 @@
 		<constructor-arg ref="userRepository"/>
 	</bean>
 
-	<bean id="userLogin"
-		  class="com.webdev.realstate.users.user.application.login.UserLogin">
-		<constructor-arg ref="userRepository"/>
-	</bean>
-
-	<bean id="userFindAll"
-		  class="com.webdev.realstate.users.user.application.find_all.UserFindAll">
-		<constructor-arg ref="userRepository"/>
-	</bean>
-
-	<bean id="userFindById"
-		  class="com.webdev.realstate.users.user.application.find.UserFindById">
+	<bean id="userUpdate"
+		  class="com.webdev.realstate.users.user.application.update.UserUpdate">
 		<constructor-arg ref="userRepository"/>
 	</bean>
 
@@ -61,34 +51,54 @@
 		<constructor-arg ref="userRepository"/>
 	</bean>
 
-	<bean id="userUpdate"
-		  class="com.webdev.realstate.users.user.application.update.UserUpdate">
+	<bean id="userFindById"
+		  class="com.webdev.realstate.users.user.application.find.UserFindById">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
+	<bean id="userFindAll"
+		  class="com.webdev.realstate.users.user.application.find_all.UserFindAll">
+		<constructor-arg ref="userRepository"/>
+	</bean>
+
+	<bean id="userLogin"
+		  class="com.webdev.realstate.users.user.application.login.UserLogin">
 		<constructor-arg ref="userRepository"/>
 	</bean>
 
 	<!-- Appointments -->
 
-	<bean id="AppointmentRepository"
+	<bean id="appointmentRepository"
 		  class="com.webdev.realstate.appointments.appointment.infrastructure.adapters.HibernateAppointmentRepository"/>
 
-	<bean id="AppointmentCreator"
+	<bean id="appointmentCreator"
 		  class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
-		<constructor-arg ref="AppointmentRepository"/>
+		<constructor-arg ref="appointmentRepository"/>
 	</bean>
 
-	<bean id="AppointmentFindByDate"
-		  class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByDate">
-		<constructor-arg ref="AppointmentRepository"/>
+	<bean id="appointmentUpdate"
+		  class="com.webdev.realstate.appointments.appointment.application.update.AppointmentUpdate">
+		<constructor-arg ref="appointmentRepository"/>
 	</bean>
 
-	<bean id="AppointmentFindByState"
-		  class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByState">
-		<constructor-arg ref="AppointmentRepository"/>
+	<bean id="appointmentDelete"
+		  class="com.webdev.realstate.appointments.appointment.application.delete.AppointmentDelete">
+		<constructor-arg ref="appointmentRepository"/>
 	</bean>
 
-	<bean id="AppointmentFindByUserId"
-		  class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUserId">
-		<constructor-arg ref="AppointmentRepository"/>
+	<bean id="appointmentFindById"
+		  class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindById">
+		<constructor-arg ref="appointmentRepository"/>
+	</bean>
+
+	<bean id="appointmentFindByUser"
+		  class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUser">
+		<constructor-arg ref="appointmentRepository"/>
+	</bean>
+
+	<bean id="appointmentFindAll"
+		  class="com.webdev.realstate.appointments.appointment.application.find_all.AppointmentFindAll">
+		<constructor-arg ref="appointmentRepository"/>
 	</bean>
 
 	<!-- Requests -->

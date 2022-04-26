@@ -14,14 +14,7 @@ public class UserFindByIdResponse {
 
 	public HashMap<String, Object> response() {
 		if (user == null) {
-			return new HashMap<>() {{
-				put("name", "");
-				put("email", "");
-				put("isAgent", "");
-				put("phones", "");
-				put("requests", "");
-				put("appointments", "");
-			}};
+			return new HashMap<>();
 		}
 
 		return user.data();

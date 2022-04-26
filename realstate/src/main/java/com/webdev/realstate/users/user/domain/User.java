@@ -60,11 +60,7 @@ public class User extends AggregateRoot {
 	}
 
 	public void updatePhones(List<UserPhone> updatedPhones) {
-		List<UserPhone> phones = new ArrayList<>();
-		if (phoneList.isPresent()) {
-			phones = phoneList.get();
-		}
-		phones.addAll(updatedPhones);
+		List<UserPhone> phones = new ArrayList<>(updatedPhones);
 		phoneList = Optional.of(phones);
 	}
 
@@ -101,7 +97,7 @@ public class User extends AggregateRoot {
 
 	private List<HashMap<String, Object>> createPhones() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
-		if (!phoneList.isEmpty()) {
+		if (phoneList.isPresent()) {
 			list = phoneList.get().stream().map(
 					phone -> phone.data()
 			).collect(Collectors.toList());
@@ -111,7 +107,7 @@ public class User extends AggregateRoot {
 
 	private List<HashMap<String, Object>> createRequests() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
-		if (!requestsList.isEmpty()) {
+		if (requestsList.isPresent()) {
 			list = requestsList.get().stream().map(
 					request -> request.data()
 			).collect(Collectors.toList());
@@ -121,7 +117,7 @@ public class User extends AggregateRoot {
 
 	private List<HashMap<String, Object>> createAppointments() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
-		if (!appointmentsList.isEmpty()) {
+		if (appointmentsList.isPresent()) {
 			list = appointmentsList.get().stream().map(
 					appointment -> appointment.data()
 			).collect(Collectors.toList());

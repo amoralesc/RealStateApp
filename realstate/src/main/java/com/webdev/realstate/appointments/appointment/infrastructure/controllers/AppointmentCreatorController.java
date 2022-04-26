@@ -34,7 +34,12 @@ public class AppointmentCreatorController {
 	})
 	@PostMapping(value = "/create")
 	public ResponseEntity execute(@RequestBody AppointmentCreatorRequest request) {
-		creator.execute(request.getId(), request.getDate(), request.getClientId(), request.getAgentId());
+		creator.execute(
+				request.getId(),
+				request.getDate(),
+				request.getUserId(),
+				request.getAgentId()
+		);
 		return ResponseEntity.status(HttpStatus.CREATED).body(null);
 	}
 
@@ -64,14 +69,11 @@ public class AppointmentCreatorController {
 		@Schema(description = "Appointment date", example = "2022-04-15")
 		private Date date;
 
-		@Schema(description = "Appointment state", example = "DONE")
-		private String state;
-
 		@Schema(description = "Appointment agent id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
 		private String agentId;
 
-		@Schema(description = "Appointment client id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
-		private String clientId;
+		@Schema(description = "Appointment user id", example = "564af8a6-a7ea-4733-acff-d2e5aada4e5a")
+		private String userId;
 
 		public String getId() {
 			return id;
@@ -89,14 +91,6 @@ public class AppointmentCreatorController {
 			this.date = date;
 		}
 
-		public String getState() {
-			return state;
-		}
-
-		public void setState(String state) {
-			this.state = state;
-		}
-
 		public String getAgentId() {
 			return agentId;
 		}
@@ -105,12 +99,12 @@ public class AppointmentCreatorController {
 			this.agentId = agentId;
 		}
 
-		public String getClientId() {
-			return clientId;
+		public String getUserId() {
+			return userId;
 		}
 
-		public void setClientId(String clientId) {
-			this.clientId = clientId;
+		public void setUserId(String userId) {
+			this.userId = userId;
 		}
 	}
 }

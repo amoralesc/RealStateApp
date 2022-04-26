@@ -38,6 +38,10 @@ public class Appointment extends AggregateRoot {
 		);
 	}
 
+	public void updateState(AppointmentState appointmentState) {
+		this.appointmentState = appointmentState;
+	}
+
 	public HashMap<String, Object> data() {
 		return new HashMap<>() {{
 			put("id", appointmentId.value());
