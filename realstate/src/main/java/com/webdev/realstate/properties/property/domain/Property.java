@@ -38,7 +38,8 @@ public class Property {
 	public static Property create(
 			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType,
 			PropertyOfferType propertyOfferType, PropertyQuantityRooms propertyQuantityRooms,
-			PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea, PropertyPrice propertyPrice
+			PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea, PropertyPrice propertyPrice,
+			PropertyAddress propertyAddress
 	) {
 		Property property = new Property(
 				propertyId,
@@ -49,7 +50,7 @@ public class Property {
 				propertyQuantityBathrooms,
 				propertyArea,
 				propertyPrice,
-				Optional.empty()
+				Optional.ofNullable(propertyAddress)
 		);
 		return property;
 	}

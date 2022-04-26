@@ -1,8 +1,11 @@
 package com.webdev.realstate.properties.property.application.create;
 
 import com.webdev.realstate.properties.property.domain.Property;
+import com.webdev.realstate.properties.property.domain.entities.PropertyAddress;
 import com.webdev.realstate.properties.property.domain.ports.PropertyRepository;
 import com.webdev.realstate.properties.property.domain.valueobjects.*;
+
+import java.util.HashMap;
 
 public class PropertyCreator {
 
@@ -15,7 +18,7 @@ public class PropertyCreator {
 	public void execute(
 			String propertyId, String propertyDescription, String propertyType,
 			Boolean propertyOfferType, Integer propertyQuantityRooms, Integer propertyQuantityBathrooms,
-			Double propertyArea, Double propertyPrice
+			Double propertyArea, Double propertyPrice, HashMap<String, Object> propertyAddress
 	) {
 
 		Property property = Property.create(
@@ -26,7 +29,13 @@ public class PropertyCreator {
 				new PropertyQuantityRooms(propertyQuantityRooms),
 				new PropertyQuantityBathrooms(propertyQuantityBathrooms),
 				new PropertyArea(propertyArea),
-				new PropertyPrice(propertyPrice)
+				new PropertyPrice(propertyPrice),
+				new PropertyAddress(
+						propertyAddress.get("city").toString(),
+						propertyAddress.get("detail").toString(),
+						propertyAddress.get("info").toString(),
+						propertyAddress.get("neighborhood").toString()
+				)
 		);
 
 		repository.save(property);

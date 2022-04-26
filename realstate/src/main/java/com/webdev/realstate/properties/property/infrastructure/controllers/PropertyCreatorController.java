@@ -41,7 +41,8 @@ public class PropertyCreatorController {
 				request.getQuantityRooms(),
 				request.getQuantityBathrooms(),
 				request.getArea(),
-				request.getPrice()
+				request.getPrice(),
+				request.getAddress()
 		);
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
@@ -83,6 +84,9 @@ public class PropertyCreatorController {
 
 		@Schema(description = "Property price", example = "1000000")
 		private double price;
+
+		@Schema(description = "Property address", example = "Rua das Flores")
+		private HashMap<String, Object> address;
 
 		public String getId() {
 			return id;
@@ -146,6 +150,14 @@ public class PropertyCreatorController {
 
 		public void setPrice(double price) {
 			this.price = price;
+		}
+
+		public HashMap<String, Object> getAddress() {
+			return address;
+		}
+
+		public void setAddress(HashMap<String, Object> address) {
+			this.address = address;
 		}
 	}
 }
