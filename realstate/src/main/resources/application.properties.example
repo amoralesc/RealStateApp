@@ -1,7 +1,14 @@
 application.name=Real State App
 application.description=REST API for a Real State App
-spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
+spring.mvc.pathmatch.matching-strategy=ANT_PATH_MATCHER
 
 datasource.url=[replace with database url]
 datasource.username=[replace with database username]
 datasource.password=[replace with database password]
+
+rabbit.host=[Server host]
+rabbit.port=[Server port]
+rabbit.user=[RabbitMQ username]
+rabbit.password=[RabbitMQ password]
+rabbit.exchange=[RabbitMQ exchange name]
+rabbit.queues=[RabbitMQ queue names]

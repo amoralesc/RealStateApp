@@ -1,5 +1,6 @@
 package com.webdev.realstate.shared.infrastructure.rabbitmq;
 
+import com.webdev.realstate.appointments.appointment.domain.events.AppointmentCreatedDomainEvent;
 import com.webdev.realstate.shared.domain.bus.event.DomainEvent;
 
 import java.util.HashMap;
@@ -10,8 +11,10 @@ public class DomainEventsInformation {
 	private final HashMap<String, String> domainEventSubscribers = new HashMap<>();
 
 	public DomainEventsInformation() {
-       /* indexedDomainEvent.put("add.address", AddressCreatedDomainEvent.class);
-        domainEventSubscribers.put("productSystem.users.address.add.address", "AddAddressOnCreatedAddress");*/
+		indexedDomainEvent.put("create.appointment", AppointmentCreatedDomainEvent.class);
+		indexedDomainEvent.put("create.request", AppointmentCreatedDomainEvent.class);
+		domainEventSubscribers.put("realstate.appointments.appointment.create.appointment", "AddAppointmentOnAppointmentCreated");
+		domainEventSubscribers.put("realstate.appointments.request.create.request", "AddRequestOnRequestCreated");
 	}
 
 	public Class<? extends DomainEvent> getDomainEvent(String name) {

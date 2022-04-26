@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class UserFindById {
 
-	private UserRepository repository;
+	private final UserRepository repository;
 
 	public UserFindById(UserRepository repository) {
 		this.repository = repository;

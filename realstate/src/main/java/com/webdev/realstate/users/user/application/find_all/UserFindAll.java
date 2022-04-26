@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class UserFindAll {
 
-	private UserRepository repository;
+	private final UserRepository repository;
 
 	public UserFindAll(UserRepository repository) {
 		this.repository = repository;

@@ -6,7 +6,7 @@ import com.webdev.realstate.users.user.domain.valueobjects.*;
 
 public class UserCreator {
 
-	private UserRepository repository;
+	private final UserRepository repository;
 
 	public UserCreator(UserRepository repository) {
 		this.repository = repository;

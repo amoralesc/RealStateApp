@@ -59,7 +59,7 @@ public class RequestCreatedDomainEvent extends DomainEvent {
 
 	@Override
 	public String eventName() {
-		return "add.request";
+		return "create.request";
 	}
 
 	@Override

@@ -10,13 +10,14 @@ import java.util.Optional;
 
 public class UserAddRequest {
 
-	private UserRepository repository;
+	private final UserRepository repository;
 
 	public UserAddRequest(UserRepository repository) {
 		this.repository = repository;
 	}
 
 	public void execute(String id, Date date, String state, String propertyId, String userId, String agentId) {
+		// Add request to user
 		Optional<User> optionalUser = repository.findById(new UserId(userId));
 		if (optionalUser.isPresent()) {
 			User user = optionalUser.get();
@@ -30,6 +31,22 @@ public class UserAddRequest {
 							agentId
 					));
 			repository.update(user);
+		}
+
+		// Add request to agent
+		Optional<User> optionalAgent = repository.findById(new UserId(agentId));
+		if (optionalAgent.isPresent()) {
+			User agent = optionalAgent.get();
+			agent.addRequest(
+					new UserRequest(
+							id,
+							date,
+							state,
+							propertyId,
+							userId,
+							agentId
+					));
+			repository.update(agent);
 		}
 	}
 }

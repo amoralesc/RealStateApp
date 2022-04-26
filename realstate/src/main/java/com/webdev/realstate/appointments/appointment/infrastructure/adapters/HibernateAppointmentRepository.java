@@ -3,6 +3,7 @@ package com.webdev.realstate.appointments.appointment.infrastructure.adapters;
 import com.webdev.realstate.appointments.appointment.domain.Appointment;
 import com.webdev.realstate.appointments.appointment.domain.ports.AppointmentRepository;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentDate;
+import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentId;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentState;
 import com.webdev.realstate.shared.infrastructure.hibernate.HibernateRepository;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
@@ -35,7 +36,17 @@ public class HibernateAppointmentRepository extends HibernateRepository<Appointm
 	}
 
 	@Override
-	public Optional<List<Appointment>> findByUserId(UserId userId, UserIsAgent isAgent) {
+	public void delete(Appointment appointment) {
+		deleteEntity(appointment);
+	}
+
+	@Override
+	public Optional<Appointment> findById(AppointmentId appointmentId) {
+		return getById(appointmentId);
+	}
+
+	@Override
+	public Optional<List<Appointment>> findByUser(UserId userId, UserIsAgent isAgent) {
 		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
 		CriteriaQuery<Appointment> cq = cb.createQuery(Appointment.class);
 		Root<Appointment> root = cq.from(Appointment.class);
@@ -51,24 +62,7 @@ public class HibernateAppointmentRepository extends HibernateRepository<Appointm
 	}
 
 	@Override
-	public Optional<List<Appointment>> findByDate(AppointmentDate appointmentDate) {
-		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
-		CriteriaQuery<Appointment> cq = cb.createQuery(Appointment.class);
-		Root<Appointment> root = cq.from(Appointment.class);
-		cq.select(root).where(cb.equal(root.get("appointmentDate"), appointmentDate));
-
-		List<Appointment> appointments = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
-		return Optional.ofNullable(appointments);
-	}
-
-	@Override
-	public Optional<List<Appointment>> findByState(AppointmentState appointmentState) {
-		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
-		CriteriaQuery<Appointment> cq = cb.createQuery(Appointment.class);
-		Root<Appointment> root = cq.from(Appointment.class);
-		cq.select(root).where(cb.equal(root.get("appointmentState"), appointmentState));
-
-		List<Appointment> appointments = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
-		return Optional.ofNullable(appointments);
+	public Optional<List<Appointment>> findAll() {
+		return getAll();
 	}
 }
