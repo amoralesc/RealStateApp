@@ -2,7 +2,7 @@ package com.webdev.realstate.appointments.request.infrastructure.controllers;
 
 import com.webdev.realstate.appointments.request.application.create.RequestCreator;
 import com.webdev.realstate.appointments.request.domain.exceptions.InvalidDate;
-import com.webdev.realstate.appointments.request.domain.exceptions.RequestAlreadyExist;
+import com.webdev.realstate.appointments.request.domain.exceptions.RequestAlreadyExists;
 import com.webdev.realstate.shared.domain.exceptions.InvalidCustomUUID;
 import com.webdev.realstate.shared.infrastructure.schema.ErrorSchema;
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,7 +47,7 @@ public class RequestCreateController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	}
 
-	@ExceptionHandler(RequestAlreadyExist.class)
+	@ExceptionHandler(RequestAlreadyExists.class)
 	@ResponseStatus(code = HttpStatus.CONFLICT)
 	public ResponseEntity<HashMap> handleDuplicatedAppointment(RuntimeException exception) {
 		HashMap<String, String> response = new HashMap<>() {{

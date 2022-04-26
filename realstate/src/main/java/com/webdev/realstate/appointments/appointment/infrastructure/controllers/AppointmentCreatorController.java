@@ -1,7 +1,7 @@
 package com.webdev.realstate.appointments.appointment.infrastructure.controllers;
 
 import com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator;
-import com.webdev.realstate.appointments.appointment.domain.exceptions.AppointmentAlreadyExist;
+import com.webdev.realstate.appointments.appointment.domain.exceptions.AppointmentAlreadyExists;
 import com.webdev.realstate.appointments.appointment.domain.exceptions.InvalidDate;
 import com.webdev.realstate.shared.domain.exceptions.InvalidCustomUUID;
 import com.webdev.realstate.shared.infrastructure.schema.ErrorSchema;
@@ -22,7 +22,7 @@ import java.util.HashMap;
 @RestController
 @Tag(name = "Appointment", description = "Appointment REST API")
 @RequestMapping(value = "/appointment")
-public class AppointmentCreateController {
+public class AppointmentCreatorController {
 
 	@Autowired
 	private AppointmentCreator creator;
@@ -47,7 +47,7 @@ public class AppointmentCreateController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	}
 
-	@ExceptionHandler(AppointmentAlreadyExist.class)
+	@ExceptionHandler(AppointmentAlreadyExists.class)
 	@ResponseStatus(code = HttpStatus.CONFLICT)
 	public ResponseEntity<HashMap> handleDuplicatedAppointment(RuntimeException exception) {
 		HashMap<String, String> response = new HashMap<>() {{
