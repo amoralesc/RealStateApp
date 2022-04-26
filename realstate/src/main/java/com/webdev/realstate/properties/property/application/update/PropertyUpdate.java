@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class PropertyUpdate {
 
-	private PropertyRepository repository;
+	private final PropertyRepository repository;
 
 	public PropertyUpdate(PropertyRepository repository) {
 		this.repository = repository;

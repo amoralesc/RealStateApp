@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class PropertyFindById {
 
-	private PropertyRepository repository;
+	private final PropertyRepository repository;
 
 	public PropertyFindById(PropertyRepository repository) {
 		this.repository = repository;

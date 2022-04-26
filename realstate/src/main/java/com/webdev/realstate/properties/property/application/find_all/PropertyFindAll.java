@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class PropertyFindAll {
-	private PropertyRepository repository;
+	private final PropertyRepository repository;
 
 	public PropertyFindAll(PropertyRepository repository) {
 		this.repository = repository;

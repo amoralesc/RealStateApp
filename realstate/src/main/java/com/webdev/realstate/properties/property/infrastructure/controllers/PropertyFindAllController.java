@@ -4,6 +4,7 @@ import com.webdev.realstate.properties.property.application.find_all.PropertyFin
 import com.webdev.realstate.properties.property.application.find_all.PropertyFindAllResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import java.util.List;
 @RequestMapping(value = "/property")
 public class PropertyFindAllController {
 
+	@Autowired
 	private PropertyFindAll findAll;
 
 	@Operation(summary = "Find all properties", description = "Find all properties in the system", tags = {"Property"})

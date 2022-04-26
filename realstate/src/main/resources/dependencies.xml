@@ -167,4 +167,34 @@
 
 	<!-- Properties -->
 
+	<bean id="propertyRepository"
+		  class="com.webdev.realstate.properties.property.infrastructure.adapters.HibernatePropertyRepository"/>
+
+	<bean id="propertyCreator"
+		  class="com.webdev.realstate.properties.property.application.create.PropertyCreator">
+		<constructor-arg ref="propertyRepository"/>
+	</bean>
+
+	<bean id="propertyUpdate"
+		  class="com.webdev.realstate.properties.property.application.update.PropertyUpdate">
+		<constructor-arg ref="propertyRepository"/>
+	</bean>
+
+	<!--
+	<bean id="propertyDelete"
+		  class="com.webdev.realstate.properties.property.application.delete.PropertyDelete">
+		<constructor-arg ref="propertyRepository"/>
+	</bean>
+	-->
+
+	<bean id="propertyFindById"
+		  class="com.webdev.realstate.properties.property.application.find.PropertyFindById">
+		<constructor-arg ref="propertyRepository"/>
+	</bean>
+
+	<bean id="propertyFindAll"
+		  class="com.webdev.realstate.properties.property.application.find_all.PropertyFindAll">
+		<constructor-arg ref="propertyRepository"/>
+	</bean>
+
 </beans>

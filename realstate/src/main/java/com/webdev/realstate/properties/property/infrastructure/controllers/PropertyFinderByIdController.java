@@ -4,6 +4,7 @@ import com.webdev.realstate.properties.property.application.find.PropertyFindByI
 import com.webdev.realstate.properties.property.application.find.PropertyFindByIdResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import java.util.HashMap;
 @RequestMapping(value = "/property")
 public class PropertyFinderByIdController {
 
-	//@Autowired
+	@Autowired
 	private PropertyFindById findById;
 
 	@Operation(summary = "Find property by id", description = "Find a property given its id", tags = {"Property"})
