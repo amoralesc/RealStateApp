@@ -48,6 +48,10 @@
 		           class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyPrice" access="field">
 			<property name="value" column="propertyPrice" access="field" type="double"/>
 		</component>
+		
+		<property name="propertyAddress" column="propertyAddress" access="field">
+			<type name="com.webdev.realstate.properties.property.infrastructure.hibernate.PropertyAdressCustumType"></type>
+		</property>
 
 	</class>
 </hibernate-mapping>

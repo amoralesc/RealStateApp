@@ -1,7 +1,10 @@
 package com.webdev.realstate.properties.property.infrastructure.controllers;
 
+import com.webdev.realstate.properties.property.application.find.PropertyFindByPriceResponse;
+import com.webdev.realstate.properties.property.domain.Property;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +25,9 @@ public class PropertyFindByPriceController {
 	@Operation(summary = "Find properties by price", description = "Find all properties by the price(1000000 in the system", tags = {"Property", "Price"})
 	@GetMapping(value = "/price")
 	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "price") String price) {
-        /*PropertyFindByPriceResponse response = new PropertyFindByPriceResponse(findByPrice.execute(price));
-        return ResponseEntity.status(HttpStatus.OK).body(response.response());*/
-		return null;
+        PropertyFindByPriceResponse response = new PropertyFindByPriceResponse((List<Property>) findByPrice.execute(price));
+        return ResponseEntity.status(HttpStatus.OK).body(response.response());
+
 	}
 
 }

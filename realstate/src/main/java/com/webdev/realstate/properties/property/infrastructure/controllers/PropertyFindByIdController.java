@@ -1,6 +1,6 @@
 package com.webdev.realstate.properties.property.infrastructure.controllers;
 
-import com.webdev.realstate.properties.property.application.find.PropertyFindByAreaResponse;
+import com.webdev.realstate.properties.property.application.find.PropertyFindByIdResponse;
 import com.webdev.realstate.properties.property.domain.Property;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,16 +17,16 @@ import java.util.List;
 @RestController
 @Tag(name = "Property", description = "Property REST API")
 @RequestMapping(value = "/property")
-public class PropertyFindByAreaController {
+public class PropertyFindByIdController {
 
-	//@Autowired
-	private PropertyFindByAreaController findByArea;
+    //@Autowired
+    private PropertyFindByIdController findById;
 
-	@Operation(summary = "Find properties by area", description = "Find all properties by the area(56 in the system", tags = {"Property", "Area"})
-	@GetMapping(value = "/area")
-	public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "area") String area) {
-		PropertyFindByAreaResponse response = new PropertyFindByAreaResponse((List<Property>) findByArea.execute(area));
+    @Operation(summary = "Find properties by id", description = "Find all properties by the id(56 in the system", tags = {"Property", "id"})
+    @GetMapping(value = "/id")
+    public ResponseEntity<List<HashMap<String, Object>>> execute(@RequestParam(name = "Id") String id) {
+        PropertyFindByIdResponse response = new PropertyFindByIdResponse((List<Property>) findById.execute(id));
         return ResponseEntity.status(HttpStatus.OK).body(response.response());
 
-	}
+    }
 }

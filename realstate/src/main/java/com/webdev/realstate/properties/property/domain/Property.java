@@ -3,8 +3,11 @@ package com.webdev.realstate.properties.property.domain;
 import com.webdev.realstate.properties.property.domain.entities.PropertyAddress;
 import com.webdev.realstate.properties.property.domain.valueobjects.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Property {
 	PropertyId propertyId;
@@ -15,13 +18,13 @@ public class Property {
 	PropertyQuantityBathrooms propertyQuantityBathrooms;
 	PropertyArea propertyArea;
 	PropertyPrice propertyPrice;
-	Optional<PropertyAddress> propertyAddress;
+	Optional<List<PropertyAddress>> propertyAddress;
 
 	public Property(
 			PropertyId propertyId, PropertyDescription propertyDescription, PropertyType propertyType,
 			PropertyOfferType propertyOfferType, PropertyQuantityRooms propertyQuantityRooms,
 			PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea,
-			PropertyPrice propertyPrice, Optional<PropertyAddress> propertyAddress
+			PropertyPrice propertyPrice, Optional<List<PropertyAddress>> propertyAddress
 	) {
 		this.propertyId = propertyId;
 		this.propertyDescription = propertyDescription;
@@ -68,11 +71,13 @@ public class Property {
 		return data;
 	}
 
-	private HashMap<String, Object> createAddress() {
-		HashMap<String, Object> map = new HashMap<>();
+	private List<HashMap<String, Object>> createAddress() {
+		List<HashMap<String, Object>> list = new ArrayList<>();
 		if (!propertyAddress.isEmpty()) {
-			map = propertyAddress.get().data();
+			list = propertyAddress.get().stream().map(
+					address -> address.data()
+			).collect(Collectors.toList());
 		}
-		return map;
+		return list;
 	}
 }
