@@ -27,7 +27,7 @@
 				   access="field">
 			<property name="value" column="isAgent" access="field" type="boolean"/>
 		</component>
-
+<!--
 		<property name="phoneList" column="phone" access="field">
 			<type name="com.webdev.realstate.users.user.infrastructure.hibernate.UserPhoneCustomType"/>
 		</property>
@@ -39,6 +39,7 @@
 		<property name="requestsList" column="requests" access="field">
 			<type name="com.webdev.realstate.users.user.infrastructure.hibernate.UserRequestCustomType"/>
 		</property>
+		-->
 
 	</class>
 </hibernate-mapping>

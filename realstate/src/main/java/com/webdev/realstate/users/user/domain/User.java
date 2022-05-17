@@ -24,6 +24,9 @@ public class User extends AggregateRoot {
 	private Optional<List<UserRequest>> requestsList;
 	private Optional<List<UserAppointment>> appointmentsList;
 
+	public User() {
+	}
+
 	public User(UserId userId, UserName userName, UserEmail userEmail, UserPassword password, UserIsAgent isAgent, Optional<List<UserPhone>> phoneList, Optional<List<UserRequest>> requestsList, Optional<List<UserAppointment>> appointmentsList) {
 		this.userId = userId;
 		this.userName = userName;
@@ -118,14 +121,14 @@ public class User extends AggregateRoot {
 			put("name", userName.value());
 			put("email", userEmail.value());
 			put("isAgent", isAgent.value());
-			put("phones", createPhones());
-			put("requests", createRequests());
-			put("appointments", createAppointments());
+			put("phones", /*createPhones()*/null);
+			put("requests", /*createRequests()*/ null);
+			put("appointments", /*createAppointments()*/ null);
 		}};
 		return data;
 	}
 
-	private List<HashMap<String, Object>> createPhones() {
+	/*private List<HashMap<String, Object>> createPhones() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
 		if (phoneList.isPresent()) {
 			list = phoneList.get().stream().map(
@@ -133,9 +136,9 @@ public class User extends AggregateRoot {
 			).collect(Collectors.toList());
 		}
 		return list;
-	}
+	}*/
 
-	private List<HashMap<String, Object>> createRequests() {
+	/*private List<HashMap<String, Object>> createRequests() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
 		if (requestsList.isPresent()) {
 			list = requestsList.get().stream().map(
@@ -143,9 +146,9 @@ public class User extends AggregateRoot {
 			).collect(Collectors.toList());
 		}
 		return list;
-	}
+	}*/
 
-	private List<HashMap<String, Object>> createAppointments() {
+	/*private List<HashMap<String, Object>> createAppointments() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
 		if (appointmentsList.isPresent()) {
 			list = appointmentsList.get().stream().map(
@@ -153,5 +156,5 @@ public class User extends AggregateRoot {
 			).collect(Collectors.toList());
 		}
 		return list;
-	}
+	}*/
 }

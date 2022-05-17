@@ -9,6 +9,8 @@ import java.util.UUID;
 public class CustomUUID implements Serializable {
 	private String value;
 
+	protected CustomUUID(){}
+
 	public CustomUUID(String value) {
 		validate(value);
 		this.value = value;

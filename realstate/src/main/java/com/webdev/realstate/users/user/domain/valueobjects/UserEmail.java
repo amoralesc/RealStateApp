@@ -4,6 +4,9 @@ import com.webdev.realstate.shared.domain.aggregate.StringValueObject;
 import com.webdev.realstate.users.user.domain.exceptions.InvalidUserEmail;
 
 public class UserEmail extends StringValueObject {
+
+	public UserEmail(){}
+
 	public UserEmail(String value) {
 		validate(value);
 		this.value = value;
