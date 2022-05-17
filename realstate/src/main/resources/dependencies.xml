@@ -1,216 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- RabbitMQ -->
+    <!-- RabbitMQ -->
 
-	<bean id="rabbitMqPublisher"
-		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqPublisher"/>
+    <bean id="rabbitMqPublisher"
+          class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqPublisher"/>
 
-	<bean id="rabbitMqEventBus"
-		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqEventBus">
-		<constructor-arg ref="rabbitMqPublisher"/>
-	</bean>
+    <bean id="rabbitMqEventBus"
+          class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqEventBus">
+        <constructor-arg ref="rabbitMqPublisher"/>
+    </bean>
 
-	<bean id="domainEventInformation"
-		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.DomainEventsInformation"/>
+    <bean id="domainEventInformation"
+          class="com.webdev.realstate.shared.infrastructure.rabbitmq.DomainEventsInformation"/>
 
-	<bean id="domainEventJsonDeserializer"
-		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.serializable.DomainEventJsonDeserializer">
-		<constructor-arg ref="domainEventInformation"/>
-	</bean>
+    <bean id="domainEventJsonDeserializer"
+          class="com.webdev.realstate.shared.infrastructure.rabbitmq.serializable.DomainEventJsonDeserializer">
+        <constructor-arg ref="domainEventInformation"/>
+    </bean>
 
-	<bean id="RabbitMqDomainEventsConsumer"
-		  class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqDomainEventsConsumer">
-		<constructor-arg ref="rabbitMqEventBus"/>
-		<constructor-arg ref="domainEventJsonDeserializer"/>
-	</bean>
+    <bean id="RabbitMqDomainEventsConsumer"
+          class="com.webdev.realstate.shared.infrastructure.rabbitmq.RabbitMqDomainEventsConsumer">
+        <constructor-arg ref="rabbitMqEventBus"/>
+        <constructor-arg ref="domainEventJsonDeserializer"/>
+    </bean>
 
-	<!-- JWT -->
-	<bean id="tokenGeneration"
-		  class="com.webdev.realstate.shared.application.TokenGeneration"/>
+    <!-- JWT -->
+    <bean id="tokenGeneration"
+          class="com.webdev.realstate.shared.application.TokenGeneration"/>
 
-	<!-- Users -->
+    <!-- Users -->
 
-	<bean id="userRepository"
-		  class="com.webdev.realstate.users.user.infrastructure.adapters.HibernateUserRepository"/>
+    <bean id="userRepository" class="com.webdev.realstate.users.user.infrastructure.adapters.HibernateUserRepository" />
 
-	<bean id="userCreator"
-		  class="com.webdev.realstate.users.user.application.create.UserCreator">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userCreator"
+          class="com.webdev.realstate.users.user.application.create.UserCreator">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userUpdate"
-		  class="com.webdev.realstate.users.user.application.update.UserUpdate">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userUpdate"
+          class="com.webdev.realstate.users.user.application.update.UserUpdate">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userDelete"
-		  class="com.webdev.realstate.users.user.application.delete.UserDelete">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userDelete"
+          class="com.webdev.realstate.users.user.application.delete.UserDelete">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userFindById"
-		  class="com.webdev.realstate.users.user.application.find.UserFindById">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userFindById"
+          class="com.webdev.realstate.users.user.application.find.UserFindById">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userFindAll"
-		  class="com.webdev.realstate.users.user.application.find_all.UserFindAll">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userFindAll"
+          class="com.webdev.realstate.users.user.application.find_all.UserFindAll">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userLogin"
-		  class="com.webdev.realstate.users.user.application.login.UserLogin">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userLogin"
+          class="com.webdev.realstate.users.user.application.login.UserLogin">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userAddAppointment"
-		  class="com.webdev.realstate.users.user.application.add.UserAddAppointment">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userAddAppointment"
+          class="com.webdev.realstate.users.user.application.add.UserAddAppointment">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userAddRequest"
-		  class="com.webdev.realstate.users.user.application.add.UserAddRequest">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userAddRequest"
+          class="com.webdev.realstate.users.user.application.add.UserAddRequest">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userUpdateAppointment"
-		  class="com.webdev.realstate.users.user.application.update.UserUpdateAppointment">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userUpdateAppointment"
+          class="com.webdev.realstate.users.user.application.update.UserUpdateAppointment">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<bean id="userUpdateRequest"
-		  class="com.webdev.realstate.users.user.application.update.UserUpdateRequest">
-		<constructor-arg ref="userRepository"/>
-	</bean>
+    <bean id="userUpdateRequest"
+          class="com.webdev.realstate.users.user.application.update.UserUpdateRequest">
+        <constructor-arg ref="userRepository"/>
+    </bean>
 
-	<!-- User listeners -->
+    <!-- User listeners -->
 
-	<bean id="addAppointmentOnAppointmentCreated"
-		  class="com.webdev.realstate.users.user.infrastructure.listeners.AddAppointmentOnAppointmentCreated">
-		<constructor-arg ref="userAddAppointment"/>
-	</bean>
+    <bean id="addAppointmentOnAppointmentCreated"
+          class="com.webdev.realstate.users.user.infrastructure.listeners.AddAppointmentOnAppointmentCreated">
+        <constructor-arg ref="userAddAppointment"/>
+    </bean>
 
-	<bean id="addRequestOnRequestCreated"
-		  class="com.webdev.realstate.users.user.infrastructure.listeners.AddRequestOnRequestCreated">
-		<constructor-arg ref="userAddRequest"/>
-	</bean>
+    <bean id="addRequestOnRequestCreated"
+          class="com.webdev.realstate.users.user.infrastructure.listeners.AddRequestOnRequestCreated">
+        <constructor-arg ref="userAddRequest"/>
+    </bean>
 
-	<bean id="updateAppointmentOnAppointmentUpdated"
-		  class="com.webdev.realstate.users.user.infrastructure.listeners.UpdateAppointmentOnAppointmentUpdated">
-		<constructor-arg ref="userUpdateAppointment"/>
-	</bean>
+    <bean id="updateAppointmentOnAppointmentUpdated"
+          class="com.webdev.realstate.users.user.infrastructure.listeners.UpdateAppointmentOnAppointmentUpdated">
+        <constructor-arg ref="userUpdateAppointment"/>
+    </bean>
 
-	<bean id="updateRequestOnRequestUpdated"
-		  class="com.webdev.realstate.users.user.infrastructure.listeners.UpdateRequestOnRequestUpdated">
-		<constructor-arg ref="userUpdateRequest"/>
-	</bean>
+    <bean id="updateRequestOnRequestUpdated"
+          class="com.webdev.realstate.users.user.infrastructure.listeners.UpdateRequestOnRequestUpdated">
+        <constructor-arg ref="userUpdateRequest"/>
+    </bean>
 
-	<!-- Appointments -->
+    <!-- Appointments -->
 
-	<bean id="appointmentRepository"
-		  class="com.webdev.realstate.appointments.appointment.infrastructure.adapters.HibernateAppointmentRepository"/>
+    <bean id="appointmentRepository"
+          class="com.webdev.realstate.appointments.appointment.infrastructure.adapters.HibernateAppointmentRepository"/>
 
-	<bean id="appointmentCreator"
-		  class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
-		<constructor-arg ref="appointmentRepository"/>
-		<constructor-arg ref="rabbitMqEventBus"/>
-	</bean>
+    <bean id="appointmentCreator"
+          class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
+        <constructor-arg ref="appointmentRepository"/>
+        <constructor-arg ref="rabbitMqEventBus"/>
+    </bean>
 
-	<bean id="appointmentUpdate"
-		  class="com.webdev.realstate.appointments.appointment.application.update.AppointmentUpdate">
-		<constructor-arg ref="appointmentRepository"/>
-		<constructor-arg ref="rabbitMqEventBus"/>
-	</bean>
+    <bean id="appointmentUpdate"
+          class="com.webdev.realstate.appointments.appointment.application.update.AppointmentUpdate">
+        <constructor-arg ref="appointmentRepository"/>
+        <constructor-arg ref="rabbitMqEventBus"/>
+    </bean>
 
-	<bean id="appointmentDelete"
-		  class="com.webdev.realstate.appointments.appointment.application.delete.AppointmentDelete">
-		<constructor-arg ref="appointmentRepository"/>
-	</bean>
+    <bean id="appointmentDelete"
+          class="com.webdev.realstate.appointments.appointment.application.delete.AppointmentDelete">
+        <constructor-arg ref="appointmentRepository"/>
+    </bean>
 
-	<bean id="appointmentFindById"
-		  class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindById">
-		<constructor-arg ref="appointmentRepository"/>
-	</bean>
+    <bean id="appointmentFindById"
+          class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindById">
+        <constructor-arg ref="appointmentRepository"/>
+    </bean>
 
-	<bean id="appointmentFindByUser"
-		  class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUser">
-		<constructor-arg ref="appointmentRepository"/>
-	</bean>
+    <bean id="appointmentFindByUser"
+          class="com.webdev.realstate.appointments.appointment.application.find.AppointmentFindByUser">
+        <constructor-arg ref="appointmentRepository"/>
+    </bean>
 
-	<bean id="appointmentFindAll"
-		  class="com.webdev.realstate.appointments.appointment.application.find_all.AppointmentFindAll">
-		<constructor-arg ref="appointmentRepository"/>
-	</bean>
+    <bean id="appointmentFindAll"
+          class="com.webdev.realstate.appointments.appointment.application.find_all.AppointmentFindAll">
+        <constructor-arg ref="appointmentRepository"/>
+    </bean>
 
-	<!-- Requests -->
+    <!-- Requests -->
 
-	<bean id="requestRepository"
-		  class="com.webdev.realstate.appointments.request.infrastructure.adapters.HibernateRequestRepository"/>
+    <bean id="requestRepository"
+          class="com.webdev.realstate.appointments.request.infrastructure.adapters.HibernateRequestRepository"/>
 
-	<bean id="requestCreator" class="com.webdev.realstate.appointments.request.application.create.RequestCreator">
-		<constructor-arg ref="requestRepository"/>
-		<constructor-arg ref="rabbitMqEventBus"/>
-	</bean>
+    <bean id="requestCreator" class="com.webdev.realstate.appointments.request.application.create.RequestCreator">
+        <constructor-arg ref="requestRepository"/>
+        <constructor-arg ref="rabbitMqEventBus"/>
+    </bean>
 
-	<bean id="requestUpdate" class="com.webdev.realstate.appointments.request.application.update.RequestUpdate">
-		<constructor-arg ref="requestRepository"/>
-		<constructor-arg ref="rabbitMqEventBus"/>
-	</bean>
+    <bean id="requestUpdate" class="com.webdev.realstate.appointments.request.application.update.RequestUpdate">
+        <constructor-arg ref="requestRepository"/>
+        <constructor-arg ref="rabbitMqEventBus"/>
+    </bean>
 
-	<bean id="requestDelete" class="com.webdev.realstate.appointments.request.application.delete.RequestDelete">
-		<constructor-arg ref="requestRepository"/>
-	</bean>
+    <bean id="requestDelete" class="com.webdev.realstate.appointments.request.application.delete.RequestDelete">
+        <constructor-arg ref="requestRepository"/>
+    </bean>
 
-	<bean id="requestFindById" class="com.webdev.realstate.appointments.request.application.find.RequestFindById">
-		<constructor-arg ref="requestRepository"/>
-	</bean>
+    <bean id="requestFindById" class="com.webdev.realstate.appointments.request.application.find.RequestFindById">
+        <constructor-arg ref="requestRepository"/>
+    </bean>
 
-	<bean id="requestFindByUser" class="com.webdev.realstate.appointments.request.application.find.RequestFindByUser">
-		<constructor-arg ref="requestRepository"/>
-	</bean>
+    <bean id="requestFindByUser" class="com.webdev.realstate.appointments.request.application.find.RequestFindByUser">
+        <constructor-arg ref="requestRepository"/>
+    </bean>
 
-	<bean id="requestFindAll" class="com.webdev.realstate.appointments.request.application.find_all.RequestFindAll">
-		<constructor-arg ref="requestRepository"/>
-	</bean>
+    <bean id="requestFindAll" class="com.webdev.realstate.appointments.request.application.find_all.RequestFindAll">
+        <constructor-arg ref="requestRepository"/>
+    </bean>
 
-	<!-- Properties -->
+    <!-- Properties -->
 
-	<bean id="propertyRepository"
-		  class="com.webdev.realstate.properties.property.infrastructure.adapters.HibernatePropertyRepository"/>
+    <bean id="propertyRepository"
+          class="com.webdev.realstate.properties.property.infrastructure.adapters.HibernatePropertyRepository"/>
 
-	<bean id="propertyCreator"
-		  class="com.webdev.realstate.properties.property.application.create.PropertyCreator">
-		<constructor-arg ref="propertyRepository"/>
-	</bean>
+    <bean id="propertyCreator"
+          class="com.webdev.realstate.properties.property.application.create.PropertyCreator">
+        <constructor-arg ref="propertyRepository"/>
+    </bean>
 
-	<bean id="propertyUpdate"
-		  class="com.webdev.realstate.properties.property.application.update.PropertyUpdate">
-		<constructor-arg ref="propertyRepository"/>
-	</bean>
+    <bean id="propertyUpdate"
+          class="com.webdev.realstate.properties.property.application.update.PropertyUpdate">
+        <constructor-arg ref="propertyRepository"/>
+    </bean>
 
-	<!--
-	<bean id="propertyDelete"
-		  class="com.webdev.realstate.properties.property.application.delete.PropertyDelete">
-		<constructor-arg ref="propertyRepository"/>
-	</bean>
-	-->
+    <!--
+    <bean id="propertyDelete"
+          class="com.webdev.realstate.properties.property.application.delete.PropertyDelete">
+        <constructor-arg ref="propertyRepository"/>
+    </bean>
+    -->
 
-	<bean id="propertyFindById"
-		  class="com.webdev.realstate.properties.property.application.find.PropertyFindById">
-		<constructor-arg ref="propertyRepository"/>
-	</bean>
+    <bean id="propertyFindById"
+          class="com.webdev.realstate.properties.property.application.find.PropertyFindById">
+        <constructor-arg ref="propertyRepository"/>
+    </bean>
 
-	<bean id="propertyFindAll"
-		  class="com.webdev.realstate.properties.property.application.find_all.PropertyFindAll">
-		<constructor-arg ref="propertyRepository"/>
-	</bean>
+    <bean id="propertyFindAll"
+          class="com.webdev.realstate.properties.property.application.find_all.PropertyFindAll">
+        <constructor-arg ref="propertyRepository"/>
+    </bean>
 
-	<bean id="propertyFindByFilter"
-		  class="com.webdev.realstate.properties.property.application.find.PropertyFindByFilter">
-		<constructor-arg ref="propertyRepository"/>
-	</bean>
+    <bean id="propertyFindByFilter"
+          class="com.webdev.realstate.properties.property.application.find.PropertyFindByFilter">
+        <constructor-arg ref="propertyRepository"/>
+    </bean>
 
 </beans>

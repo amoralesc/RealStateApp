@@ -27,16 +27,16 @@ public class HibernateConfigFactory {
 		sessionFactoryBean.setHibernateProperties(this.hibernateProperties());
 
 		FileSystemResource resource1 = new FileSystemResource(
-				"./src/main/java/com/webdev/realstate/users/user/infrastructure/hibernate/User.hbm.xml"
+				"realstate/src/main/java/com/webdev/realstate/users/user/infrastructure/hibernate/User.hbm.xml"
 		);
 		FileSystemResource resource2 = new FileSystemResource(
-				"./src/main/java/com/webdev/realstate/properties/property/infrastructure/hibernate/Property.hbm.xml"
+				"realstate/src/main/java/com/webdev/realstate/properties/property/infrastructure/hibernate/Property.hbm.xml"
 		);
 		FileSystemResource resource3 = new FileSystemResource(
-				"./src/main/java/com/webdev/realstate/appointments/appointment/infrastructure/hibernate/Appointment.hbm.xml"
+				"realstate/src/main/java/com/webdev/realstate/appointments/appointment/infrastructure/hibernate/Appointment.hbm.xml"
 		);
 		FileSystemResource resource4 = new FileSystemResource(
-				"./src/main/java/com/webdev/realstate/appointments/request/infrastructure/hibernate/Request.hbm.xml"
+				"realstate/src/main/java/com/webdev/realstate/appointments/request/infrastructure/hibernate/Request.hbm.xml"
 		);
 
 		sessionFactoryBean.setMappingLocations(
