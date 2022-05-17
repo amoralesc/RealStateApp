@@ -6,6 +6,10 @@ import com.webdev.realstate.shared.domain.aggregate.DateValueObject;
 import java.util.Date;
 
 public class RequestDate extends DateValueObject {
+
+	public RequestDate() {
+	}
+
 	public RequestDate(Date value) {
 		validate(value);
 		this.value = value;

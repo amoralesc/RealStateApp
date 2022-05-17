@@ -6,6 +6,10 @@ import com.webdev.realstate.shared.domain.aggregate.DateValueObject;
 import java.util.Date;
 
 public class AppointmentDate extends DateValueObject {
+
+	public AppointmentDate() {
+	}
+
 	public AppointmentDate(Date value) {
 		validate(value);
 		this.value = value;

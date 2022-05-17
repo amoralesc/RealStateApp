@@ -19,6 +19,9 @@ public class Appointment extends AggregateRoot {
 	UserId userId;
 	UserId agentId;
 
+	public Appointment() {
+	}
+
 	public Appointment(
 			AppointmentId appointmentId, AppointmentDate appointmentDate, AppointmentState appointmentState, PropertyId propertyId,
 			UserId userId, UserId agentId

@@ -4,6 +4,10 @@ import com.webdev.realstate.appointments.appointment.domain.exceptions.InvalidAp
 import com.webdev.realstate.shared.domain.aggregate.StringValueObject;
 
 public class AppointmentState extends StringValueObject {
+
+	public AppointmentState() {
+	}
+
 	public AppointmentState(String value) {
 		validate(value);
 		this.value = value;

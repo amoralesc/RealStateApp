@@ -17,6 +17,9 @@ public class Property {
 	PropertyPrice propertyPrice;
 	Optional<PropertyAddress> propertyAddress;
 
+	public Property() {
+	}
+
 	public Property(
 			PropertyId propertyId, PropertyDescription propertyDescription,
 			PropertyType propertyType, PropertyOfferType propertyOfferType,

@@ -19,6 +19,9 @@ public class Request extends AggregateRoot {
 	UserId userId;
 	UserId agentId;
 
+	public Request() {
+	}
+
 	public Request(
 			RequestId requestId, RequestDate requestDate, RequestState requestState, PropertyId propertyId,
 			UserId userId, UserId agentId
