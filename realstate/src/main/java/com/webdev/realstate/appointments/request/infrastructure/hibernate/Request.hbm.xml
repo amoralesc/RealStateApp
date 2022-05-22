@@ -20,6 +20,10 @@
 			<property name="value" column="requestState" access="field" type="string"/>
 		</component>
 
+		<component name="propertyId" class="com.webdev.realstate.properties.property.domain.valueobjects.PropertyId" access="field">
+			<property name="value" column="propertyId" access="field" length="36"/>
+		</component>
+
 		<component name="userId" class="com.webdev.realstate.users.user.domain.valueobjects.UserId" access="field">
 			<property name="value" column="userId" access="field" length="36"/>
 		</component>

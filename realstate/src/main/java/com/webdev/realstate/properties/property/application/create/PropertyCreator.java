@@ -21,22 +21,37 @@ public class PropertyCreator {
 			Double propertyArea, Double propertyPrice, HashMap<String, Object> propertyAddress
 	) {
 
-		Property property = Property.create(
-				new PropertyId(propertyId),
-				new PropertyDescription(propertyDescription),
-				new PropertyType(propertyType),
-				new PropertyOfferType(propertyOfferType),
-				new PropertyQuantityRooms(propertyQuantityRooms),
-				new PropertyQuantityBathrooms(propertyQuantityBathrooms),
-				new PropertyArea(propertyArea),
-				new PropertyPrice(propertyPrice),
-				new PropertyAddress(
-						propertyAddress.get("city").toString(),
-						propertyAddress.get("detail").toString(),
-						propertyAddress.get("info").toString(),
-						propertyAddress.get("neighborhood").toString()
-				)
-		);
+		Property property = new Property();
+		if(propertyAddress != null) {
+			property = Property.create(
+					new PropertyId(propertyId),
+					new PropertyDescription(propertyDescription),
+					new PropertyType(propertyType),
+					new PropertyOfferType(propertyOfferType),
+					new PropertyQuantityRooms(propertyQuantityRooms),
+					new PropertyQuantityBathrooms(propertyQuantityBathrooms),
+					new PropertyArea(propertyArea),
+					new PropertyPrice(propertyPrice),
+					new PropertyAddress(
+							propertyAddress.get("city").toString(),
+							propertyAddress.get("detail").toString(),
+							propertyAddress.get("info").toString(),
+							propertyAddress.get("neighborhood").toString()
+					)
+			);
+		} else {
+			property = Property.create(
+					new PropertyId(propertyId),
+					new PropertyDescription(propertyDescription),
+					new PropertyType(propertyType),
+					new PropertyOfferType(propertyOfferType),
+					new PropertyQuantityRooms(propertyQuantityRooms),
+					new PropertyQuantityBathrooms(propertyQuantityBathrooms),
+					new PropertyArea(propertyArea),
+					new PropertyPrice(propertyPrice),
+					null
+			);
+		}
 
 		repository.save(property);
 	}

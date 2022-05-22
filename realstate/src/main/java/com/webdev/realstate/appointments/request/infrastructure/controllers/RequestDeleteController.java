@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ public class RequestDeleteController {
 	@Operation(summary = "Delete request", description = "Delete a request in the system", tags = {"Request"})
 	@DeleteMapping(value = "/delete")
 	public ResponseEntity execute(
-			RequestDeleteRequest request
+			@RequestBody RequestDeleteRequest request
 	) {
 		delete.execute(
 				request.getId()

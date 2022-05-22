@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static final String[] AUTH_WHITELIST = {
-			"/v3/api-docs/**",
+			"**/v3/api-docs/**",
 			"/v3/api-docs.yaml",
 			"/swagger-ui/**"
 	};
@@ -28,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/user/login").permitAll()
 				.antMatchers(HttpMethod.GET, "/user/all").permitAll()
+				.antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
 				.antMatchers(HttpMethod.GET, AUTH_WHITELIST)
 				.authenticated().and().httpBasic().and().csrf().disable();
 		/*http.csrf().disable()*//*

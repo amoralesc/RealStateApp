@@ -41,7 +41,9 @@ public class AppointmentCreatorController {
 				request.getUserId(),
 				request.getAgentId()
 		);
-		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+		return ResponseEntity
+				.status(HttpStatus.CREATED)
+				.body(null);
 	}
 
 	@ExceptionHandler(value = {InvalidCustomUUID.class, InvalidDate.class})

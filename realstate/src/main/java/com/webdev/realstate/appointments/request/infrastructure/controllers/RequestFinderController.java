@@ -26,7 +26,7 @@ public class RequestFinderController {
 	private RequestFindByUser findByUser;
 
 	@Operation(summary = "Find request by id", description = "Find a request given its UUID", tags = {"Request"})
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/find/{id}")
 	public ResponseEntity<HashMap<String, Object>> execute(
 			@PathVariable String id
 	) {

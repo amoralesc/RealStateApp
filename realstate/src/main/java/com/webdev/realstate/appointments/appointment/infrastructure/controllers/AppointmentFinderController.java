@@ -26,7 +26,7 @@ public class AppointmentFinderController {
 	private AppointmentFindByUser findByUser;
 
 	@Operation(summary = "Find appointment by id", description = "Find an appointment given its UUID", tags = {"Appointment"})
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/find/{id}")
 	public ResponseEntity<HashMap<String, Object>> execute(
 			@PathVariable String id
 	) {

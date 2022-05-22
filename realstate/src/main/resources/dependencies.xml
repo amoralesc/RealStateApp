@@ -115,13 +115,11 @@
     <bean id="appointmentCreator"
           class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
         <constructor-arg ref="appointmentRepository"/>
-        <constructor-arg ref="rabbitMqEventBus"/>
     </bean>
 
     <bean id="appointmentUpdate"
           class="com.webdev.realstate.appointments.appointment.application.update.AppointmentUpdate">
         <constructor-arg ref="appointmentRepository"/>
-        <constructor-arg ref="rabbitMqEventBus"/>
     </bean>
 
     <bean id="appointmentDelete"

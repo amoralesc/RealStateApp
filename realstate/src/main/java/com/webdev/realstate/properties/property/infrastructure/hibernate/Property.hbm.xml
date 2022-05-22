@@ -49,9 +49,9 @@
 			<property name="value" column="propertyPrice" access="field" type="double"/>
 		</component>
 
-		<property name="propertyAddress" column="propertyAddress" access="field">
+		<!--<property name="propertyAddress" column="propertyAddress" access="field">
 			<type name="com.webdev.realstate.properties.property.infrastructure.hibernate.PropertyAddressCustomType"/>
-		</property>
+		</property> -->
 
 	</class>
 </hibernate-mapping>

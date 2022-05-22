@@ -35,13 +35,15 @@ public class UserCreatorController {
 	})
 	@PostMapping(value = "/create")
 	public ResponseEntity execute(@RequestBody UserCreatorRequest request) {
+
 		creator.execute(
 				request.getId(),
 				request.getName(),
 				request.getEmail(),
 				request.getPassword(),
-				request.isAgent()
+				request.getIsAgent()
 		);
+
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(null);
@@ -117,7 +119,7 @@ public class UserCreatorController {
 			this.password = password;
 		}
 
-		public boolean isAgent() {
+		public boolean getIsAgent() {
 			return isAgent;
 		}
 

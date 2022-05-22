@@ -19,15 +19,9 @@ public class RealstateApplication {
 
 
 	@Bean
-	public OpenAPI customOpenApi(
-			@Value("{application.title}") String appName,
-			@Value("{application.description}") String appDescription) {
+	public OpenAPI customOpenApi(@Value("{application.title}") String appName,
+								@Value("{application.description}") String appDescription) {
 
-		return new OpenAPI()
-				.components(new Components()).info(
-						new Info()
-								.title(appName)
-								.description(appDescription)
-				);
+		return new OpenAPI().components(new Components()).info(new Info().title(appName).description(appDescription));
 	}
 }

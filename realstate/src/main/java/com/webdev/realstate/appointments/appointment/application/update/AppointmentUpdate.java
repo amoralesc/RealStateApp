@@ -2,10 +2,12 @@ package com.webdev.realstate.appointments.appointment.application.update;
 
 import com.webdev.realstate.appointments.appointment.domain.Appointment;
 import com.webdev.realstate.appointments.appointment.domain.ports.AppointmentRepository;
+import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentDate;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentId;
 import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentState;
 import com.webdev.realstate.shared.domain.bus.event.EventBus;
 
+import java.util.Date;
 import java.util.Optional;
 
 public class AppointmentUpdate {
@@ -26,6 +28,21 @@ public class AppointmentUpdate {
 			Appointment appointment = optionalAppointment.get();
 			appointment.updateState(
 					new AppointmentState(appointmentState)
+			);
+
+			repository.update(appointment);
+			eventBus.publish(appointment.pullDomainEvents());
+		}
+	}
+
+	public void execute(String appointmentId, Date appointmentDate) {
+		Optional<Appointment> optionalAppointment =
+				repository.findById(new AppointmentId(appointmentId));
+
+		if (optionalAppointment.isPresent()) {
+			Appointment appointment = optionalAppointment.get();
+			appointment.updateDate(
+					new AppointmentDate(appointmentDate)
 			);
 
 			repository.update(appointment);

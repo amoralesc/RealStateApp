@@ -68,7 +68,7 @@ public class Property {
 			put("quantityBathrooms", propertyQuantityBathrooms.value());
 			put("area", propertyArea.value());
 			put("price", propertyPrice.value());
-			put("address", createAddress());
+			//put("address", createAddress());
 		}};
 		return data;
 	}

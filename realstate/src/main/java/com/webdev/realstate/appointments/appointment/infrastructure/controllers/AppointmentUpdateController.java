@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 
 @RestController
@@ -59,6 +60,9 @@ public class AppointmentUpdateController {
 		@Schema(description = "Appointment state, PENDING, DONE, CANCELLED", example = "DONE")
 		private String state;
 
+		@Schema(description = "Appointment date", example = "2022-04-15")
+		private Date date;
+
 		public String getId() {
 			return id;
 		}
@@ -73,6 +77,14 @@ public class AppointmentUpdateController {
 
 		public void setState(String state) {
 			this.state = state;
+		}
+
+		public Date getDate() {
+			return date;
+		}
+
+		public void setDate(Date date) {
+			this.date = date;
 		}
 	}
 }

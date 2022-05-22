@@ -46,17 +46,6 @@ public class Appointment extends AggregateRoot {
 				agentId
 		);
 
-		appointment.record(
-				new AppointmentCreatedDomainEvent(
-						appointmentId.value(),
-						appointmentDate.value(),
-						"PENDING",
-						propertyId.value(),
-						userId.value(),
-						agentId.value()
-				)
-		);
-
 		return appointment;
 	}
 
@@ -75,8 +64,23 @@ public class Appointment extends AggregateRoot {
 		);
 	}
 
+	public void updateDate(AppointmentDate appointmentDate) {
+		this.appointmentDate = appointmentDate;
+
+		this.record(
+				new AppointmentUpdatedDomainEvent(
+						appointmentId.value(),
+						appointmentDate.value(),
+						appointmentState.value(),
+						propertyId.value(),
+						userId.value(),
+						agentId.value()
+				)
+		);
+	}
+
 	public HashMap<String, Object> data() {
-		return new HashMap<>() {{
+		return new HashMap<String, Object>() {{
 			put("id", appointmentId.value());
 			put("date", appointmentDate.value());
 			put("state", appointmentState.value());

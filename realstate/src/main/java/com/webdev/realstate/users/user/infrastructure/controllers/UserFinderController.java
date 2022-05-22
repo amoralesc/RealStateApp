@@ -23,7 +23,7 @@ public class UserFinderController {
 	private UserFindById findById;
 
 	@Operation(summary = "Find user by id", description = "Find user given its UUID", tags = {"User"})
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/find/{id}")
 	public ResponseEntity<HashMap<String, Object>> execute(@PathVariable String id) {
 		UserFindByIdResponse response =
 				new UserFindByIdResponse(

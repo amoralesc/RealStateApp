@@ -23,7 +23,7 @@ public class PropertyFinderByIdController {
 	private PropertyFindById findById;
 
 	@Operation(summary = "Find property by id", description = "Find a property given its id", tags = {"Property"})
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/find/{id}")
 	public ResponseEntity<HashMap<String, Object>> execute(@PathVariable String id) {
 		PropertyFindByIdResponse response
 				= new PropertyFindByIdResponse(findById.execute(id));
