@@ -80,7 +80,7 @@ public class RequestUpdatedDomainEvent extends DomainEvent {
 				aggregateId,
 				eventId,
 				occurredOn,
-				(Date) body.get("date"),
+				new Date((Long) body.get("date")),
 				(String) body.get("state"),
 				(String) body.get("propertyId"),
 				(String) body.get("userId"),

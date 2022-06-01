@@ -97,12 +97,12 @@
         <constructor-arg ref="userAddRequest"/>
     </bean>
 
-    <bean id="updateAppointmentOnAppointmentUpdated"
+    <bean id="UpdateAppointmentOnAppointmentUpdated"
           class="com.webdev.realstate.users.user.infrastructure.listeners.UpdateAppointmentOnAppointmentUpdated">
         <constructor-arg ref="userUpdateAppointment"/>
     </bean>
 
-    <bean id="updateRequestOnRequestUpdated"
+    <bean id="UpdateRequestOnRequestUpdated"
           class="com.webdev.realstate.users.user.infrastructure.listeners.UpdateRequestOnRequestUpdated">
         <constructor-arg ref="userUpdateRequest"/>
     </bean>
