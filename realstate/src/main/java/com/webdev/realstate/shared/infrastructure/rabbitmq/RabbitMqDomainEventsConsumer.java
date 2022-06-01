@@ -28,13 +28,17 @@ public class RabbitMqDomainEventsConsumer {
 	@RabbitListener(queues = "#{'${rabbit.queues}'.split(',')}")
 	public void consume(Message message) throws Exception {
 		String serializedMessage = new String(message.getBody());
+		System.out.println("SERIALIZED-MESSAGE " + serializedMessage);
 		DomainEvent domainEvent = deserializer.deserialize(serializedMessage);
+		System.out.println("DOMAIN-EVENT " + domainEvent.toString());
 		String queueName = message.getMessageProperties().getConsumerQueue();
 		Object subscriber = this.subscriberFor(queueName);
 		try {
 			Method subscriberOnMethod = subscriber.getClass().getMethod("on", domainEvent.getClass());
+			System.out.println("Metodo " + subscriberOnMethod.toString());
 			subscriberOnMethod.invoke(subscriber, domainEvent);
 		} catch (Exception error) {
+			error.printStackTrace();
 			throw new Exception("Error Listener: " + error.toString());
 		}
 	}
@@ -44,6 +48,7 @@ public class RabbitMqDomainEventsConsumer {
 			throw new Exception("No hay listener asociado a la cola " + queueName);
 		}
 		String eventSubscriberName = this.information.getEventSubscriber(queueName);
+		System.out.println("🌴" + eventSubscriberName);
 		return context.getBean(eventSubscriberName);
 	}
 }

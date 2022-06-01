@@ -12,6 +12,7 @@ public class AddAppointmentOnAppointmentCreated {
 	}
 
 	public void on(AppointmentCreatedDomainEvent event) {
+		System.out.println("El evento llego" + event.getAgentId());
 		adder.execute(
 				event.aggregateId(),
 				event.getDate(),

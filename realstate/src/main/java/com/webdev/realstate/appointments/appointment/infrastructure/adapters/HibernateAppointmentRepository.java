@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional("transactional-manager")
-public class HibernateAppointmentRepository extends HibernateRepository<Appointment> implements AppointmentRepository {
+public class 	HibernateAppointmentRepository extends HibernateRepository<Appointment> implements AppointmentRepository {
 
 	public HibernateAppointmentRepository(@Qualifier("session-factory") SessionFactory sessionFactory) {
 		super(sessionFactory, Appointment.class);

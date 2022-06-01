@@ -31,7 +31,9 @@ public class UserAddAppointment {
 							userId,
 							agentId
 					));
+			System.out.println("ENTRE AL EXECUTE " + user.data());
 			repository.update(user);
+			System.out.println("DESPUES DEL UPDATE");
 		}
 
 		// Add appointment to agent

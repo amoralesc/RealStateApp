@@ -87,12 +87,12 @@
 
     <!-- User listeners -->
 
-    <bean id="addAppointmentOnAppointmentCreated"
+    <bean id="AddAppointmentOnAppointmentCreated"
           class="com.webdev.realstate.users.user.infrastructure.listeners.AddAppointmentOnAppointmentCreated">
         <constructor-arg ref="userAddAppointment"/>
     </bean>
 
-    <bean id="addRequestOnRequestCreated"
+    <bean id="AddRequestOnRequestCreated"
           class="com.webdev.realstate.users.user.infrastructure.listeners.AddRequestOnRequestCreated">
         <constructor-arg ref="userAddRequest"/>
     </bean>
@@ -115,6 +115,7 @@
     <bean id="appointmentCreator"
           class="com.webdev.realstate.appointments.appointment.application.create.AppointmentCreator">
         <constructor-arg ref="appointmentRepository"/>
+        <constructor-arg ref="rabbitMqEventBus"/>
     </bean>
 
     <bean id="appointmentUpdate"

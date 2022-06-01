@@ -51,7 +51,7 @@ public class UserAppointmentCustomType implements UserType {
 				result = objects.stream().map(
 						element -> new UserAppointment(
 								(String) element.get("id"),
-								(Date) element.get("date"),
+								new Date((Long) element.get("date")),
 								(String) element.get("state"),
 								(String) element.get("propertyId"),
 								(String) element.get("userId"),

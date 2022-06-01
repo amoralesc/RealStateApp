@@ -22,6 +22,7 @@ public class DomainEventJsonDeserializer {
 		HashMap<String, Serializable> data = (HashMap<String, Serializable>) eventData.get("data");
 		HashMap<String, Serializable> attributes = (HashMap<String, Serializable>) data.get("attributes");
 		Class<? extends DomainEvent> domainEventClass = information.getDomainEvent((String) data.get("type"));
+		System.out.println("SERIALIZABLE " + domainEventClass.toString());
 
 		DomainEvent nullInstance = domainEventClass.getConstructor().newInstance();
 		Method fromPrimitivesMethod = domainEventClass.getMethod("fromPrimitive", String.class,

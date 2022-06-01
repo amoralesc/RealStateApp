@@ -21,7 +21,6 @@ public class UserUpdate {
 
 	public void execute(String userId, String userName, List<HashMap<String, Object>> userPhonesSerialized) {
 		Optional<User> optionalUser = repository.findById(new UserId(userId));
-
 		if (optionalUser.isPresent()) {
 			User user = optionalUser.get();
 

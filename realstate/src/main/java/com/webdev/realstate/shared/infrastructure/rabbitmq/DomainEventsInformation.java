@@ -2,6 +2,8 @@ package com.webdev.realstate.shared.infrastructure.rabbitmq;
 
 import com.webdev.realstate.appointments.appointment.domain.events.AppointmentCreatedDomainEvent;
 import com.webdev.realstate.appointments.appointment.domain.events.AppointmentUpdatedDomainEvent;
+import com.webdev.realstate.appointments.request.domain.events.RequestCreatedDomainEvent;
+import com.webdev.realstate.appointments.request.domain.events.RequestUpdatedDomainEvent;
 import com.webdev.realstate.shared.domain.bus.event.DomainEvent;
 
 import java.util.HashMap;
@@ -22,13 +24,12 @@ public class DomainEventsInformation {
 		);
 		indexedDomainEvent.put(
 				"create.request",
-				AppointmentCreatedDomainEvent.class
+				RequestCreatedDomainEvent.class
 		);
 		indexedDomainEvent.put(
 				"update.request",
-				AppointmentUpdatedDomainEvent.class
+				RequestUpdatedDomainEvent.class
 		);
-
 
 		domainEventSubscribers.put(
 				"realstate.appointments.appointment.create.appointment",

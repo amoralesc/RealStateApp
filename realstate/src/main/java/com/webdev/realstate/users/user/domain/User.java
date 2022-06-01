@@ -6,6 +6,7 @@ import com.webdev.realstate.users.user.domain.entities.UserPhone;
 import com.webdev.realstate.users.user.domain.entities.UserRequest;
 import com.webdev.realstate.users.user.domain.exceptions.FailedAuthentication;
 import com.webdev.realstate.users.user.domain.valueobjects.*;
+import org.springframework.lang.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,21 +69,32 @@ public class User extends AggregateRoot {
 	}
 
 	public void addRequest(UserRequest userRequest) {
-		List<UserRequest> requests = new ArrayList<>();
-		if (requestsList.isPresent()) {
-			requests = requestsList.get();
+		List<UserRequest> requests = new ArrayList<>();;
+
+		if(requestsList != null) {
+			if (requestsList.isPresent()) {
+				requests = requestsList.get();
+			}
 		}
+
 		requests.add(userRequest);
 		requestsList = Optional.of(requests);
 	}
 
 	public void addAppointment(UserAppointment userAppointment) {
 		List<UserAppointment> appointments = new ArrayList<>();
-		if (appointmentsList.isPresent()) {
-			appointments = appointmentsList.get();
+
+		if(appointmentsList != null) {
+			if (appointmentsList.isPresent()) {
+				appointments = appointmentsList.get();
+			}
 		}
+
 		appointments.add(userAppointment);
 		appointmentsList = Optional.of(appointments);
+		appointmentsList.ifPresent(appointment -> {
+			System.out.println("User's name = " + appointment.get(0).data());
+		});
 	}
 
 	public void updateAppointment(UserAppointment appointment) {
@@ -122,8 +134,8 @@ public class User extends AggregateRoot {
 			put("email", userEmail.value());
 			put("isAgent", isAgent.value());
 			put("phones", /*createPhones()*/null);
-			put("requests", /*createRequests()*/ null);
-			put("appointments", /*createAppointments()*/ null);
+			put("requests", createRequests());
+			put("appointments", createAppointments());
 		}};
 		return data;
 	}
@@ -138,7 +150,7 @@ public class User extends AggregateRoot {
 		return list;
 	}*/
 
-	/*private List<HashMap<String, Object>> createRequests() {
+	private List<HashMap<String, Object>> createRequests() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
 		if (requestsList.isPresent()) {
 			list = requestsList.get().stream().map(
@@ -146,9 +158,9 @@ public class User extends AggregateRoot {
 			).collect(Collectors.toList());
 		}
 		return list;
-	}*/
+	}
 
-	/*private List<HashMap<String, Object>> createAppointments() {
+	private List<HashMap<String, Object>> createAppointments() {
 		List<HashMap<String, Object>> list = new ArrayList<>();
 		if (appointmentsList.isPresent()) {
 			list = appointmentsList.get().stream().map(
@@ -156,5 +168,5 @@ public class User extends AggregateRoot {
 			).collect(Collectors.toList());
 		}
 		return list;
-	}*/
+	}
 }

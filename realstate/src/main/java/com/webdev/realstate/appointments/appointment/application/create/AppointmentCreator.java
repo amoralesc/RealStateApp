@@ -13,8 +13,10 @@ import java.util.Date;
 public class AppointmentCreator {
 
 	private final AppointmentRepository repository;
+	private final EventBus eventBus;
 
-	public AppointmentCreator(AppointmentRepository repository) {
+	public AppointmentCreator(AppointmentRepository repository, EventBus eventBus) {
+		this.eventBus = eventBus;
 		this.repository = repository;
 	}
 
@@ -29,5 +31,6 @@ public class AppointmentCreator {
 				new UserId(agentId)
 		);
 		repository.save(appointment);
+		this.eventBus.publish(appointment.pullDomainEvents());
 	}
 }

@@ -9,6 +9,7 @@ import com.webdev.realstate.properties.property.domain.valueobjects.PropertyId;
 import com.webdev.realstate.shared.domain.aggregate.AggregateRoot;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class Appointment extends AggregateRoot {
@@ -34,18 +35,10 @@ public class Appointment extends AggregateRoot {
 		this.agentId = agentId;
 	}
 
-	public static Appointment create(
-			AppointmentId appointmentId, AppointmentDate appointmentDate, PropertyId propertyId, UserId userId, UserId agentId
-	) {
-		Appointment appointment = new Appointment(
-				appointmentId,
-				appointmentDate,
-				new AppointmentState("PENDING"),
-				propertyId,
-				userId,
-				agentId
-		);
+	public static Appointment create(AppointmentId appointmentId, AppointmentDate appointmentDate, PropertyId propertyId, UserId userId, UserId agentId) {
+		Appointment appointment = new Appointment(appointmentId, appointmentDate, new AppointmentState("PENDING"), propertyId, userId, agentId);
 
+		appointment.record(new AppointmentCreatedDomainEvent(appointmentId.value(), (Date) appointmentDate.value(), new AppointmentState("PENDING").value(), propertyId.value(), userId.value(), agentId.value()));
 		return appointment;
 	}
 
