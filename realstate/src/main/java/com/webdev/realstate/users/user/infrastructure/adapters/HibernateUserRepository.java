@@ -5,6 +5,7 @@ import com.webdev.realstate.users.user.domain.User;
 import com.webdev.realstate.users.user.domain.ports.UserRepository;
 import com.webdev.realstate.users.user.domain.valueobjects.UserEmail;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
+import com.webdev.realstate.users.user.domain.valueobjects.UserName;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +56,23 @@ public class HibernateUserRepository extends HibernateRepository<User> implement
 				.where(cb.equal(root.get("userEmail"), email));
 		List<User> users =
 				sessionFactory.getCurrentSession().createQuery(cq).getResultList();
+
+		if (!users.isEmpty()) {
+			user = users.get(0);
+		}
+		return Optional.ofNullable(user);
+	}
+
+	@Override
+	public Optional<User> findByUsername(UserName username) {
+		User user = null;
+
+		CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
+		CriteriaQuery<User> cq = cb.createQuery(User.class);
+		Root<User> root = cq.from(User.class);
+
+		cq.select(root).where(cb.equal(root.get("userName"), username));
+		List<User> users = sessionFactory.getCurrentSession().createQuery(cq).getResultList();
 
 		if (!users.isEmpty()) {
 			user = users.get(0);

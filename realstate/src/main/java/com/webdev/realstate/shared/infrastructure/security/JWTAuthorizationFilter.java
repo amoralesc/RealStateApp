@@ -54,8 +54,10 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	private Claims validateToken(HttpServletRequest request) {
 		try {
 			String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
+			System.out.println("TOKE " + jwtToken);
 			return Jwts.parser().setSigningKey(SECRET.getBytes()).parseClaimsJws(jwtToken).getBody();
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new UnauthorizedAction("Servicio no Autorizado.");
 		}
 	}

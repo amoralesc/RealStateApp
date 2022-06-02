@@ -21,25 +21,15 @@ public class UserLogin {
 	}
 
 	public UserLoginResponse execute(String email, String password) {
-		Optional<User> optionalUser =
-				repository.findByEmail(
-						new UserEmail(email)
-				);
+		Optional<User> optionalUser = repository.findByEmail(new UserEmail(email));
 		if (optionalUser.isEmpty()) {
 			throw new FailedAuthentication("User not registered");
 		}
 
 		User user = optionalUser.get();
-		user.authenticateUser(
-				new UserEmail(email),
-				new UserPassword(password)
-		);
-		TokenGenerationResponse responseToken =
-				this.tokenGeneration.execute(email);
+		user.authenticateUser(new UserEmail(email), new UserPassword(password));
+		TokenGenerationResponse responseToken = this.tokenGeneration.execute(email);
 
-		return new UserLoginResponse(
-				email,
-				responseToken.token()
-		);
+		return new UserLoginResponse(email, responseToken.token());
 	}
 }

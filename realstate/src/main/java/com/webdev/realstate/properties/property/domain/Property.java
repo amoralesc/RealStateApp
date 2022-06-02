@@ -1,12 +1,15 @@
 package com.webdev.realstate.properties.property.domain;
 
+import com.webdev.realstate.appointments.appointment.domain.events.AppointmentUpdatedDomainEvent;
+import com.webdev.realstate.appointments.appointment.domain.valueobjects.AppointmentState;
 import com.webdev.realstate.properties.property.domain.entities.PropertyAddress;
 import com.webdev.realstate.properties.property.domain.valueobjects.*;
+import com.webdev.realstate.shared.domain.aggregate.AggregateRoot;
 
 import java.util.HashMap;
 import java.util.Optional;
 
-public class Property {
+public class Property extends AggregateRoot {
 	PropertyId propertyId;
 	PropertyDescription propertyDescription;
 	PropertyType propertyType;
@@ -68,6 +71,18 @@ public class Property {
 			return propertyAddress.get().data();
 		}
 		return null;
+	}
+
+	public void update(PropertyDescription propertyDescription, PropertyType propertyType,
+					   PropertyOfferType propertyOfferType, PropertyQuantityRooms propertyQuantityRooms,
+					   PropertyQuantityBathrooms propertyQuantityBathrooms, PropertyArea propertyArea, PropertyPrice propertyPrice) {
+		this.propertyDescription = propertyDescription;
+		this.propertyType = propertyType;
+		this.propertyOfferType = propertyOfferType;
+		this.propertyQuantityRooms = propertyQuantityRooms;
+		this.propertyQuantityBathrooms = propertyQuantityBathrooms;
+		this.propertyArea = propertyArea;
+		this.propertyPrice = propertyPrice;
 	}
 
 	public void updateAddress(PropertyAddress propertyAddress) {

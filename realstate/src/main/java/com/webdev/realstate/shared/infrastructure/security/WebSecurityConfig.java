@@ -18,13 +18,21 @@ import java.util.Arrays;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static final String[] AUTH_WHITELIST = {
-			"**/v3/api-docs/**",
+			"/v3/api-docs/**",
 			"/v3/api-docs.yaml",
 			"/swagger-ui/**"
 	};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		/*http.csrf().disable()
+				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+				.authorizeRequests()
+				.antMatchers(HttpMethod.POST, "/user/login").permitAll()
+				.antMatchers(HttpMethod.GET, "/user/all").permitAll()
+				.antMatchers(HttpMethod.GET, AUTH_WHITELIST).permitAll()
+				.anyRequest().authenticated();*/
+		//EL QUE ESTABAMOS USANDO
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/user/login").permitAll()
 				.antMatchers(HttpMethod.GET, "/user/all").permitAll()

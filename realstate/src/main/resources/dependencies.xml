@@ -55,6 +55,16 @@
         <constructor-arg ref="userRepository"/>
     </bean>
 
+    <bean id="userFindByEmail"
+          class="com.webdev.realstate.users.user.application.find.UserFindByEmail">
+        <constructor-arg ref="userRepository"/>
+    </bean>
+
+    <bean id="userFindByUsername"
+          class="com.webdev.realstate.users.user.application.find.UserFindByUsername">
+        <constructor-arg ref="userRepository"/>
+    </bean>
+
     <bean id="userFindAll"
           class="com.webdev.realstate.users.user.application.find_all.UserFindAll">
         <constructor-arg ref="userRepository"/>
@@ -63,6 +73,7 @@
     <bean id="userLogin"
           class="com.webdev.realstate.users.user.application.login.UserLogin">
         <constructor-arg ref="userRepository"/>
+        <constructor-arg ref="tokenGeneration"/>
     </bean>
 
     <bean id="userAddAppointment"

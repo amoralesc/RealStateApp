@@ -15,16 +15,13 @@ public class TokenGeneration {
 	private final String SECRET = "real_state";
 	private final String CLAIM = "authorities";
 	private final String ID = "RealStateApp";
-	private final int VALIDITY = 100000;
+	private final int VALIDITY = 120000;
 
 	public TokenGeneration() {
 	}
 
-	public TokenGenerationResponse execute(
-			String username
-	) {
-		List<GrantedAuthority> grantedAuthorityList = AuthorityUtils
-				.commaSeparatedStringToAuthorityList("ROLE_USER");
+	public TokenGenerationResponse execute(String username) {
+		List<GrantedAuthority> grantedAuthorityList = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
 		String token = Jwts.builder()
 				.setId(ID)
 				.setSubject(username)
