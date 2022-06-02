@@ -29,7 +29,8 @@ public class Address extends AggregateRoot {
     public static Address create(AddressId id, AddressCity city, AddressDetail detail, AddressAdditionalInfo additionalInfo, AddressNeighborhood neighborhood, UserId userId) {
         Address address = new Address(id, city, detail, additionalInfo, neighborhood, userId);
         System.out.println("ENTREE A ADDRESS");
-        address.record(new AddressCreatedDomainEvent(id.value(), city.value(), detail.value(), additionalInfo.value(), neighborhood.value(), userId.value()));
+        address.record(new AddressCreatedDomainEvent(id.value(), city.value(), detail.value(), additionalInfo.value(), userId.value()));
+        System.out.println("SALI");
         return address;
     }
 

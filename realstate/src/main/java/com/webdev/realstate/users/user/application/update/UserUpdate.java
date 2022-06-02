@@ -3,6 +3,7 @@ package com.webdev.realstate.users.user.application.update;
 import com.webdev.realstate.users.user.domain.User;
 import com.webdev.realstate.users.user.domain.entities.UserPhone;
 import com.webdev.realstate.users.user.domain.ports.UserRepository;
+import com.webdev.realstate.users.user.domain.valueobjects.UserEmail;
 import com.webdev.realstate.users.user.domain.valueobjects.UserId;
 import com.webdev.realstate.users.user.domain.valueobjects.UserName;
 
@@ -19,8 +20,8 @@ public class UserUpdate {
 		this.repository = repository;
 	}
 
-	public void execute(String userId, String userName, List<HashMap<String, Object>> userPhonesSerialized) {
-		Optional<User> optionalUser = repository.findById(new UserId(userId));
+	public void execute(String userEmail, String userName, List<HashMap<String, Object>> userPhonesSerialized) {
+		Optional<User> optionalUser = repository.findByEmail(new UserEmail(userEmail));
 		if (optionalUser.isPresent()) {
 			User user = optionalUser.get();
 

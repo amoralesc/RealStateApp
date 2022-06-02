@@ -30,6 +30,7 @@ public class UserLoginController {
 			@ApiResponse(responseCode = "200", description = "Authenticated in the system"),
 			@ApiResponse(responseCode = "401", description = "Unauthorized user", content = @Content(schema = @Schema(implementation = ErrorSchema.class))),
 	})
+	@CrossOrigin(origins = "*", methods= {RequestMethod.POST})
 	@PostMapping(value = "/login")
 	public ResponseEntity<HashMap<String, Object>> execute(@RequestBody UserLoginRequest request) {
 		UserLoginResponse response = login.execute(

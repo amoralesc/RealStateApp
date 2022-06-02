@@ -33,6 +33,7 @@ public class UserCreatorController {
 			@ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ErrorSchema.class))),
 			@ApiResponse(responseCode = "409", description = "User already exists", content = @Content(schema = @Schema(implementation = ErrorSchema.class)))
 	})
+	@CrossOrigin(origins = "*", methods= {RequestMethod.GET})
 	@PostMapping(value = "/create")
 	public ResponseEntity execute(@RequestBody UserCreatorRequest request) {
 

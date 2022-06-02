@@ -59,6 +59,7 @@ public class Property extends AggregateRoot {
 				propertyPrice,
 				Optional.empty()
 		);
+
 		return property;
 	}
 

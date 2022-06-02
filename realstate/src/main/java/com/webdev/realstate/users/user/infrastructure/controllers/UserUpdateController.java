@@ -30,10 +30,11 @@ public class UserUpdateController {
 			@ApiResponse(responseCode = "200", description = "User updated"),
 			@ApiResponse(responseCode = "400", description = "Invalid input", content = @Content(schema = @Schema(implementation = ErrorSchema.class)))
 	})
-	@PostMapping(value = "/update")
+	@CrossOrigin(origins = "*", methods= {RequestMethod.PUT})
+	@PutMapping(value = "/update")
 	public ResponseEntity execute(@RequestBody UserUpdateRequest request) {
 		update.execute(
-				request.getId(),
+				request.getEmail(),
 				request.getName(),
 				request.getPhones()
 		);
@@ -54,8 +55,8 @@ public class UserUpdateController {
 	}
 
 	static class UserUpdateRequest {
-		@Schema(description = "User id", example = "0f1c4b36-e610-4446-a3a3-a6083902b587")
-		private String id;
+		@Schema(description = "User email", example = "a@gmail.com")
+		private String email;
 
 		@Schema(description = "User name, between 5 and 30 characters", example = "John Doe")
 		private String name;
@@ -63,12 +64,12 @@ public class UserUpdateController {
 		@Schema(description = "User phones list", example = "[\"countryCode\":\"+1\",\"number\":\"1234567890\"]")
 		private List<HashMap<String, Object>> phones;
 
-		public String getId() {
-			return id;
+		public String getEmail() {
+			return email;
 		}
 
-		public void setId(String id) {
-			this.id = id;
+		public void setEmail(String email) {
+			this.email = email;
 		}
 
 		public String getName() {

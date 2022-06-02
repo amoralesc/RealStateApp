@@ -8,8 +8,8 @@ import java.util.Objects;
 
 public class AddressCreatedDomainEvent extends DomainEvent {
 
+    private String id;
     private String city;
-    private String postalCode;
     private String detail;
     private String info;
     private String userId;
@@ -18,10 +18,10 @@ public class AddressCreatedDomainEvent extends DomainEvent {
         super(null);
     }
 
-    public AddressCreatedDomainEvent(String aggregateId, String city, String postalCode, String detail, String info, String userId) {
+    public AddressCreatedDomainEvent(String aggregateId, String city, String detail, String info, String userId) {
         super(aggregateId);
+        this.id = aggregateId;
         this.city = city;
-        this.postalCode = postalCode;
         this.detail = detail;
         this.info = info;
         this.userId = userId;
@@ -30,7 +30,6 @@ public class AddressCreatedDomainEvent extends DomainEvent {
     public AddressCreatedDomainEvent(String aggregateId, String eventId, String occurredOn, String city, String detail, String info, String userId) {
         super(aggregateId, eventId, occurredOn);
         this.city = city;
-        this.postalCode = postalCode;
         this.detail = detail;
         this.info = info;
         this.userId = userId;
@@ -40,9 +39,6 @@ public class AddressCreatedDomainEvent extends DomainEvent {
         return city;
     }
 
-    public String getPostalCode() {
-        return postalCode;
-    }
 
     public String getDetail() {
         return detail;
@@ -63,7 +59,6 @@ public class AddressCreatedDomainEvent extends DomainEvent {
     public HashMap<String, Serializable> toPrimitive() {
         return new HashMap<String, Serializable>() {{
             put("city", city);
-            put("postalCode", postalCode);
             put("detail", detail);
             put("info", info);
             put("userId", userId);
@@ -72,6 +67,7 @@ public class AddressCreatedDomainEvent extends DomainEvent {
 
     @Override
     public DomainEvent fromPrimitive(String aggregateId, HashMap<String, Serializable> body, String eventId, String occurredOn) {
+        System.out.println("ENTROOO");
         return new AddressCreatedDomainEvent(aggregateId, eventId, occurredOn, (String) body.get("city"), (String) body.get("detail"), (String) body.get("info"),
                 (String) body.get("userId"));
     }
