@@ -107,6 +107,17 @@
         <constructor-arg ref="userUpdateRequest"/>
     </bean>
 
+    <!-- Address -->
+
+    <bean id="addressRepository"
+          class="com.webdev.realstate.properties.address.infrastructure.adapters.HibernateAddressRepository"/>
+
+    <bean id="addressCreator"
+          class="com.webdev.realstate.properties.address.application.create.AddressCreator">
+        <constructor-arg ref="addressRepository"/>
+        <constructor-arg ref="rabbitMqEventBus"/>
+    </bean>
+
     <!-- Appointments -->
 
     <bean id="appointmentRepository"

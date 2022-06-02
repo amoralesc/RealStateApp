@@ -33,6 +33,7 @@ public class PropertyCreator {
 					new PropertyArea(propertyArea),
 					new PropertyPrice(propertyPrice),
 					new PropertyAddress(
+							propertyAddress.get("id").toString(),
 							propertyAddress.get("city").toString(),
 							propertyAddress.get("detail").toString(),
 							propertyAddress.get("info").toString(),

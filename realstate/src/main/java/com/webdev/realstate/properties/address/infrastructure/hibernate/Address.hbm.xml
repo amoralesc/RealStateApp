@@ -1,0 +1,34 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.webdev.realstate.properties.address.domain.Address" table="address">
+
+        <composite-id name="id" class="com.webdev.realstate.properties.address.domain.valueobjects.AddressId" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="city" class="com.webdev.realstate.properties.address.domain.valueobjects.AddressCity" access="field">
+            <property name="value" column="city" access="field" type="string"/>
+        </component>
+
+        <component name="detail" class="com.webdev.realstate.properties.address.domain.valueobjects.AddressDetail" access="field">
+            <property name="value" column="detail" access="field" type="string"/>
+        </component>
+
+        <component name="additionalInfo" class="com.webdev.realstate.properties.address.domain.valueobjects.AddressAdditionalInfo" access="field">
+            <property name="value" column="additionalInfo" access="field" type="string"/>
+        </component>
+
+        <component name="neighborhood" class="com.webdev.realstate.properties.address.domain.valueobjects.AddressNeighborhood" access="field">
+            <property name="value" column="neighborhood" access="field" type="string"/>
+        </component>
+
+        <component name="userId" class="com.webdev.realstate.properties.address.domain.valueobjects.UserId" access="field">
+            <property name="value" column="userId" access="field" type="string"/>
+        </component>
+
+    </class>
+</hibernate-mapping>

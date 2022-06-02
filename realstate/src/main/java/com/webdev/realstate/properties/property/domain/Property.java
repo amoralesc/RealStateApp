@@ -18,6 +18,7 @@ public class Property {
 	Optional<PropertyAddress> propertyAddress;
 
 	public Property() {
+		propertyAddress = Optional.empty();
 	}
 
 	public Property(
@@ -53,9 +54,24 @@ public class Property {
 				propertyQuantityBathrooms,
 				propertyArea,
 				propertyPrice,
-				Optional.ofNullable(propertyAddress)
+				Optional.empty()
 		);
 		return property;
+	}
+
+	public void addAddress(PropertyAddress addAddress) {
+		this.propertyAddress = Optional.of(addAddress);
+	}
+
+	private HashMap<String, Object> createAddress() {
+		if (propertyAddress.isPresent()) {
+			return propertyAddress.get().data();
+		}
+		return null;
+	}
+
+	public void updateAddress(PropertyAddress propertyAddress) {
+		this.propertyAddress = Optional.of(propertyAddress);
 	}
 
 	public HashMap<String, Object> data() {
@@ -71,17 +87,5 @@ public class Property {
 			//put("address", createAddress());
 		}};
 		return data;
-	}
-
-	private HashMap<String, Object> createAddress() {
-		HashMap<String, Object> data = new HashMap<>();
-		propertyAddress.ifPresent(address ->
-				data.putAll(address.data())
-		);
-		return data;
-	}
-
-	public void updateAddress(PropertyAddress propertyAddress) {
-		this.propertyAddress = Optional.of(propertyAddress);
 	}
 }

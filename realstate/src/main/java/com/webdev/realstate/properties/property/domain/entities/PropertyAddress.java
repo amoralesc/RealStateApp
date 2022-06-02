@@ -3,24 +3,27 @@ package com.webdev.realstate.properties.property.domain.entities;
 import java.util.HashMap;
 
 public class PropertyAddress {
+	private String id;
 	private String city;
+	private String postalCode;
 	private String detail;
 	private String info;
-	private String neighborhood;
 
-	public PropertyAddress(String city, String detail, String info, String neighborhood) {
+	public PropertyAddress(String id, String city, String postalCode, String detail, String info) {
+		this.id = id;
 		this.city = city;
+		this.postalCode = postalCode;
 		this.detail = detail;
 		this.info = info;
-		this.neighborhood = neighborhood;
 	}
 
 	public HashMap<String, Object> data() {
 		HashMap<String, Object> data = new HashMap<>() {{
+			put("id", id);
 			put("city", city);
+			put("postalCode", postalCode);
 			put("detail", detail);
 			put("info", info);
-			put("neighborhood", neighborhood);
 		}};
 		return data;
 	}

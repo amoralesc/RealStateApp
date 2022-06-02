@@ -4,6 +4,7 @@ import com.webdev.realstate.appointments.appointment.domain.events.AppointmentCr
 import com.webdev.realstate.appointments.appointment.domain.events.AppointmentUpdatedDomainEvent;
 import com.webdev.realstate.appointments.request.domain.events.RequestCreatedDomainEvent;
 import com.webdev.realstate.appointments.request.domain.events.RequestUpdatedDomainEvent;
+import com.webdev.realstate.properties.address.domain.events.AddressCreatedDomainEvent;
 import com.webdev.realstate.shared.domain.bus.event.DomainEvent;
 
 import java.util.HashMap;
@@ -30,6 +31,10 @@ public class DomainEventsInformation {
 				"update.request",
 				RequestUpdatedDomainEvent.class
 		);
+		indexedDomainEvent.put(
+				"create.address",
+				AddressCreatedDomainEvent.class
+		);
 
 		domainEventSubscribers.put(
 				"realstate.appointments.appointment.create.appointment",
@@ -47,7 +52,10 @@ public class DomainEventsInformation {
 				"realstate.appointments.request.update.request",
 				"UpdateRequestOnRequestUpdated"
 		);
-
+		domainEventSubscribers.put(
+				"realstate.properties.address.create.address",
+				"AddAddressOnAddressCreated"
+		);
 	}
 
 	public Class<? extends DomainEvent> getDomainEvent(String name) {

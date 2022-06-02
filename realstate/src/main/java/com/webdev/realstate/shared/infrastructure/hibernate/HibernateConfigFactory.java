@@ -38,9 +38,12 @@ public class HibernateConfigFactory {
 		FileSystemResource resource4 = new FileSystemResource(
 				"realstate/src/main/java/com/webdev/realstate/appointments/request/infrastructure/hibernate/Request.hbm.xml"
 		);
+		FileSystemResource resource5 = new FileSystemResource(
+				"realstate/src/main/java/com/webdev/realstate/properties/address/infrastructure/hibernate/Address.hbm.xml"
+		);
 
 		sessionFactoryBean.setMappingLocations(
-				resource1, resource2, resource3, resource4
+				resource1, resource2, resource3, resource4, resource5
 		);
 
 		return sessionFactoryBean;
